@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D Body;
     private Vector3 PlayerPos;
+    private Quaternion PlayerRotation;
     private float moveSpeed;
     private float x;
     private float y;
@@ -18,7 +19,8 @@ public class PlayerController : MonoBehaviour
         gunController = Gun.GetComponent<GunController>();
         Body = GetComponent<Rigidbody2D>();
         PlayerPos = transform.position;
-        moveSpeed = 90f;
+        PlayerRotation = transform.rotation;
+        moveSpeed = 200f;
         x = 0;
         y = 0;
     }
@@ -26,25 +28,30 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.rotation = PlayerRotation;
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             x = -1;
             gunController.Fire(-x, 0);
+            PlayerRotation = Quaternion.Euler(0, 180, 0);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             x = 1;
             gunController.Fire(-x, 0);
+            PlayerRotation = Quaternion.Euler(0, 0, 0);
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             y = 1;
             gunController.Fire(0, -y);
+            PlayerRotation = Quaternion.Euler(0, 0, 90);
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             y = -1;
             gunController.Fire(0, -y);
+            PlayerRotation = Quaternion.Euler(0, 0, -90);
         }
 
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
