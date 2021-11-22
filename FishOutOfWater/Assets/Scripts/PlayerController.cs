@@ -5,11 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D Body;
-    private Vector3 PlayerPos;
-    private Quaternion PlayerRotation;
+    //private Vector3 PlayerPos;
+    //private Quaternion PlayerRotation;
     private float moveSpeed;
     private float x;
     private float y;
+
+    float Horizontal;
+    float Vertical;
 
     private GameObject Gun;
     private GunController gunController;
@@ -18,9 +21,9 @@ public class PlayerController : MonoBehaviour
         Gun = GameObject.FindGameObjectWithTag("Gun");
         gunController = Gun.GetComponent<GunController>();
         Body = GetComponent<Rigidbody2D>();
-        PlayerPos = transform.position;
-        PlayerRotation = transform.rotation;
-        moveSpeed = 200f;
+        //PlayerPos = transform.position;
+        //PlayerRotation = transform.rotation;
+        moveSpeed = 10.0f;
         x = 0;
         y = 0;
     }
@@ -28,47 +31,41 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = PlayerRotation;
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        Horizontal = Input.GetAxisRaw("Horizontal");
+        Vertical = Input.GetAxisRaw("Vertical");
+        if (Horizontal > 0)
         {
-            x = -1;
-            gunController.Fire(-x, 0);
-            PlayerRotation = Quaternion.Euler(0, 180, 0);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
+            Vertical = 0;
             x = 1;
+            transform.eulerAngles = new Vector3(0, 0, 0);
             gunController.Fire(-x, 0);
-            PlayerRotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Vertical > 0)
         {
+            Horizontal = 0;
             y = 1;
+            transform.eulerAngles = new Vector3(0, 0, 90);
             gunController.Fire(0, -y);
-            PlayerRotation = Quaternion.Euler(0, 0, 90);
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Horizontal < 0)
         {
+            Vertical = 0;
+            x = -1;
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            gunController.Fire(-x, 0);
+        }
+        else if (Vertical < 0)
+        {
+            Horizontal = 0;
             y = -1;
+            transform.eulerAngles = new Vector3(0, 0, -90);
             gunController.Fire(0, -y);
-            PlayerRotation = Quaternion.Euler(0, 0, -90);
         }
-
-        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            x = 0;
-        }
-        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            y = 0;
-        }
-        Move();
     }
 
-    void Move()
+    public void Move()
     {
-        Vector3 Movement = new Vector3(x, y) * moveSpeed * Time.deltaTime;
-        Body.velocity = Movement;
+        Body.velocity = new Vector2(Horizontal * moveSpeed, Vertical * moveSpeed);
     }
 
 }
