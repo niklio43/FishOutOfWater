@@ -11,11 +11,14 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 PlayerPos;
 
-    private GameObject[] Ground;
+    private GameObject[] Ground; private Collider2D groundCollider;
     private GameObject Gun;
     private GunController gunController;
 
     private bool maxHeightReached;
+
+    [SerializeField]
+    private LayerMask layerMask;
     void Start()
     {
         maxHeightReached = false;
@@ -68,11 +71,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y-1), -Vector2.up);
-
-        if (hit.collider != null)
+        for (int i = 0; i < Ground.Length; i++) 
         {
-            for(int i = 0; i < Ground.Length; i++)
-            {
+        groundCollider = Ground[i].GetComponent<Collider2D>();
+        if (hit.collider == groundCollider)
+        {
                 GameObject obj = hit.collider.gameObject;
 
                 Debug.Log(obj.name);
