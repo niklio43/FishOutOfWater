@@ -14,12 +14,12 @@ public class GunController : MonoBehaviour
         playerController = Player.GetComponent<PlayerController>();
     }
 
-    public void Fire(float x, float y)
+    public void Fire(float Horizontal, float Vertical)
     {
         GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
         Destroy(bullet, 3);
         Rigidbody2D Body = bullet.GetComponent<Rigidbody2D>();
-        Body.velocity = new Vector2(x, y) * 5f;
+        Body.velocity = new Vector2(Horizontal, Vertical) * 5f;
         playerController.Move();
     }
 }
