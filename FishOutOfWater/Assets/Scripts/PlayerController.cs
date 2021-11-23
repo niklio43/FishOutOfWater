@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
     float Horizontal;
     float Vertical;
-
+    SpriteRenderer spriteRenderer;
     private Vector2 PlayerPos;
 
     private GameObject[] Ground; private Collider2D groundCollider;
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private LayerMask layerMask;
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         maxHeightReached = false;
         Ground = GameObject.FindGameObjectsWithTag("Ground");
         Gun = GameObject.FindGameObjectWithTag("Gun");
@@ -123,6 +124,16 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health = Health - damage;
+
+        if (Health <= 0)
+            Dead();
+
         Debug.Log("Health: " + Health);
+    }
+
+    void Dead()
+    {
+        spriteRenderer.color = Color.red;
+        Destroy(gameObject, 2);
     }
 }
