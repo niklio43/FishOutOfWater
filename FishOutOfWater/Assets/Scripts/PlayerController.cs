@@ -6,9 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D Body;
     private float moveSpeed;
-    private float x;
-    private float y;
-
     float Horizontal;
     float Vertical;
 
@@ -20,8 +17,6 @@ public class PlayerController : MonoBehaviour
         gunController = Gun.GetComponent<GunController>();
         Body = GetComponent<Rigidbody2D>();
         moveSpeed = 10.0f;
-        x = 0;
-        y = 0;
     }
 
     void Update()
