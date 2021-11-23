@@ -11,10 +11,15 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 PlayerPos;
 
+    private GameObject[] Ground;
     private GameObject Gun;
     private GunController gunController;
+
+    private bool maxHeightReached;
     void Start()
     {
+        maxHeightReached = false;
+        Ground = GameObject.FindGameObjectsWithTag("Ground");
         Gun = GameObject.FindGameObjectWithTag("Gun");
         gunController = Gun.GetComponent<GunController>();
         Body = GetComponent<Rigidbody2D>();
@@ -60,9 +65,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y-1), -Vector2.up);
+
+        if (hit.collider != null)
+        {
+            for(int i = 0; i < Ground.Length; i++)
+            {
+                GameObject obj = hit.collider.gameObject;
+
+                Debug.Log(obj.name);
+                if (PlayerPos.y - obj.transform.position.y > 5)
+                {
+                    maxHeightReached = true;
+                    Debug.Log(obj.name);
+                }else
+                {
+                    maxHeightReached = false;
+                }
+            }
+        }
+    }
+
     public void Move()
     {
-        if (PlayerPos.y > 1)
+        if (maxHeightReached)
         {
             Vertical = 0;
         }
