@@ -4,52 +4,36 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private GameObject player;
-    int hp;
     private States state;
-    private PlayerController playercontroller;
-    private SpriteRenderer rend;
+    private SpriteRenderer spriteRenderer;
+    private int Health;
+    private GameObject Player;
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playercontroller = player.GetComponent<PlayerController>();
-        rend = GetComponent<SpriteRenderer>();
-        state = States.Alive;
-        hp = 4;
+        Player = GameObject.FindGameObjectWithTag("Player");
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        Health = 8;
     }
 
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Dying();
-        if(hp <= 0)
-        {
-            state = States.Dead;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(state == States.Alive) //can only hurt player if still alive
-        {
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                playercontroller.TakeDamage(1);
-            }
-        }
-
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
-            hp--;
+            TakeDamage(1);
         }
     }
-    private void Dying()
+
+    public void TakeDamage(int damage)
     {
-        if(state == States.Dead)
-        {
-            //play death animation
-            rend.color = Color.blue;
-            Destroy(gameObject, 2);
-        }
+        Health = Health - damage;
+        if (Health <= 0)
+            Dead();
+    }
+
+    private void Dead()
+    {
+        Destroy(gameObject, 2);
+        spriteRenderer.color = Color.red;
     }
 }

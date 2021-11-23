@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
-    void Start()
+    public GameObject PlayerBullet;
+    public GameObject EnemyBullet;
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-
-    }
-
-    void Update()
-    {
-        
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
