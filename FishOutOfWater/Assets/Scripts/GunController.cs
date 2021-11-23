@@ -31,7 +31,7 @@ public class GunController : MonoBehaviour
         if(NextFire < 0)
         {
             GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
-            Destroy(bullet, 3);
+            Destroy(bullet, 2);
             Rigidbody2D Body = bullet.GetComponent<Rigidbody2D>();
             Body.velocity = new Vector2(Horizontal, Vertical) * 10f;
             NextFire = FireRate;

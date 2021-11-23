@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
     private GameObject Gun;
     private GunController gunController;
 
-    private bool maxHeightReached;
+    private bool maxHeightReached; private bool aboveMaxHeight;
+
+    private float GroundHeight;
 
     [SerializeField]
     private LayerMask layerMask;
@@ -62,7 +64,8 @@ public class PlayerController : MonoBehaviour
         if (Vertical == 0 && Horizontal == 0)
         {
             Body.gravityScale = 8f;
-        }else
+        }
+        else
         {
             Move();
         }
@@ -70,22 +73,31 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y-1), -Vector2.up);
-        for (int i = 0; i < Ground.Length; i++) 
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1), -Vector2.up);
+        for (int i = 0; i < Ground.Length; i++)
         {
-        groundCollider = Ground[i].GetComponent<Collider2D>();
-        if (hit.collider == groundCollider)
-        {
+            groundCollider = Ground[i].GetComponent<Collider2D>();
+            if (hit.collider == groundCollider)
+            {
                 GameObject obj = hit.collider.gameObject;
 
-                Debug.Log(obj.name);
-                if (PlayerPos.y - obj.transform.position.y > 5)
+                GroundHeight = obj.transform.position.y;
+
+                if (PlayerPos.y - GroundHeight > 5)
                 {
                     maxHeightReached = true;
-                    Debug.Log(obj.name);
-                }else
+                }
+                else
                 {
                     maxHeightReached = false;
+                }
+                if (PlayerPos.y - GroundHeight > 5.5f)
+                {
+                    aboveMaxHeight = true;
+                }
+                else
+                {
+                    aboveMaxHeight = false;
                 }
             }
         }
@@ -96,6 +108,10 @@ public class PlayerController : MonoBehaviour
         if (maxHeightReached)
         {
             Vertical = 0;
+        }
+        if (aboveMaxHeight)
+        {
+            Vertical = -1;
         }
         Body.gravityScale = 0f;
         Body.velocity = new Vector2(Horizontal * moveSpeed, Vertical * moveSpeed);
