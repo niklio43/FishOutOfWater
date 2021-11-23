@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
             gunController.Fire(Horizontal, -Vertical);
         }
 
-        if(Vertical == 0 && Horizontal == 0)
+        if (Vertical == 0 && Horizontal == 0)
         {
             Body.gravityScale = 8f;
         }else
@@ -62,6 +62,10 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
+        if (PlayerPos.y > 1)
+        {
+            Vertical = 0;
+        }
         Body.gravityScale = 0f;
         Body.velocity = new Vector2(Horizontal * moveSpeed, Vertical * moveSpeed);
     }
