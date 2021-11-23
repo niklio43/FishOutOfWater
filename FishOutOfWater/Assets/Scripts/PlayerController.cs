@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private float GroundHeight;
 
+    private int Health;
+
     [SerializeField]
     private LayerMask layerMask;
     void Start()
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
         gunController = Gun.GetComponent<GunController>();
         Body = GetComponent<Rigidbody2D>();
         moveSpeed = 10.0f;
+        Health = 5;
     }
 
     void Update()
@@ -117,4 +120,8 @@ public class PlayerController : MonoBehaviour
         Body.velocity = new Vector2(Horizontal * moveSpeed, Vertical * moveSpeed);
     }
 
+    public void TakeDamage(int damage)
+    {
+        Health = Health - damage;
+    }
 }
