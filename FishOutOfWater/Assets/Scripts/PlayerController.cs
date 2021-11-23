@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     float Horizontal;
     float Vertical;
 
+    private Vector2 PlayerPos;
+
     private GameObject Gun;
     private GunController gunController;
     void Start()
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        PlayerPos = transform.position;
         Horizontal = Input.GetAxisRaw("Horizontal");
         Vertical = Input.GetAxisRaw("Vertical");
         if (Horizontal > 0)
@@ -47,10 +50,19 @@ public class PlayerController : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, -90);
             gunController.Fire(Horizontal, -Vertical);
         }
+
+        if(Vertical == 0 && Horizontal == 0)
+        {
+            Body.gravityScale = 8f;
+        }else
+        {
+            Move();
+        }
     }
 
     public void Move()
     {
+        Body.gravityScale = 0f;
         Body.velocity = new Vector2(Horizontal * moveSpeed, Vertical * moveSpeed);
     }
 
