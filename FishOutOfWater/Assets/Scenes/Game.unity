@@ -345,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2608349326346611905, guid: 265b0ef901fc5ed44a2866d501916c0c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.93
       objectReference: {fileID: 0}
     - target: {fileID: 2608349326346611905, guid: 265b0ef901fc5ed44a2866d501916c0c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -387,8 +387,33 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2608349326346611911, guid: 265b0ef901fc5ed44a2866d501916c0c, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 265b0ef901fc5ed44a2866d501916c0c, type: 3}
+--- !u!1 &612199876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2608349326346611909, guid: 265b0ef901fc5ed44a2866d501916c0c, type: 3}
+  m_PrefabInstance: {fileID: 539668758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &612199877
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612199876}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.0000002, y: 2.0000005}
+  m_Direction: 0
 --- !u!1 &779757580
 GameObject:
   m_ObjectHideFlags: 0
