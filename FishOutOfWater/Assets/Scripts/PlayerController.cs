@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
         {
             Horizontal = Input.GetAxisRaw("Horizontal");
             Vertical = Input.GetAxisRaw("Vertical");
-        }
         if (Horizontal > 0)
         {
             Vertical = 0;
@@ -75,6 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             Move();
         }
+    }
     }
 
     private void FixedUpdate()
