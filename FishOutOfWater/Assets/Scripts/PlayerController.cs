@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     private Vector2 PlayerPos;
 
+    PlayerHealth playerHealth;
+
     private GameObject[] Ground; private Collider2D groundCollider;
     private GameObject Gun;
     private GunController gunController;
@@ -18,8 +20,6 @@ public class PlayerController : MonoBehaviour
     private bool maxHeightReached; private bool aboveMaxHeight;
 
     private float GroundHeight;
-
-    private int Health;
 
     [SerializeField]
     private LayerMask layerMask;
@@ -30,9 +30,9 @@ public class PlayerController : MonoBehaviour
         Ground = GameObject.FindGameObjectsWithTag("Ground");
         Gun = GameObject.FindGameObjectWithTag("Gun");
         gunController = Gun.GetComponent<GunController>();
+        playerHealth = GetComponent<PlayerHealth>();
         Body = GetComponent<Rigidbody2D>();
         moveSpeed = 10.0f;
-        Health = 5;
     }
 
     void Update()
@@ -121,17 +121,7 @@ public class PlayerController : MonoBehaviour
         Body.velocity = new Vector2(Horizontal * moveSpeed, Vertical * moveSpeed);
     }
 
-    public void TakeDamage(int damage)
-    {
-        Health = Health - damage;
-
-        if (Health <= 0)
-            Dead();
-
-        Debug.Log("Health: " + Health);
-    }
-
-    void Dead()
+    public void Dead()
     {
         spriteRenderer.color = Color.red;
         Destroy(gameObject, 2);
@@ -142,7 +132,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("EnemyBullet"))
         {
             Destroy(collision.gameObject);
-            TakeDamage(1);
+            playerHealth.TakeDamage(20);
         }
     }
 }

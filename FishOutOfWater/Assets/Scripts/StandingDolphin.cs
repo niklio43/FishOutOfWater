@@ -22,7 +22,7 @@ public class StandingDolphin : MonoBehaviour
 
     void Update()
     {
-        if(Player != null)
+        if (Player != null)
         {
             if (Player.transform.position.x > transform.parent.position.x)
             {
@@ -43,15 +43,12 @@ public class StandingDolphin : MonoBehaviour
     {
         if (state == States.Alive)
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (collision.gameObject.CompareTag("Player") && NextFire < 0)
             {
-                if (NextFire < 0)
-                {
-                    GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
-                    Target = Player.transform.position - transform.position;
-                    bullet.GetComponent<Rigidbody2D>().velocity = Target * 5f;
-                    NextFire = FireRate;
-                }
+                GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
+                Target = Player.transform.position - transform.position;
+                bullet.GetComponent<Rigidbody2D>().velocity = Target * 5f;
+                NextFire = FireRate;
             }
         }
     }

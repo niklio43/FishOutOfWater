@@ -5,22 +5,22 @@ using UnityEngine;
 public class LayingDolphin : MonoBehaviour
 {
     States state;
-    PlayerController playerController;
+    PlayerHealth playerHealth;
     private GameObject player;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerController = player.GetComponent<PlayerController>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         state = States.Alive;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (state == States.Alive)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                playerController.TakeDamage(1);
+                playerHealth.TakeDamage(20);
             }
         }
     }
