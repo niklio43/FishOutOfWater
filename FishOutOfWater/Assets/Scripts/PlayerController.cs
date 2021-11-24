@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
                 GroundHeight = obj.transform.position.y;
 
-                if (PlayerPos.y - GroundHeight > 5)
+                if (PlayerPos.y - GroundHeight > 1)
                 {
                     maxHeightReached = true;
                 }
