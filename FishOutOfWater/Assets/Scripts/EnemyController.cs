@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private States state;
     private SpriteRenderer spriteRenderer;
     private int Health;
     private GameObject Player;

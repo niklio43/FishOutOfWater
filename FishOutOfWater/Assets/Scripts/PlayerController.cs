@@ -38,8 +38,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerPos = transform.position;
-        Horizontal = Input.GetAxisRaw("Horizontal");
-        Vertical = Input.GetAxisRaw("Vertical");
+        if (playerHealth.state == States.Alive)
+        {
+            Horizontal = Input.GetAxisRaw("Horizontal");
+            Vertical = Input.GetAxisRaw("Vertical");
+        }
         if (Horizontal > 0)
         {
             Vertical = 0;
