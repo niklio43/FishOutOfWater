@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private States state;
-    private SpriteRenderer spriteRenderer;
-    private int Health;
+    private int health;
+
     private GameObject Player;
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Health = 8;
+        health = 8;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -26,8 +27,8 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Health = Health - damage;
-        if (Health <= 0)
+        health = health - damage;
+        if (health <= 0)
             Dead();
     }
 

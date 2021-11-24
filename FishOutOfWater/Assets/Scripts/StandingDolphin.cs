@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class StandingDolphin : MonoBehaviour
 {
-    States state;
-    PlayerController playerController;
     public GameObject Bullet;
-    private GameObject Player;
+
+    private float fireRate;
+    private float nextFire;
     private Vector3 Target;
-    private float FireRate;
-    private float NextFire;
+
+    private GameObject Player;
+    private PlayerHealth playerHealth;
+    private PlayerController playerController;
+
     void Start()
     {
-        FireRate = 0.2f;
-        NextFire = -1f;
+        fireRate = 0.2f;
+        nextFire = -1f;
         Player = GameObject.FindGameObjectWithTag("Player");
         playerController = Player.GetComponent<PlayerController>();
-        state = States.Alive;
+        playerHealth = Player.GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
-        if(Player != null)
+        if (Player != null)
         {
             if (Player.transform.position.x > transform.parent.position.x)
             {
@@ -33,25 +36,22 @@ public class StandingDolphin : MonoBehaviour
                 transform.parent.eulerAngles = new Vector3(0, 0, 0);
             }
         }
-        if (NextFire > 0)
+        if (nextFire > 0)
         {
-            NextFire -= Time.deltaTime;
+            nextFire -= Time.deltaTime;
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (state == States.Alive)
+        if (playerHealth.state == States.Alive)
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (collision.gameObject.CompareTag("Player") && nextFire < 0)
             {
-                if (NextFire < 0)
-                {
-                    GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
-                    Target = Player.transform.position - transform.position;
-                    bullet.GetComponent<Rigidbody2D>().velocity = Target * 5f;
-                    NextFire = FireRate;
-                }
+                GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
+                Target = Player.transform.position - transform.position;
+                bullet.GetComponent<Rigidbody2D>().velocity = Target * 5f;
+                nextFire = fireRate;
             }
         }
     }
