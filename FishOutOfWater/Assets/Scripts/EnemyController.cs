@@ -5,13 +5,12 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private int health;
-
-    private GameObject Player;
+    public States state;
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        state = States.Alive;
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = 8;
     }
@@ -29,7 +28,10 @@ public class EnemyController : MonoBehaviour
     {
         health = health - damage;
         if (health <= 0)
+        {
+            state = States.Dead;
             Dead();
+        }
     }
 
     private void Dead()
