@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LayingDolphin : MonoBehaviour
 {
-    PlayerHealth playerHealth;
     private GameObject player;
+    private PlayerHealth playerHealth;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
