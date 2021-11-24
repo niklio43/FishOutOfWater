@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
     private Vector2 GroundHeight;
     private Vector2 PlayerPos;
-    
+
     private Rigidbody2D Body;
     private SpriteRenderer spriteRenderer;
     private PlayerHealth playerHealth;
@@ -81,30 +81,29 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1), -Vector2.up);
 
-            if (hit.collider.CompareTag("Ground"))
+        if (hit.collider.CompareTag("Ground"))
+        {
+            GroundHeight = hit.point;
+
+            Debug.Log(GroundHeight);
+
+            if (PlayerPos.y - GroundHeight.y > 5)
             {
-                GroundHeight = hit.point;
-
-                Debug.Log(GroundHeight);
-
-                if (PlayerPos.y - GroundHeight.y < 1)
-                {
-                    maxHeightReached = true;
-                }
-                else
-                {
-                    maxHeightReached = false;
-                }
-                if (PlayerPos.y - GroundHeight.y > 5.5f)
-                {
-                    aboveMaxHeight = true;
-                }
-                else
-                {
-                    aboveMaxHeight = false;
-                }
+                maxHeightReached = true;
             }
-        
+            else
+            {
+                maxHeightReached = false;
+            }
+            if (PlayerPos.y - GroundHeight.y > 5.5f)
+            {
+                aboveMaxHeight = true;
+            }
+            else
+            {
+                aboveMaxHeight = false;
+            }
+        }
     }
 
     public void Move()
