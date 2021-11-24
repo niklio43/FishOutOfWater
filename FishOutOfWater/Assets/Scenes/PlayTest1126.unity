@@ -135,6 +135,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: e71133f6288861f4194942f84fd8279c, type: 3}
     - target: {fileID: 3574632706547520050, guid: d476b2ae9040f7d409cb7271b3f9316d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3574632706547520050, guid: d476b2ae9040f7d409cb7271b3f9316d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3574632706547520050, guid: d476b2ae9040f7d409cb7271b3f9316d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3574632706547520050, guid: d476b2ae9040f7d409cb7271b3f9316d, type: 3}
       propertyPath: m_SortingLayer
       value: 2
       objectReference: {fileID: 0}
@@ -1463,7 +1475,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 14.44, y: 14.17}
+    oldSize: {x: 14.4522705, y: 14.169999}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1489,7 +1501,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 14.44, y: 14.17}
+    oldSize: {x: 14.4522705, y: 14.169999}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
