@@ -4,37 +4,39 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    private PlayerController playerController;
     public GameObject Bullet;
+
+    private float fireRate;
+    private float nextFire;
+
     private GameObject Player;
-    private float FireRate;
-    private float NextFire;
+    private PlayerController playerController;
 
     private void Start()
     {
-        FireRate = 0.1f;
-        NextFire = -1f;
+        fireRate = 0.1f;
+        nextFire = -1f;
         Player = GameObject.FindGameObjectWithTag("Player");
         playerController = Player.GetComponent<PlayerController>();
     }
 
     void Update()
     {
-        if (NextFire > 0)
+        if (nextFire > 0)
         {
-            NextFire -= Time.deltaTime;
+            nextFire -= Time.deltaTime;
         }
     }
 
     public void Fire(float Horizontal, float Vertical)
     {
-        if(NextFire < 0)
+        if(nextFire < 0)
         {
             GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
             Destroy(bullet, 2);
             Rigidbody2D Body = bullet.GetComponent<Rigidbody2D>();
             Body.velocity = new Vector2(Horizontal, Vertical) * 10f;
-            NextFire = FireRate;
+            nextFire = fireRate;
         }
     }
 }
