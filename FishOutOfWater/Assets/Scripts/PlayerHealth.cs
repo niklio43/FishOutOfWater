@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-
     public int maxHealth = 100;
     public int currentHealth;
-    public HealthBar healthBar;
-    PlayerController playerController;
+
     public States state;
+    public HealthBar healthBar;
+
+    private PlayerController playerController;
 
     void Start()
     {
@@ -29,7 +30,5 @@ public class PlayerHealth : MonoBehaviour
             playerController.Dead();
             state = States.Dead;
         }
-
     }
-
 }

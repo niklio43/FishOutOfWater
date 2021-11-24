@@ -14,7 +14,7 @@ public class LayingDolphin : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (state == States.Alive)
+        //if (state == States.Alive) - to be used later
         //{
             if (collision.gameObject.CompareTag("Player"))
             {
