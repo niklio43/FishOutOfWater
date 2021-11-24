@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private PlayerHealth playerHealth;
     private GameObject Gun;
-    private GameObject[] Ground;
-    private Collider2D groundCollider;
     private GunController gunController;
 
     [SerializeField]
@@ -26,7 +24,6 @@ public class PlayerController : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         maxHeightReached = false;
-        Ground = GameObject.FindGameObjectsWithTag("Ground");
         Gun = GameObject.FindGameObjectWithTag("Gun");
         gunController = Gun.GetComponent<GunController>();
         playerHealth = GetComponent<PlayerHealth>();
@@ -41,40 +38,40 @@ public class PlayerController : MonoBehaviour
         {
             Horizontal = Input.GetAxisRaw("Horizontal");
             Vertical = Input.GetAxisRaw("Vertical");
-        if (Horizontal > 0)
-        {
-            Vertical = 0;
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            gunController.Fire(-Horizontal, Vertical);
-        }
-        else if (Vertical > 0)
-        {
-            Horizontal = 0;
-            transform.eulerAngles = new Vector3(0, 0, 90);
-            gunController.Fire(Horizontal, -Vertical);
-        }
-        if (Horizontal < 0)
-        {
-            Vertical = 0;
-            transform.eulerAngles = new Vector3(0, 180, 0);
-            gunController.Fire(-Horizontal, Vertical);
-        }
-        else if (Vertical < 0)
-        {
-            Horizontal = 0;
-            transform.eulerAngles = new Vector3(0, 0, -90);
-            gunController.Fire(Horizontal, -Vertical);
-        }
+            if (Horizontal > 0)
+            {
+                Vertical = 0;
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                gunController.Fire(-Horizontal, Vertical);
+            }
+            else if (Vertical > 0)
+            {
+                Horizontal = 0;
+                transform.eulerAngles = new Vector3(0, 0, 90);
+                gunController.Fire(Horizontal, -Vertical);
+            }
+            if (Horizontal < 0)
+            {
+                Vertical = 0;
+                transform.eulerAngles = new Vector3(0, 180, 0);
+                gunController.Fire(-Horizontal, Vertical);
+            }
+            else if (Vertical < 0)
+            {
+                Horizontal = 0;
+                transform.eulerAngles = new Vector3(0, 0, -90);
+                gunController.Fire(Horizontal, -Vertical);
+            }
 
-        if (Vertical == 0 && Horizontal == 0)
-        {
-            Body.gravityScale = 8f;
+            if (Vertical == 0 && Horizontal == 0)
+            {
+                Body.gravityScale = 8f;
+            }
+            else
+            {
+                Move();
+            }
         }
-        else
-        {
-            Move();
-        }
-    }
     }
 
     private void FixedUpdate()
