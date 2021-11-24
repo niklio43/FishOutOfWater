@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D Body;
+    private bool aboveMaxHeight;
+    private bool maxHeightReached;
+    private float Vertical, Horizontal;
     private float moveSpeed;
-    float Horizontal;
-    float Vertical;
-    SpriteRenderer spriteRenderer;
-    private Vector2 PlayerPos;
-
-    PlayerHealth playerHealth;
-
-    private GameObject[] Ground; private Collider2D groundCollider;
-    private GameObject Gun;
-    private GunController gunController;
-
-    private bool maxHeightReached; private bool aboveMaxHeight;
-
     private float GroundHeight;
+    private Vector2 PlayerPos;
+    
+    private Rigidbody2D Body;
+    private SpriteRenderer spriteRenderer;
+    private PlayerHealth playerHealth;
+    private GameObject Gun;
+    private GameObject[] Ground;
+    private Collider2D groundCollider;
+    private GunController gunController;
 
     [SerializeField]
     private LayerMask layerMask;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
