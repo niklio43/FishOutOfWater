@@ -85,8 +85,6 @@ public class PlayerController : MonoBehaviour
         {
             GroundHeight = hit.point;
 
-            Debug.Log(GroundHeight);
-
             if (PlayerPos.y - GroundHeight.y > 5)
             {
                 maxHeightReached = true;
