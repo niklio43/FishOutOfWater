@@ -1158,11 +1158,13 @@ Tilemap:
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 21
-    m_Data: {fileID: 11400000, guid: 5bbb0a2e37d57d243b4e1286b1d641a0, type: 2}
+    m_Data: {fileID: 0}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 93cd65016bcd2b345836e9cb19dec7c6, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 2ca89def384bfe64a9bcc34c8126ae06, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 21
     m_Data: {fileID: 21300000, guid: f5b567c0ada233940b61a7c72464ed98, type: 3}
@@ -1170,6 +1172,8 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 90c305df7baf97642b704003448f2ca4, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300000, guid: 3f508f87713ac35468cf0d6c08ba936f, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 29
     m_Data:
@@ -1284,6 +1288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9ee3f39fc1ae14eba533bafbf9e5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fill: {fileID: 245659100}
   slider: {fileID: 1160907850}
   gradient:
     serializedVersion: 2
@@ -1314,7 +1319,6 @@ MonoBehaviour:
     m_Mode: 1
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
-  fill: {fileID: 245659100}
 --- !u!114 &1160907850
 MonoBehaviour:
   m_ObjectHideFlags: 0
