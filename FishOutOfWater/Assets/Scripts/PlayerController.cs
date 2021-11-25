@@ -39,27 +39,30 @@ public class PlayerController : MonoBehaviour
         {
             Horizontal = Input.GetAxisRaw("Horizontal");
             Vertical = Input.GetAxisRaw("Vertical");
+            
+            if(Horizontal != 0)
+                Vertical = 0;
+
+            if (Vertical != 0)
+                Horizontal = 0;
+
             if (Horizontal > 0)
             {
-                Vertical = 0;
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 gunController.Fire(-Horizontal, Vertical);
             }
-            else if (Vertical > 0)
-            {
-                Horizontal = 0;
-                transform.eulerAngles = new Vector3(0, 0, 90);
-                gunController.Fire(Horizontal, -Vertical);
-            }
             if (Horizontal < 0)
             {
-                Vertical = 0;
                 transform.eulerAngles = new Vector3(0, 180, 0);
                 gunController.Fire(-Horizontal, Vertical);
             }
-            else if (Vertical < 0)
+            if (Vertical > 0)
             {
-                Horizontal = 0;
+                transform.eulerAngles = new Vector3(0, 0, 90);
+                gunController.Fire(Horizontal, -Vertical);
+            }
+            if (Vertical < 0)
+            {
                 transform.eulerAngles = new Vector3(0, 0, -90);
                 gunController.Fire(Horizontal, -Vertical);
             }
@@ -67,8 +70,7 @@ public class PlayerController : MonoBehaviour
             if (Vertical == 0 && Horizontal == 0)
             {
                 Body.gravityScale = 8f;
-            }
-            else
+            }else
             {
                 Move();
             }
