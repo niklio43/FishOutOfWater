@@ -2,39 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+//Handle movement and player taking damage
+public class PlayerController : MonoBehaviour 
 {
     private bool aboveMaxHeight;
     private bool maxHeightReached;
-    private float Vertical, Horizontal;
     private float moveSpeed;
-    private Vector2 GroundHeight;
+    private float Vertical, Horizontal;
     private Vector2 PlayerPos;
+    private Vector2 GroundHeight;
 
-    private Rigidbody2D Body;
-    private SpriteRenderer spriteRenderer;
-    private PlayerHealth playerHealth;
     private GameObject Gun;
+    private Rigidbody2D Body;
+    private PlayerHealth playerHealth;
     private GunController gunController;
+    private SpriteRenderer spriteRenderer;
 
     [SerializeField]
     private LayerMask layerMask;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        maxHeightReached = false;
-        Gun = GameObject.FindGameObjectWithTag("Gun");
-        gunController = Gun.GetComponent<GunController>();
-        playerHealth = GetComponent<PlayerHealth>();
-        Body = GetComponent<Rigidbody2D>();
         moveSpeed = 10.0f;
+        maxHeightReached = false;
+        Body = GetComponent<Rigidbody2D>();
+        playerHealth = GetComponent<PlayerHealth>();
+        Gun = GameObject.FindGameObjectWithTag("Gun");
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        gunController = Gun.GetComponent<GunController>();
     }
 
     void Update()
     {
         PlayerPos = transform.position;
-        if (playerHealth.state == States.Alive)
+        if (playerHealth.state == States.Alive) //Player alive = movement enabled
         {
             Horizontal = Input.GetAxisRaw("Horizontal");
             Vertical = Input.GetAxisRaw("Vertical");
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Handle the max height the player can fly above the ground
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1), -Vector2.up);
 
         if (hit.collider.CompareTag("Ground"))
@@ -104,8 +106,9 @@ public class PlayerController : MonoBehaviour
     public void Move()
     {
         if (maxHeightReached)
-        {
-            if (Input.GetKey(KeyCode.DownArrow))
+        {   
+            //Bug fix, might remove if better solution comes to mind
+            if (Input.GetKey(KeyCode.DownArrow)) 
             {
                 Vertical = -1;
             }

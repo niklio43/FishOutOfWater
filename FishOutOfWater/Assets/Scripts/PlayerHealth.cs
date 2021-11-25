@@ -14,10 +14,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
+        state = States.Alive;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         playerController = GetComponent<PlayerController>();
-        state = States.Alive;
     }
 
     public void TakeDamage(int damage)
