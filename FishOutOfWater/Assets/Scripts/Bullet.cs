@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public GameObject PlayerBullet;
     public GameObject EnemyBullet;
+    public GameObject PlayerBullet;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -11,8 +11,8 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
-        fireRate = 0.1f;
         nextFire = -1f;
+        fireRate = 0.1f;
     }
 
     void Update()
