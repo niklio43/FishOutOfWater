@@ -50,6 +50,7 @@ public class StandingDolphin : MonoBehaviour
             if (collision.gameObject.CompareTag("Player") && nextFire < 0)
             {
                 GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
+                Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
                 Target = Player.transform.position - transform.position;
                 bullet.GetComponent<Rigidbody2D>().velocity = Target * 5f;
                 nextFire = fireRate;
