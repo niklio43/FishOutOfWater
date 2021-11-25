@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private int health;
-    public States state;
     private SpriteRenderer spriteRenderer;
+    private StandingDolphin standingDolphin;
+    private LayingDolphin layingDolphin;
+    private GameObject StandingD;
+    private GameObject LayingD;
+    private int Health;
 
     void Start()
     {
-        state = States.Alive;
+        StandingD = GameObject.FindGameObjectWithTag("Mouth");
+        LayingD = GameObject.FindGameObjectWithTag("LayingDolphin");
+        standingDolphin = StandingD.GetComponent<StandingDolphin>();
+        layingDolphin = LayingD.GetComponent<LayingDolphin>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        health = 8;
+        Health = 8;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -22,15 +28,29 @@ public class EnemyController : MonoBehaviour
             Destroy(collision.gameObject);
             TakeDamage(1);
         }
+
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(collision.gameObject);
+            TakeDamage(1);
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        health = health - damage;
-        if (health <= 0)
+        Health = Health - damage;
+        if (Health <= 0)
         {
-            state = States.Dead;
-            Dead();
+            if(gameObject.tag == "LayingDolphin")
+            {
+                layingDolphin.state = States.Dead;
+                Dead();
+            }
+            if (gameObject.tag == "StandingDolphin")
+            {
+                standingDolphin.state = States.Dead;
+                Dead();
+            }
         }
     }
 

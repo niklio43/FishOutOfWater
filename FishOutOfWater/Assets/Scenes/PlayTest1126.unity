@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3574632706547520055, guid: d476b2ae9040f7d409cb7271b3f9316d, type: 3}
+      propertyPath: m_TagString
+      value: LayingDolphin
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3574632706547520052, guid: d476b2ae9040f7d409cb7271b3f9316d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d476b2ae9040f7d409cb7271b3f9316d, type: 3}
@@ -1462,6 +1466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb112a844464fb0419f7bed29e791876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
 --- !u!61 &1411368509
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1581,6 +1586,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6628962439485579113, guid: 56bee489a14a68c4a9068af79e614567, type: 3}
+      propertyPath: m_TagString
+      value: Mouth
+      objectReference: {fileID: 0}
     - target: {fileID: 6628962439485579114, guid: 56bee489a14a68c4a9068af79e614567, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -1599,6 +1608,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6628962440829987022, guid: 56bee489a14a68c4a9068af79e614567, type: 3}
       propertyPath: m_Name
+      value: StandingDolphin
+      objectReference: {fileID: 0}
+    - target: {fileID: 6628962440829987022, guid: 56bee489a14a68c4a9068af79e614567, type: 3}
+      propertyPath: m_TagString
       value: StandingDolphin
       objectReference: {fileID: 0}
     - target: {fileID: 6628962441395487247, guid: 56bee489a14a68c4a9068af79e614567, type: 3}

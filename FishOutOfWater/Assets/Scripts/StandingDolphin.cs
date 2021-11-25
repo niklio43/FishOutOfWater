@@ -12,22 +12,21 @@ public class StandingDolphin : MonoBehaviour
 
     private GameObject Player;
     private PlayerHealth playerHealth;
-    private EnemyController enemyController;
-    private GameObject StandingD;
+
+    public States state;
 
     void Start()
     {
+        state = States.Alive;
         fireRate = 0.2f;
         nextFire = -1f;
         Player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = Player.GetComponent<PlayerHealth>();
-        StandingD = gameObject.transform.parent.gameObject;
-        enemyController = StandingD.GetComponent<EnemyController>();
     }
 
     void Update()
     {
-        if (Player != null && enemyController.state == States.Alive)
+        if (Player != null && state == States.Alive)
         {
             if (Player.transform.position.x > transform.parent.position.x)
             {
@@ -46,7 +45,7 @@ public class StandingDolphin : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (playerHealth.state == States.Alive && enemyController.state == States.Alive)
+        if (playerHealth.state == States.Alive && state == States.Alive)
         {
             if (collision.gameObject.CompareTag("Player") && nextFire < 0)
             {
