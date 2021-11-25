@@ -28,7 +28,7 @@ public class GunController : MonoBehaviour
         if(nextFire < 0)
         {
             GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
-            Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
+            //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
             Rigidbody2D Body = bullet.GetComponent<Rigidbody2D>();
             Body.velocity = new Vector2(Horizontal, Vertical) * 10f;
             nextFire = fireRate;
