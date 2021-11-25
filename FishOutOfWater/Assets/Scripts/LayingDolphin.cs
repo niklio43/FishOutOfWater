@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LayingDolphin : MonoBehaviour
 {
+    public States state;
+
     private GameObject player;
     private PlayerHealth playerHealth;
-
-    public States state;
 
     void Start()
     {

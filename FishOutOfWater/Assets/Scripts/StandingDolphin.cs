@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class StandingDolphin : MonoBehaviour
 {
+    public States state;
     public GameObject Bullet;
 
+    private Vector3 Target;
     private float fireRate;
     private float nextFire;
-    private Vector3 Target;
 
     private GameObject Player;
     private PlayerHealth playerHealth;
 
-    public States state;
-
     void Start()
     {
-        state = States.Alive;
         fireRate = 0.2f;
         nextFire = -1f;
+        state = States.Alive;
         Player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = Player.GetComponent<PlayerHealth>();
     }
@@ -43,6 +42,7 @@ public class StandingDolphin : MonoBehaviour
         }
     }
 
+    //If player enters trigger, dolphin starts shooting towards player
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (playerHealth.state == States.Alive && state == States.Alive)

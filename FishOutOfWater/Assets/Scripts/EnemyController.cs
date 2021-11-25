@@ -4,31 +4,25 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    private int Health;
+    private GameObject LayingD;
+    private GameObject StandingD;
+    private LayingDolphin layingDolphin;
     private SpriteRenderer spriteRenderer;
     private StandingDolphin standingDolphin;
-    private LayingDolphin layingDolphin;
-    private GameObject StandingD;
-    private GameObject LayingD;
-    private int Health;
 
     void Start()
     {
-        StandingD = GameObject.FindGameObjectWithTag("Mouth");
-        LayingD = GameObject.FindGameObjectWithTag("LayingDolphin");
-        standingDolphin = StandingD.GetComponent<StandingDolphin>();
-        layingDolphin = LayingD.GetComponent<LayingDolphin>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         Health = 8;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        LayingD = GameObject.FindGameObjectWithTag("LayingDolphin");
+        layingDolphin = LayingD.GetComponent<LayingDolphin>();
+        StandingD = GameObject.FindGameObjectWithTag("Mouth");
+        standingDolphin = StandingD.GetComponent<StandingDolphin>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            Destroy(collision.gameObject);
-            TakeDamage(1);
-        }
-
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
