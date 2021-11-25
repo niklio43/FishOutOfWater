@@ -40,11 +40,11 @@ public class PlayerController : MonoBehaviour
             Horizontal = Input.GetAxisRaw("Horizontal");
             Vertical = Input.GetAxisRaw("Vertical");
             
-            if(Horizontal != 0)
-                Vertical = 0;
+            if(Horizontal != 0)            //Player movement bug fix
+                Vertical = 0;              //
 
-            if (Vertical != 0)
-                Horizontal = 0;
+            if (Vertical != 0)             //
+                Horizontal = 0;            //
 
             if (Horizontal > 0)
             {
