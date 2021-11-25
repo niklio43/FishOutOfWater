@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.SceneManagement; for when game over scene is added
 
 //Handle movement and player taking damage
 public class PlayerController : MonoBehaviour 
@@ -131,6 +132,10 @@ public class PlayerController : MonoBehaviour
     {
         spriteRenderer.color = Color.red;
         Destroy(gameObject, 2);
+        /*if(gameObject == null) for when game over scene is added
+        {
+            SceneManager.LoadScene("DemoScene");
+        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
