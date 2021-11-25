@@ -8,8 +8,8 @@ public class EnemyController : MonoBehaviour
     private GameObject LayingD;
     private GameObject StandingD;
     private LayingDolphin layingDolphin;
-    private SpriteRenderer spriteRenderer;
     private StandingDolphin standingDolphin;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
