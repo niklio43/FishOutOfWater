@@ -7,31 +7,34 @@ public class StandingDolphin : MonoBehaviour
     public GameObject Bullet;
 
     private Vector3 Target;
-    private float fireRate;
-    private float nextFire;
+    private float fireRate, nextFire;
 
     private GameObject Player;
-    private PlayerHealth playerHealth;
+
+    private int Health;
+
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
+        Health = 60;
         fireRate = 0.2f;
         nextFire = -1f;
         Player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = Player.GetComponent<PlayerHealth>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        if (Player != null)
+        if (Player != null && Health != 0)
         {
-            if (Player.transform.position.x > transform.parent.position.x)
+            if (Player.transform.position.x > transform.position.x)
             {
-                transform.parent.eulerAngles = new Vector3(0, 180, 0);
+                transform.eulerAngles = new Vector3(0, 180, 0);
             }
             else
             {
-                transform.parent.eulerAngles = new Vector3(0, 0, 0);
+                transform.eulerAngles = new Vector3(0, 0, 0);
             }
         }
         if (nextFire > 0)
@@ -49,6 +52,31 @@ public class StandingDolphin : MonoBehaviour
             Target = Player.transform.position - transform.position;
             bullet.GetComponent<Rigidbody2D>().velocity = Target * 5f;
             nextFire = fireRate;
+            Destroy(bullet, 3);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(collision.gameObject);
+            TakeDamage(20);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health = Health - damage;
+        if (Health <= 0)
+        {
+            Dead();
+        }
+    }
+
+    private void Dead()
+    {
+        Destroy(gameObject, 2);
+        spriteRenderer.color = Color.red;
     }
 }
