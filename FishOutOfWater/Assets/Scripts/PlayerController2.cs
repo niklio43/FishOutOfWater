@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController2 : MonoBehaviour
 {
     public Rigidbody2D rb;
     private float thrust;
+    private PlayerHealth playerHealth;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         thrust = 35f;
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     public void Movement(int directionX, int directionY)
@@ -24,7 +28,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
-        else if(Horizontal < 0 && Vertical == 0)
+        else if (Horizontal < 0 && Vertical == 0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
@@ -42,5 +46,20 @@ public class PlayerController : MonoBehaviour
     public void SwitchGravity(float GravityScale)
     {
         rb.gravityScale = GravityScale;
+    }
+
+    public void Dead()
+    {
+        spriteRenderer.color = Color.red;
+        Destroy(gameObject, 2);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            Destroy(collision.gameObject);
+            playerHealth.TakeDamage(20);
+        }
     }
 }

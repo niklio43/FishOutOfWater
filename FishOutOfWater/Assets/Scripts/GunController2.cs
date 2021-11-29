@@ -2,60 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunController : MonoBehaviour
+public class GunController2 : MonoBehaviour
 {
     public GameObject projectile;
     public Transform shotPoint;
 
-    private PlayerController playerController;
+    private PlayerController2 playerController;
     private float timeBtwShots, startTimeBtwShots;
+    private PlayerHealth playerHealth;
 
     private void Start()
     {
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         startTimeBtwShots = 0.2f;
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController2>();
     }
 
     private void Update()
     {
-        if (timeBtwShots <= 0)
+        if (playerHealth.state == States.Alive)
         {
+            if (timeBtwShots <= 0)
+            {
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                playerController.SetPlayerRotation(1, 0);
-                Fire(1, 0);
-                playerController.SwitchGravity(0f);
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    playerController.SetPlayerRotation(1, 0);
+                    Fire(1, 0);
+                    playerController.SwitchGravity(0f);
+                }
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    playerController.SetPlayerRotation(-1, 0);
+                    Fire(-1, 0);
+                    playerController.SwitchGravity(0f);
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    playerController.SetPlayerRotation(0, 1);
+                    Fire(0, 1);
+                    playerController.SwitchGravity(8.92f);
+                }
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    playerController.SetPlayerRotation(0, -1);
+                    Fire(0, -1);
+                    playerController.SwitchGravity(8.92f);
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else
             {
-                playerController.SetPlayerRotation(-1, 0);
-                Fire(-1, 0);
-                playerController.SwitchGravity(0f);
+                timeBtwShots -= Time.deltaTime;
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+
+            if (playerController.rb.velocity.x < 4f && playerController.rb.velocity.x > -4f)
             {
-                playerController.SetPlayerRotation(0, 1);
-                Fire(0, 1);
                 playerController.SwitchGravity(8.92f);
             }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                playerController.SetPlayerRotation(0, -1);
-                Fire(0, -1);
-                playerController.SwitchGravity(8.92f);
-            }
         }
-        else
-        {
-            timeBtwShots -= Time.deltaTime;
-        }
-
-        if(playerController.rb.velocity.x < 4f && playerController.rb.velocity.x > -4f)
-        {
-            playerController.SwitchGravity(8.92f);
-        }
-
     }
 
     public void Fire(int directionX, int directionY)
