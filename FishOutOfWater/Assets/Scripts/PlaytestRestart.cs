@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PlaytestRestart : MonoBehaviour
 {
-    // Start is called before the first frame update
+    string sceneName;
     void Start()
     {
-        
+        sceneName = SceneManager.GetActiveScene().name;
     }
 
     // Update is called once per frame
@@ -16,7 +16,7 @@ public class PlaytestRestart : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("PlayTest");
+            SceneManager.LoadScene(sceneName);
         }
     }
 }
