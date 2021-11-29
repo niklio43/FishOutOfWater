@@ -6,6 +6,8 @@ public class PlayerController2 : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float thrust;
+    public float jumpForce;
+    private Vector2 velocityCopy;
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
 
@@ -18,7 +20,10 @@ public class PlayerController2 : MonoBehaviour
 
     public void Movement(int directionX, int directionY)
     {
-        rb.velocity = new Vector2(-directionX, -directionY) * thrust;
+        velocityCopy = rb.velocity;
+        velocityCopy.x = -directionX * thrust;
+        velocityCopy.y = -directionY * jumpForce;
+        rb.velocity = velocityCopy;
     }
 
     public void SetPlayerRotation(int Horizontal, int Vertical)
