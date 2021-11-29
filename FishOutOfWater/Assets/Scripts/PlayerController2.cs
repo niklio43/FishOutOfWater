@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController2 : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float thrust = 35f;
+    public float thrust;
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
 
