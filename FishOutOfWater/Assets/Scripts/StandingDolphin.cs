@@ -4,36 +4,37 @@ using UnityEngine;
 
 public class StandingDolphin : MonoBehaviour
 {
-    public States state;
     public GameObject Bullet;
 
     private Vector3 Target;
-    private float fireRate;
-    private float nextFire;
+    private float fireRate, nextFire;
 
     private GameObject Player;
-    private PlayerHealth playerHealth;
+
+    private int Health;
+
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
+        Health = 60;
         fireRate = 0.2f;
         nextFire = -1f;
-        state = States.Alive;
         Player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = Player.GetComponent<PlayerHealth>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        if (Player != null && state == States.Alive)
+        if (Player != null && Health != 0)
         {
-            if (Player.transform.position.x > transform.parent.position.x)
+            if (Player.transform.position.x > transform.position.x)
             {
-                transform.parent.eulerAngles = new Vector3(0, 180, 0);
+                transform.eulerAngles = new Vector3(0, 180, 0);
             }
             else
             {
-                transform.parent.eulerAngles = new Vector3(0, 0, 0);
+                transform.eulerAngles = new Vector3(0, 0, 0);
             }
         }
         if (nextFire > 0)
@@ -45,15 +46,37 @@ public class StandingDolphin : MonoBehaviour
     //If player enters trigger, dolphin starts shooting towards player
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (playerHealth.state == States.Alive && state == States.Alive)
+        if (collision.gameObject.CompareTag("Player") && nextFire < 0)
         {
-            if (collision.gameObject.CompareTag("Player") && nextFire < 0)
-            {
-                GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
-                Target = Player.transform.position - transform.position;
-                bullet.GetComponent<Rigidbody2D>().velocity = Target * 5f;
-                nextFire = fireRate;
-            }
+            GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
+            Target = Player.transform.position - transform.position;
+            bullet.GetComponent<Rigidbody2D>().velocity = Target * 5f;
+            nextFire = fireRate;
+            Destroy(bullet, 3);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(collision.gameObject);
+            TakeDamage(20);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health = Health - damage;
+        if (Health <= 0)
+        {
+            Dead();
+        }
+    }
+
+    private void Dead()
+    {
+        Destroy(gameObject, 2);
+        spriteRenderer.color = Color.red;
     }
 }

@@ -7,17 +7,15 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
-    public States state;
     public HealthBar healthBar;
 
-    private PlayerController2 playerController;
+    private PlayerController playerController;
 
     void Start()
     {
-        state = States.Alive;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-        playerController = GetComponent<PlayerController2>();
+        playerController = GetComponent<PlayerController>();
     }
 
     public void TakeDamage(int damage)
@@ -28,7 +26,6 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             playerController.Dead();
-            state = States.Dead;
         }
     }
 }
