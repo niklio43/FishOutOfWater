@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class StandingDolphin : MonoBehaviour
 {
-    public States state;
     public GameObject Bullet;
 
     private Vector3 Target;
@@ -18,14 +17,13 @@ public class StandingDolphin : MonoBehaviour
     {
         fireRate = 0.2f;
         nextFire = -1f;
-        state = States.Alive;
         Player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = Player.GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
-        if (Player != null && state == States.Alive)
+        if (Player != null)
         {
             if (Player.transform.position.x > transform.parent.position.x)
             {
@@ -45,15 +43,12 @@ public class StandingDolphin : MonoBehaviour
     //If player enters trigger, dolphin starts shooting towards player
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (playerHealth.state == States.Alive && state == States.Alive)
+        if (collision.gameObject.CompareTag("Player") && nextFire < 0)
         {
-            if (collision.gameObject.CompareTag("Player") && nextFire < 0)
-            {
-                GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
-                Target = Player.transform.position - transform.position;
-                bullet.GetComponent<Rigidbody2D>().velocity = Target * 5f;
-                nextFire = fireRate;
-            }
+            GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
+            Target = Player.transform.position - transform.position;
+            bullet.GetComponent<Rigidbody2D>().velocity = Target * 5f;
+            nextFire = fireRate;
         }
     }
 }

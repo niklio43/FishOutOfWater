@@ -1,141 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.SceneManagement; for when game over scene is added
 
-//Handle movement and player taking damage
-public class PlayerController : MonoBehaviour 
+public class PlayerController : MonoBehaviour
 {
-    private bool aboveMaxHeight;
-    private bool maxHeightReached;
-    private float moveSpeed;
-    private float Vertical, Horizontal;
-    private Vector2 PlayerPos;
-    private Vector2 GroundHeight;
-
-    private GameObject Gun;
-    private Rigidbody2D Body;
+    public Rigidbody2D rb;
+    public float thrust;
     private PlayerHealth playerHealth;
-    private GunController gunController;
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField]
-    private LayerMask layerMask;
-
-    void Start()
+    private void Start()
     {
-        moveSpeed = 10.0f;
-        maxHeightReached = false;
-        Body = GetComponent<Rigidbody2D>();
-        playerHealth = GetComponent<PlayerHealth>();
-        Gun = GameObject.FindGameObjectWithTag("Gun");
+        rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        gunController = Gun.GetComponent<GunController>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
-    void Update()
+    public void Movement(int directionX, int directionY)
     {
-        PlayerPos = transform.position;
-        if (playerHealth.state == States.Alive) //Player alive = movement enabled
+        rb.velocity = new Vector2(-directionX, -directionY) * thrust;
+    }
+
+    public void SetPlayerRotation(int Horizontal, int Vertical)
+    {
+        if (Horizontal > 0 && Vertical == 0)
         {
-            Horizontal = Input.GetAxisRaw("Horizontal");
-            Vertical = Input.GetAxisRaw("Vertical");
-            
-            if(Horizontal != 0)            //Player movement bug fix
-                Vertical = 0;              //
-
-            if (Vertical != 0)             //
-                Horizontal = 0;            //
-
-            if (Horizontal > 0)
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                gunController.Fire(-Horizontal, Vertical);
-            }
-            if (Horizontal < 0)
-            {
-                transform.eulerAngles = new Vector3(0, 180, 0);
-                gunController.Fire(-Horizontal, Vertical);
-            }
-            if (Vertical > 0)
-            {
-                transform.eulerAngles = new Vector3(0, 0, 90);
-                gunController.Fire(Horizontal, -Vertical);
-            }
-            if (Vertical < 0)
-            {
-                transform.eulerAngles = new Vector3(0, 0, -90);
-                gunController.Fire(Horizontal, -Vertical);
-            }
-
-            if (Vertical == 0 && Horizontal == 0)
-            {
-                Body.gravityScale = 8f;
-            }else
-            {
-                Move();
-            }
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (Horizontal < 0 && Vertical == 0)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        if (Vertical > 0 && Horizontal == 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 90);
+        }
+        else if (Vertical < 0 && Horizontal == 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, -90);
         }
     }
 
-    private void FixedUpdate()
+
+    public void SwitchGravity(float GravityScale)
     {
-        //Handle the max height the player can fly above the ground
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1), -Vector2.up);
-
-        if (hit.collider.CompareTag("Ground"))
-        {
-            GroundHeight = hit.point;
-
-            if (PlayerPos.y - GroundHeight.y > 5.0f)
-            {
-                maxHeightReached = true;
-            }
-            else
-            {
-                maxHeightReached = false;
-            }
-            if (PlayerPos.y - GroundHeight.y > 5.5f)
-            {
-                aboveMaxHeight = true;
-            }
-            else
-            {
-                aboveMaxHeight = false;
-            }
-        }
-    }
-
-    public void Move()
-    {
-        if (maxHeightReached)
-        {   
-            //Bug fix, might remove if better solution comes to mind
-            if (Input.GetKey(KeyCode.DownArrow)) 
-            {
-                Vertical = -1;
-            }
-            else
-            {
-                Vertical = 0;
-            }
-        }
-        if (aboveMaxHeight && maxHeightReached)
-        {
-            Vertical = -1;
-        }
-        Body.gravityScale = 0f;
-        Body.velocity = new Vector2(Horizontal * moveSpeed, Vertical * moveSpeed);
+        rb.gravityScale = GravityScale;
     }
 
     public void Dead()
     {
         spriteRenderer.color = Color.red;
         Destroy(gameObject, 2);
-        /*if(gameObject == null) for when game over scene is added
-        {
-            SceneManager.LoadScene("DemoScene");
-        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

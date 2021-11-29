@@ -5,20 +5,12 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private int Health;
-    private GameObject LayingD;
-    private GameObject StandingD;
-    private LayingDolphin layingDolphin;
-    private StandingDolphin standingDolphin;
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         Health = 8;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        LayingD = GameObject.FindGameObjectWithTag("LayingDolphin");
-        layingDolphin = LayingD.GetComponent<LayingDolphin>();
-        StandingD = GameObject.FindGameObjectWithTag("Mouth");
-        standingDolphin = StandingD.GetComponent<StandingDolphin>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,12 +29,10 @@ public class EnemyController : MonoBehaviour
         {
             if(gameObject.tag == "LayingDolphin")
             {
-                layingDolphin.state = States.Dead;
                 Dead();
             }
             if (gameObject.tag == "StandingDolphin")
             {
-                standingDolphin.state = States.Dead;
                 Dead();
             }
         }

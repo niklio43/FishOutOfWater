@@ -4,33 +4,64 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    public GameObject Bullet;
+    public GameObject projectile;
+    public Transform shotPoint;
 
-    private float fireRate;
-    private float nextFire;
+    private PlayerController playerController;
+    private float timeBtwShots, startTimeBtwShots;
 
     private void Start()
     {
-        nextFire = -1f;
-        fireRate = 0.1f;
+        startTimeBtwShots = 0.2f;
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (nextFire > 0)
+        if (timeBtwShots <= 0)
         {
-            nextFire -= Time.deltaTime;
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                playerController.SetPlayerRotation(1, 0);
+                Fire(1, 0);
+                playerController.SwitchGravity(0f);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                playerController.SetPlayerRotation(-1, 0);
+                Fire(-1, 0);
+                playerController.SwitchGravity(0f);
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                playerController.SetPlayerRotation(0, 1);
+                Fire(0, 1);
+                playerController.SwitchGravity(8.92f);
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                playerController.SetPlayerRotation(0, -1);
+                Fire(0, -1);
+                playerController.SwitchGravity(8.92f);
+            }
+            else
+            {
+                timeBtwShots -= Time.deltaTime;
+            }
+
+            if (playerController.rb.velocity.x < 4f && playerController.rb.velocity.x > -4f)
+            {
+                playerController.SwitchGravity(8.92f);
+            }
         }
     }
 
-    public void Fire(float Horizontal, float Vertical)
+    public void Fire(int directionX, int directionY)
     {
-        if(nextFire < 0)
-        {
-            GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
-            Rigidbody2D Body = bullet.GetComponent<Rigidbody2D>();
-            Body.velocity = new Vector2(Horizontal, Vertical) * 10f;
-            nextFire = fireRate;
-        }
+        GameObject bullet = Instantiate(projectile, shotPoint.position, transform.rotation);
+        bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(directionX, directionY) * 20f;
+        playerController.Movement(directionX, directionY);
+        timeBtwShots = startTimeBtwShots;
     }
 }
