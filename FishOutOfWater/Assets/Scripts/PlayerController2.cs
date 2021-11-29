@@ -5,13 +5,12 @@ using UnityEngine;
 public class PlayerController2 : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float thrust;
+    public float thrust = 35f;
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
-        thrust = 35f;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerHealth = GetComponent<PlayerHealth>();
