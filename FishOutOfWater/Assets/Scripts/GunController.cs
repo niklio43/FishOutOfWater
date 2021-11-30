@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    public GameObject projectile;
     public Transform shotPoint;
+    public GameObject projectile;
 
-    private PlayerController playerController;
     private float timeBtwShots, startTimeBtwShots;
+    private PlayerController playerController;
     private PlayerHealth playerHealth;
 
     private int ammo;
 
     private void Start()
     {
+
         ammo = 6;
         startTimeBtwShots = 0.2f;
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
@@ -29,26 +30,26 @@ public class GunController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 playerController.SetPlayerRotation(1, 0);
-                Fire(1, 0);
                 playerController.SwitchGravity(0f);
+                Fire(1, 0);
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 playerController.SetPlayerRotation(-1, 0);
-                Fire(-1, 0);
                 playerController.SwitchGravity(0f);
+                Fire(-1, 0);
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 playerController.SetPlayerRotation(0, 1);
-                Fire(0, 1);
                 playerController.SwitchGravity(8.92f);
+                Fire(0, 1);
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 playerController.SetPlayerRotation(0, -1);
-                Fire(0, -1);
                 playerController.SwitchGravity(8.92f);
+                Fire(0, -1);
             }
         }
         else

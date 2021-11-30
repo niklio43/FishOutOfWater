@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D rb;
     public float thrust, jumpForce;
+    public Rigidbody2D rb;
+
+    private Vector2 velocityCopy;
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
-    private Vector2 velocityCopy;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         playerHealth = GetComponent<PlayerHealth>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void Movement(int directionX, int directionY)
     {
-        velocityCopy = rb.velocity;
+        velocityCopy = rb.velocity; //To adjust the x and y variables separately
         velocityCopy.x = -directionX * thrust;
         velocityCopy.y = -directionY * jumpForce;
         rb.velocity = velocityCopy;
@@ -44,7 +45,6 @@ public class PlayerController : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, -90);
         }
     }
-
 
     public void SwitchGravity(float GravityScale)
     {
