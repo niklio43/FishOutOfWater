@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GunController : MonoBehaviour
 {
@@ -12,10 +13,10 @@ public class GunController : MonoBehaviour
     private PlayerHealth playerHealth;
 
     private int ammo;
+    public TextMeshProUGUI scoreText;
 
     private void Start()
     {
-
         ammo = 12;
         startTimeBtwShots = 0.2f;
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
@@ -62,6 +63,15 @@ public class GunController : MonoBehaviour
             playerController.SwitchGravity(8.92f);
         }
 
+        if(ammo < 10)
+        {
+            scoreText.text = "0" + ammo;
+        }
+        else
+        {
+            scoreText.text = "" + ammo;
+        }
+
     }
 
     private void LateUpdate()
@@ -74,29 +84,22 @@ public class GunController : MonoBehaviour
 
     public void Fire(int directionX, int directionY)
     {
-        if(playerController.isGrounded == false)
+        if(playerController.isGrounded == false && ammo >= 1)
         {
             ammo--;
         }
-        if (ammo >= 0)
+        if (ammo >= 1)
         {
-            Debug.Log("Ammo: " + ammo);
             GameObject bullet = Instantiate(projectile, shotPoint.position, transform.rotation);
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(directionX, directionY) * 20f;
             playerController.Movement(directionX, directionY);
             timeBtwShots = startTimeBtwShots;
             Destroy(bullet, 3);
         }
-
-        if (ammo < 0)
-        {
-            Debug.Log("Out of ammo, press Space to reload");
-        }
     }
 
     public void Reload()
     {
         ammo = 12;
-        Debug.Log("Chamber filled!");
     }
 }
