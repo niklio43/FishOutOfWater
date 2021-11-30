@@ -6,20 +6,18 @@ public class StandingDolphin : MonoBehaviour
 {
     public GameObject Bullet;
 
+    private int Health;
     private Vector3 Target;
     private float fireRate, nextFire;
 
     private GameObject Player;
-
-    private int Health;
-
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         Health = 60;
-        fireRate = 0.4f;
         nextFire = -1f;
+        fireRate = 0.4f;
         Player = GameObject.FindGameObjectWithTag("Player");
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
