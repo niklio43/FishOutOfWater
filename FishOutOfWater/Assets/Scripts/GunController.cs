@@ -16,7 +16,7 @@ public class GunController : MonoBehaviour
     private void Start()
     {
 
-        ammo = 6;
+        ammo = 12;
         startTimeBtwShots = 0.2f;
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -66,7 +66,7 @@ public class GunController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space)  && ammo <= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && ammo <= 0)
         {
             Invoke("Reload", 1.0f);
         }
@@ -74,8 +74,11 @@ public class GunController : MonoBehaviour
 
     public void Fire(int directionX, int directionY)
     {
-        ammo--;
-        if(ammo > 0)
+        if(playerController.isGrounded == false)
+        {
+            ammo--;
+        }
+        if (ammo >= 0)
         {
             Debug.Log("Ammo: " + ammo);
             GameObject bullet = Instantiate(projectile, shotPoint.position, transform.rotation);
@@ -85,15 +88,15 @@ public class GunController : MonoBehaviour
             Destroy(bullet, 3);
         }
 
-        if(ammo <= 0)
+        if (ammo < 0)
         {
             Debug.Log("Out of ammo, press Space to reload");
         }
     }
 
-    private void Reload()
+    public void Reload()
     {
-        ammo = 6;
+        ammo = 12;
         Debug.Log("Chamber filled!");
     }
 }

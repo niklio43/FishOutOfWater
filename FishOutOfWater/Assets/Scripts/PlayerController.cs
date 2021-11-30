@@ -11,8 +11,11 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
 
+    public bool isGrounded;
+
     private void Start()
     {
+        isGrounded = false;
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -63,6 +66,18 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             playerHealth.TakeDamage(20);
+        }
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
         }
     }
 }
