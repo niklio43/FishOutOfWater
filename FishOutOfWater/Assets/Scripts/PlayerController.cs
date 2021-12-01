@@ -6,10 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     public float thrust, jumpForce;
     public Rigidbody2D rb;
+    public ParticleSystem dust;
 
     private Vector2 velocityCopy;
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
+
+    public Quaternion playerRotation;
 
     public bool isGrounded;
 
@@ -21,12 +24,22 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private void Update()
+    {
+        playerRotation = transform.rotation;
+    }
+
     public void Movement(int directionX, int directionY)
     {
         velocityCopy = rb.velocity; //To adjust the x and y variables separately
         velocityCopy.x = -directionX * thrust;
         velocityCopy.y = -directionY * jumpForce;
         rb.velocity = velocityCopy;
+
+        if(velocityCopy.x != 0)
+        {
+            CreateDust();
+        }
     }
 
     public void SetPlayerRotation(int Horizontal, int Vertical)
@@ -79,5 +92,10 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    public void CreateDust()
+    {
+        dust.Play();
     }
 }

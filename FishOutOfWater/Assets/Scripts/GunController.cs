@@ -9,18 +9,29 @@ public class GunController : MonoBehaviour
     public GameObject projectile;
 
     private float timeBtwShots, startTimeBtwShots;
+
     private PlayerController playerController;
     private PlayerHealth playerHealth;
 
+    private float endRotZ;
+    private Quaternion startPos;
+
     private int ammo;
+    private bool isReloading;
+
+    public ParticleSystem reloadPS;
+
     public TextMeshProUGUI scoreText;
 
     private void Start()
     {
+        endRotZ = 360;
+        isReloading = false;
         ammo = 12;
         startTimeBtwShots = 0.2f;
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
     }
 
     private void Update()
@@ -63,7 +74,7 @@ public class GunController : MonoBehaviour
             playerController.SwitchGravity(8.92f);
         }
 
-        if(ammo < 10)
+        if (ammo < 10)
         {
             scoreText.text = "0" + ammo;
         }
@@ -76,15 +87,17 @@ public class GunController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && ammo <= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)//&& ammo <= 0
         {
+            isReloading = true;
+            reloadPS.Play();
             Invoke("Reload", 1.0f);
         }
     }
 
     public void Fire(int directionX, int directionY)
     {
-        if(playerController.isGrounded == false && ammo >= 1)
+        if (playerController.isGrounded == false && ammo >= 1)
         {
             ammo--;
         }
@@ -100,6 +113,7 @@ public class GunController : MonoBehaviour
 
     public void Reload()
     {
+        isReloading = false;
         ammo = 12;
     }
 }

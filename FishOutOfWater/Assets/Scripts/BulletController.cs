@@ -4,34 +4,30 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public ParticleSystem bulletExplode;
+    private GameObject child;
 
-    private void Start()
+    public void CreateBulletExplode()
     {
-        rb = GetComponent<Rigidbody2D>();
+        bulletExplode.Play();
     }
 
     private void Update()
     {
-        if(rb.velocity == new Vector2(0, 0))
+        if(transform.GetChild(0).name == "Bullet")
         {
-            Destroy(gameObject);
+            child = transform.GetChild(0).gameObject;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            Destroy(gameObject);
-        }
-        if (gameObject.tag == "Bullet" && collision.gameObject.tag =="Bullet")
-        {
-            Destroy(gameObject);
-        }
-        if (gameObject.tag == "EnemyBullet" && collision.gameObject.tag == "EnemyBullet")
-        {
-            Destroy(gameObject);
+            bulletExplode.Play();
+            Destroy(child);
+            Destroy(gameObject, 0.1f);
         }
     }
+
 }
