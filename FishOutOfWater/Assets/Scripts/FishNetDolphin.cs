@@ -73,25 +73,19 @@ public class FishNetDolphin : MonoBehaviour
     }*/
 
         Vector3 direction = transform.position - target;
-        Debug.Log("dir: "+direction.x);
+        Debug.Log("dir: " + direction.x);
         Debug.Log("tar: " + target.x);
-        if (direction.y < 6f)
+        if (direction.y < transform.position.y)
         {
-            if (direction.x > transform.position.x && !netActive) // spelare är till höger om enemy
+            if (direction.x > (transform.position.x + 2) && !netActive) // spelare är till höger om enemy
             {
-                if(direction.x > 2 && direction.x < 10)
-                {
-                    net = Instantiate(fishNet, new Vector2(-direction.x - 3f, transform.position.y), transform.rotation);
-                    netActive = true;
-                }
+                net = Instantiate(fishNet, new Vector2(-direction.x - 3f, transform.position.y), transform.rotation);
+                netActive = true;
             }
-            else if (direction.x < transform.position.x && !netActive) // spelare är till vänster om enemy
+            else if (direction.x < (transform.position.x - 2) && !netActive) // spelare är till vänster om enemy
             {
-                if(direction.x < 2 && direction.x > -10)
-                {
-                    net = Instantiate(fishNet, new Vector2(-direction.x - 3f, transform.position.y), transform.rotation);
-                    netActive = true;
-                }
+                net = Instantiate(fishNet, new Vector2(-direction.x - 3f, transform.position.y), transform.rotation);
+                netActive = true;
             }
         }
         else
