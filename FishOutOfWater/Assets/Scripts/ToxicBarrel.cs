@@ -21,7 +21,7 @@ public class ToxicBarrel : MonoBehaviour
             playerHealth.TakeDamage(20);
             invincible = true;
 
-            Invoke("resetInvulnerability", 1);
+            Invoke("resetInvulnerability", 0.5f);
         }
     }
 
