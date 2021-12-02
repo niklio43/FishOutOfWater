@@ -6,9 +6,9 @@ public class BulletController : MonoBehaviour
 {
     public ParticleSystem bulletExplode;
     private GameObject child;
+    private GameObject toxicChild;
     private LayingDolphin layingDolphin;
     private StandingDolphin standingDolphin;
-    private GameObject toxicBarrel;
 
     public void CreateBulletExplode()
     {
@@ -49,11 +49,15 @@ public class BulletController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("ToxicBarrel"))
         {
-            toxicBarrel = collision.gameObject;
-            var toxicExplosion = toxicBarrel.transform.GetChild(0).gameObject.GetComponent<ToxicBarrel>();
+            toxicChild = collision.gameObject.transform.GetChild(0).gameObject;
+            Debug.Log(toxicChild.name);
+            var toxicExplosion = collision.gameObject.transform.GetChild(1).gameObject.GetComponent<ToxicBarrel>();
             toxicExplosion.CreateToxicExplosion();
+            collision.gameObject.GetComponent<Collider2D>().enabled = false;
             Destroy(child);
             Destroy(gameObject, 0.1f);
+            Destroy(toxicChild);
+            Destroy(collision.gameObject, 1f);
         }
     }
 
