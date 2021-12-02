@@ -75,7 +75,7 @@ public class FishNetDolphin : MonoBehaviour
         Vector3 direction = transform.position - target;
         Debug.Log("dir: "+direction.x);
         Debug.Log("tar: " + target.x);
-        if (direction.y < 20f)
+        if (direction.y < 6f)
         {
             if (direction.x > transform.position.x && !netActive) // spelare är till höger om enemy
             {
