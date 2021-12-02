@@ -38,7 +38,7 @@ public class FishNetController : MonoBehaviour
             if (caughtByFishNet && Player.GetComponent<PlayerController>().isGrounded)
             {
                 caughtByFishNet = false;
-                Destroy(gameObject);
+                Destroy(gameObject, 1.2f);
             }
         }
     }
