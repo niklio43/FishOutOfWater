@@ -59,7 +59,7 @@ public class FishNetDolphin : MonoBehaviour
     private void Attack()
     {
         Vector3 enemyDirectionLocal = transform.InverseTransformPoint(Player.transform.position);
-        Debug.Log(enemyDirectionLocal.x);
+        Debug.Log(target.x);
         if (enemyDirectionLocal.x < 8 && enemyDirectionLocal.x > -8)
         {
             if (enemyDirectionLocal.x < 3 && enemyDirectionLocal.x > -3)
@@ -69,13 +69,13 @@ public class FishNetDolphin : MonoBehaviour
             }
             else if (enemyDirectionLocal.x < 0 && !netActive)
             {
-                net = Instantiate(fishNet, new Vector2(enemyDirectionLocal.x - 3f, transform.position.y), transform.rotation);
+                net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
                 netActive = true;
                 Debug.Log("LEFT");
             }
             else if (enemyDirectionLocal.x > 0 && !netActive)
             {
-                net = Instantiate(fishNet, new Vector2(enemyDirectionLocal.x - 3f, transform.position.y), transform.rotation);
+                net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
                 netActive = true;
                 Debug.Log("RIGHT");
             }
