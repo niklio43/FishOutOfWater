@@ -58,41 +58,28 @@ public class FishNetDolphin : MonoBehaviour
 
     private void Attack()
     {
-        /*target = transform.position - Player.transform.position;
-
-        if(target.x <= 3f && target.y <= 5f && netActive == false)
+        Vector3 enemyDirectionLocal = transform.InverseTransformPoint(Player.transform.position);
+        Debug.Log(enemyDirectionLocal.x);
+        if (enemyDirectionLocal.x < 8 && enemyDirectionLocal.x > -8)
         {
-            net = Instantiate(fishNet, new Vector2(transform.position.x - 3.1f, transform.position.y), transform.rotation);
-            netActive = true;
-        }
-
-        if(net == null)
-        {
-            netActive = false;
-        }
-    }*/
-
-        Vector3 direction = transform.position - target;
-        Debug.Log("dir: " + direction.x);
-        Debug.Log("tar: " + target.x);
-        if (direction.y < transform.position.y)
-        {
-            if (direction.x > (transform.position.x + 2) && !netActive) // spelare är till höger om enemy
+            if (enemyDirectionLocal.x < 3 && enemyDirectionLocal.x > -3)
             {
-                net = Instantiate(fishNet, new Vector2(-direction.x - 3f, transform.position.y), transform.rotation);
-                netActive = true;
+                Debug.Log("ABOVE/BELOW");
+                netActive = false;
             }
-            else if (direction.x < (transform.position.x - 2) && !netActive) // spelare är till vänster om enemy
+            else if (enemyDirectionLocal.x < 0 && !netActive)
             {
-                net = Instantiate(fishNet, new Vector2(-direction.x - 3f, transform.position.y), transform.rotation);
+                net = Instantiate(fishNet, new Vector2(enemyDirectionLocal.x - 3f, transform.position.y), transform.rotation);
                 netActive = true;
+                Debug.Log("LEFT");
+            }
+            else if (enemyDirectionLocal.x > 0 && !netActive)
+            {
+                net = Instantiate(fishNet, new Vector2(enemyDirectionLocal.x - 3f, transform.position.y), transform.rotation);
+                netActive = true;
+                Debug.Log("RIGHT");
             }
         }
-        else
-        {
-            netActive = false;
-        }
-
         if (net == null)
         {
             netActive = false;
