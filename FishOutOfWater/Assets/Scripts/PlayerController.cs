@@ -87,6 +87,10 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
         }
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            playerHealth.TakeDamage(20);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
