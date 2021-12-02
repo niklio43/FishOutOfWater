@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class FishNetController : MonoBehaviour
 {
-    private bool caughtByFishNet;
+    public bool caughtByFishNet;
 
     private GameObject Player;
 
-    private void Awake()
+    private void Start()
     {
+        caughtByFishNet = false;
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("LayingDolphin") || collision.gameObject.CompareTag("StandingDolphin") || collision.gameObject.CompareTag("FishNetDolphin"))
         {
             Destroy(gameObject, 1.2f);
         }
@@ -33,7 +34,6 @@ public class FishNetController : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.attachedRigidbody.velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
-            collision.attachedRigidbody.position = gameObject.GetComponent<Rigidbody2D>().position;
 
             if (caughtByFishNet && Player.GetComponent<PlayerController>().isGrounded)
             {

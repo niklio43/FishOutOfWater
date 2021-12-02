@@ -50,7 +50,6 @@ public class BulletController : MonoBehaviour
         if (collision.gameObject.CompareTag("ToxicBarrel"))
         {
             toxicChild = collision.gameObject.transform.GetChild(0).gameObject;
-            Debug.Log(toxicChild.name);
             var toxicExplosion = collision.gameObject.transform.GetChild(1).gameObject.GetComponent<ToxicBarrel>();
             toxicExplosion.CreateToxicExplosion();
             collision.gameObject.GetComponent<Collider2D>().enabled = false;
