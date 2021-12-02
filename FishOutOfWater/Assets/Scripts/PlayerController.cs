@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             playerHealth.TakeDamage(20);
         }
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("LayingDolphin") || collision.gameObject.CompareTag("StandingDolphin"))
         {
             isGrounded = true;
         }

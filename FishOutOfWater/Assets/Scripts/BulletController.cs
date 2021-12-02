@@ -8,6 +8,7 @@ public class BulletController : MonoBehaviour
     private GameObject child;
     private LayingDolphin layingDolphin;
     private StandingDolphin standingDolphin;
+    private GameObject toxicBarrel;
 
     public void CreateBulletExplode()
     {
@@ -45,6 +46,14 @@ public class BulletController : MonoBehaviour
             Destroy(child);
             Destroy(gameObject, 0.1f);
             standingDolphin.TakeDamage(20);
+        }
+        if (collision.gameObject.CompareTag("ToxicBarrel"))
+        {
+            toxicBarrel = collision.gameObject;
+            var toxicExplosion = toxicBarrel.transform.GetChild(0).gameObject.GetComponent<ToxicBarrel>();
+            toxicExplosion.CreateToxicExplosion();
+            Destroy(child);
+            Destroy(gameObject, 0.1f);
         }
     }
 
