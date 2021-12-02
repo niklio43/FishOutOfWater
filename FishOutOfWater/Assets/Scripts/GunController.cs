@@ -81,7 +81,7 @@ public class GunController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded && ammo <= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
         {
             reloadPS.Play();
             Invoke("Reload", 1.0f);
@@ -90,7 +90,7 @@ public class GunController : MonoBehaviour
 
     public void Fire(int directionX, int directionY)
     {
-        if (playerController.isGrounded == false && ammo >= 1)
+        if (!playerController.isGrounded && ammo >= 1)
         {
             ammo--;
         }
