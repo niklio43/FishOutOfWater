@@ -54,15 +54,6 @@ public class StandingDolphin : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            Destroy(collision.gameObject);
-            TakeDamage(20);
-        }
-    }
-
     public void TakeDamage(int damage)
     {
         Health = Health - damage;

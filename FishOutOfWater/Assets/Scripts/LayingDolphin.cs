@@ -19,11 +19,6 @@ public class LayingDolphin : MonoBehaviour
         {
             playerHealth.TakeDamage(20);
         }
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            Destroy(collision.gameObject);
-            TakeDamage(20);
-        }
     }
 
     public void TakeDamage(int damage)

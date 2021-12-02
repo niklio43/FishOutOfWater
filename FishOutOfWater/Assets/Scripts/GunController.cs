@@ -13,11 +13,7 @@ public class GunController : MonoBehaviour
     private PlayerController playerController;
     private PlayerHealth playerHealth;
 
-    private float endRotZ;
-    private Quaternion startPos;
-
     private int ammo;
-    private bool isReloading;
 
     public ParticleSystem reloadPS;
 
@@ -25,8 +21,6 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
-        endRotZ = 360;
-        isReloading = false;
         ammo = 12;
         startTimeBtwShots = 0.2f;
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
@@ -87,9 +81,8 @@ public class GunController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)//&& ammo <= 0
+        if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded && ammo <= 0)
         {
-            isReloading = true;
             reloadPS.Play();
             Invoke("Reload", 1.0f);
         }
@@ -113,7 +106,6 @@ public class GunController : MonoBehaviour
 
     public void Reload()
     {
-        isReloading = false;
         ammo = 12;
     }
 }

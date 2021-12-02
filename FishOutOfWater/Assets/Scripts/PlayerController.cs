@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
 
-    public Quaternion playerRotation;
-
     public bool isGrounded;
 
     private void Start()
@@ -22,11 +20,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    private void Update()
-    {
-        playerRotation = transform.rotation;
     }
 
     public void Movement(int directionX, int directionY)
