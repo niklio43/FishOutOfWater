@@ -15,7 +15,6 @@ public class ToxicBarrel : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        Debug.Log("test");
         if (other.gameObject.CompareTag("Player") && !invincible)
         {
             playerHealth = other.GetComponent<PlayerHealth>();

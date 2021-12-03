@@ -84,7 +84,7 @@ public class GunController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
         {
             reloadPS.Play();
-            Invoke("Reload", 1.0f);
+            Invoke("Reload", 0f); //reload timer
         }
     }
 
