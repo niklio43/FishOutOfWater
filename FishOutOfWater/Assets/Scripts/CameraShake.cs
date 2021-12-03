@@ -13,7 +13,7 @@ public class CameraShake : MonoBehaviour
         instance = this;
     }
 
-    void Start()
+    void Update()
     {
         startPos = transform.position;
     }
@@ -22,7 +22,7 @@ public class CameraShake : MonoBehaviour
     {
         while(elapsedTime < duration)
         {
-            transform.position = new Vector3(startPos.x + Random.Range(-0.05f, 0.05f), startPos.y + Random.Range(-0.05f, 0.05f), transform.position.z);
+            transform.position = new Vector3(startPos.x + Random.Range(-0.3f, 0.3f), startPos.y + Random.Range(-0.3f, 0.3f), transform.position.z);
             yield return new WaitForSeconds(0.05f);
             elapsedTime += Time.deltaTime * 35;
         }

@@ -56,7 +56,7 @@ public class BulletController : MonoBehaviour
         }
         if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("ToxicBarrel"))
         {
-            cameraShake.ShakeMe(0f);
+            cameraShake.ShakeMe(1f);
             toxicChild = collision.gameObject.transform.GetChild(0).gameObject;
             var toxicExplosion = collision.gameObject.transform.GetChild(1).gameObject.GetComponent<ToxicBarrel>();
             toxicExplosion.CreateToxicExplosion();
