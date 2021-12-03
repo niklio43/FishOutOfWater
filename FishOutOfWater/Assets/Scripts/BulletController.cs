@@ -9,6 +9,13 @@ public class BulletController : MonoBehaviour
     private GameObject toxicChild;
     private LayingDolphin layingDolphin;
     private StandingDolphin standingDolphin;
+    private CameraShake cameraShake;
+
+
+    private void Start()
+    {
+        cameraShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
+    }
 
     public void CreateBulletExplode()
     {
@@ -49,6 +56,7 @@ public class BulletController : MonoBehaviour
         }
         if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("ToxicBarrel"))
         {
+            cameraShake.ShakeMe(0f);
             toxicChild = collision.gameObject.transform.GetChild(0).gameObject;
             var toxicExplosion = collision.gameObject.transform.GetChild(1).gameObject.GetComponent<ToxicBarrel>();
             toxicExplosion.CreateToxicExplosion();
