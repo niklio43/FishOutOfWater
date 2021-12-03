@@ -9,14 +9,12 @@ public class StandingDolphin : MonoBehaviour
     private int Health;
     private Vector3 Target;
     private float fireRate, nextFire;
-    private bool isDead;
 
     private GameObject Player;
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        isDead = false;
         Health = 60;
         nextFire = -1f;
         fireRate = 0.4f;
@@ -46,7 +44,7 @@ public class StandingDolphin : MonoBehaviour
     //If player enters trigger, dolphin starts shooting towards player
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && nextFire < 0 && !isDead)
+        if (collision.gameObject.CompareTag("Player") && nextFire < 0)
         {
             GameObject bullet = Instantiate(Bullet, transform.GetChild(0).gameObject.transform.position, transform.rotation);
             Target = Player.transform.position - transform.position;
@@ -67,7 +65,6 @@ public class StandingDolphin : MonoBehaviour
 
     private void Dead()
     {
-        isDead = true;
         Destroy(gameObject, 2);
         spriteRenderer.color = Color.red;
     }
