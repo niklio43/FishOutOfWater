@@ -29,7 +29,7 @@ public class FishNetDolphin : MonoBehaviour
             target = Player.transform.position;
 
         if (!dead)
-            Attack();
+            Invoke("Attack", 4f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -64,8 +64,6 @@ public class FishNetDolphin : MonoBehaviour
             Vector3 enemyDirectionLocal = transform.InverseTransformPoint(Player.transform.position);
             if (enemyDirectionLocal.y > -5 && enemyDirectionLocal.y < 0)
             {
-                Debug.Log("diff: " + enemyDirectionLocal.y);
-                Debug.Log("Enemy: " + transform.position.y);
                 if (enemyDirectionLocal.x < 8 && enemyDirectionLocal.x > -8)
                 {
                     if (enemyDirectionLocal.x < 3 && enemyDirectionLocal.x > -3)
@@ -85,6 +83,7 @@ public class FishNetDolphin : MonoBehaviour
                 }
             }
         }
+
         if (net == null)
         {
             netActive = false;
