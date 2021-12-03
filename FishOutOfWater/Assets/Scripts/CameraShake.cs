@@ -1,27 +1,37 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    public IEnumerator Shake(float duration, float magnitude)
+    public static CameraShake instance;
+    Vector3 startPos;
+    float elapsedTime;
+
+    void Awake()
     {
-        Debug.Log("test");
-        Vector3 originalPos = transform.localPosition;
+        elapsedTime = 0;
+        instance = this;
+    }
 
-        float elapsedTime = 0f;
+    void Start()
+    {
+        startPos = transform.position;
+    }
 
+    IEnumerator Shake(float duration)
+    {
         while(elapsedTime < duration)
         {
-            float xOffset = Random.Range(-0.5f, 0.5f) * magnitude;
-            float yOffset = Random.Range(-0.5f, 0.5f) * magnitude;
-
-            transform.localPosition = new Vector3(xOffset, yOffset, originalPos.z);
-
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
+            transform.position = new Vector3(startPos.x + Random.Range(-0.05f, 0.05f), startPos.y + Random.Range(-0.05f, 0.05f), transform.position.z);
+            yield return new WaitForSeconds(0.05f);
+            elapsedTime += Time.deltaTime * 35;
         }
-        transform.localPosition = originalPos;
+        transform.position = startPos;
     }
+
+    public void ShakeMe(float duration)
+    {
+        StartCoroutine(Shake(duration));
+    }
+
 }
