@@ -31,7 +31,7 @@ public class BulletController : MonoBehaviour
             Destroy(child);
             Destroy(gameObject, 0.1f);
         }
-        if (collision.gameObject.CompareTag("LayingDolphin"))
+        if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("LayingDolphin"))
         {
             layingDolphin = collision.gameObject.GetComponent<LayingDolphin>();
             bulletExplode.Play();
@@ -39,7 +39,7 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject, 0.1f);
             layingDolphin.TakeDamage(20);
         }
-        if (collision.gameObject.CompareTag("StandingDolphin"))
+        if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("StandingDolphin"))
         {
             standingDolphin = collision.gameObject.GetComponent<StandingDolphin>();
             bulletExplode.Play();
@@ -47,7 +47,7 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject, 0.1f);
             standingDolphin.TakeDamage(20);
         }
-        if (collision.gameObject.CompareTag("ToxicBarrel"))
+        if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("ToxicBarrel"))
         {
             toxicChild = collision.gameObject.transform.GetChild(0).gameObject;
             var toxicExplosion = collision.gameObject.transform.GetChild(1).gameObject.GetComponent<ToxicBarrel>();
