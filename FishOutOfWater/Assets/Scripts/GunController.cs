@@ -22,7 +22,7 @@ public class GunController : MonoBehaviour
     private void Start()
     {
         ammo = 12;
-        startTimeBtwShots = 0.2f;
+        startTimeBtwShots = 0.1f;
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
