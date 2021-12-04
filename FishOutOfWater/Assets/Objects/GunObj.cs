@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunObj : MonoBehaviour
+[CreateAssetMenu(fileName = "Weapon", menuName = "Objects/Weapon", order = 0)]
+public class GunObj : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float ammo;
+    public GameObject projectile;
+    public float timeBtwShots;
+    public float thrust;
+    public float amoutOfBullet;
+    public float spread;
 }
