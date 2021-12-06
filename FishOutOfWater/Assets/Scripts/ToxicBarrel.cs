@@ -23,11 +23,16 @@ public class ToxicBarrel : MonoBehaviour
 
             var playerVelocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
 
+            if(playerVelocity.y < 0)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity = playerVelocity + new Vector2(0, 1) * 40;
+            }
+
             if(playerVelocity == new Vector2(0, 0))
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().velocity = playerVelocity + new Vector2(1, 1) * 20;
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity = playerVelocity + new Vector2(1, 1) * 40;
             }
-            else
+            else if( playerVelocity.y > 0)
             {
                 collision.gameObject.GetComponent<Rigidbody2D>().velocity = playerVelocity * 20;
             }
