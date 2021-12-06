@@ -19,13 +19,38 @@ public class DisplayAmmo : MonoBehaviour
         gunController = gameObject.transform.GetChild(0).GetComponent<GunController>();
         point = transform.position;
         radius = 2;
+        numOfAmmo = gunController.ammo;
+        for (int i = 0; i <= numOfAmmo; i++)
+        {
+            radians = Mathf.PI / numOfAmmo * i;
+
+            vertical = Mathf.Sin(radians);
+            horizontal = Mathf.Cos(radians);
+
+            spawnDir = new Vector2(horizontal, vertical);
+
+            spawnPos = point + spawnDir * radius;
+
+            if(i == numOfAmmo)
+            {
+                finished = true;
+            }
+            CreateAmmoAroundPoint();
+        }
     }
 
     private void Update()
     {
-        numOfAmmo = gunController.ammo;
-        if (!finished)
+        if(numOfAmmo != gunController.ammo)
         {
+            for(int i = 0; i < ammoCounterList.Count; i++)
+            {
+                Destroy(ammoCounterList[i]);
+                ammoCounterList.Remove(ammoCounterList[i]);
+            }
+
+            numOfAmmo = gunController.ammo;
+
             for (int i = 0; i <= numOfAmmo; i++)
             {
                 radians = Mathf.PI / numOfAmmo * i;
@@ -37,10 +62,6 @@ public class DisplayAmmo : MonoBehaviour
 
                 spawnPos = point + spawnDir * radius;
 
-                if(i == numOfAmmo)
-                {
-                    finished = true;
-                }
                 CreateAmmoAroundPoint();
             }
         }
@@ -48,11 +69,6 @@ public class DisplayAmmo : MonoBehaviour
 
     public void CreateAmmoAroundPoint()
     {
-        ammoCounterList.Add(Instantiate(enemyPefab, spawnPos, transform.rotation, gameObject.transform) as GameObject);
-    }
-
-    public void RemoveAmmoAroundPoint()
-    {
-        ammoCounterList.Remove(ammoCounterList[0]);
+        ammoCounterList.Add(Instantiate(enemyPefab, spawnPos, Quaternion.Euler(0,0,0), gameObject.transform) as GameObject);
     }
 }
