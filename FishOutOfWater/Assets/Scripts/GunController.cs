@@ -21,8 +21,11 @@ public class GunController : MonoBehaviour
 
     private WeaponUpgrades state;
 
+    private DisplayAmmo displayAmmo;
+
     private void Start()
     {
+        displayAmmo = GameObject.FindGameObjectWithTag("Player").GetComponent<DisplayAmmo>();
         state = WeaponUpgrades.Regular;
         ammo = 12;
         startTimeBtwShots = 0.1f;
@@ -129,6 +132,7 @@ public class GunController : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(directionX, directionY) * 20f;
             playerController.Movement(directionX, directionY);
             timeBtwShots = startTimeBtwShots;
+            displayAmmo.RemoveAmmoAroundPoint();
             Destroy(bullet, 3);
         }
     }

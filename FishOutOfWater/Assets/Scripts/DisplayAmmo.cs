@@ -41,14 +41,18 @@ public class DisplayAmmo : MonoBehaviour
                 {
                     finished = true;
                 }
-                CreateEnemiesAroundPoint();
+                CreateAmmoAroundPoint();
             }
         }
     }
 
-    public void CreateEnemiesAroundPoint()
+    public void CreateAmmoAroundPoint()
     {
-        ammoCounter = Instantiate(enemyPefab, spawnPos, transform.rotation, gameObject.transform) as GameObject;
-        ammoCounterList.Add(ammoCounter);
+        ammoCounterList.Add(Instantiate(enemyPefab, spawnPos, transform.rotation, gameObject.transform) as GameObject);
+    }
+
+    public void RemoveAmmoAroundPoint()
+    {
+        ammoCounterList.Remove(ammoCounterList[0]);
     }
 }
