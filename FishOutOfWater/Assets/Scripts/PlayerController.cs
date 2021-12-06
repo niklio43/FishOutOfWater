@@ -1,23 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public float thrust, jumpForce;
+    public bool isGrounded;
     public Rigidbody2D rb;
     public ParticleSystem dust;
 
     private Vector2 velocityCopy;
+    private float thrust, jumpForce;
+    private WeaponUpgrades state;
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
     private FishNetController fishNetController;
 
-    public bool isGrounded;
-
     private void Start()
     {
+        state = WeaponUpgrades.Regular;
         isGrounded = false;
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
@@ -26,8 +25,33 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(GameObject.FindGameObjectWithTag("FishNet") != null)
+        if (GameObject.FindGameObjectWithTag("FishNet") != null)
             fishNetController = GameObject.FindGameObjectWithTag("FishNet").GetComponent<FishNetController>();
+
+        if (state == WeaponUpgrades.Regular || state == WeaponUpgrades.Spray)
+        {
+            jumpForce = 30;
+            if (isGrounded)
+            {
+                thrust = 15;
+            }
+            else
+            {
+                thrust = 20;
+            }
+        }
+        else if (state == WeaponUpgrades.Powerful)
+        {
+            jumpForce = 45;
+            if (isGrounded)
+            {
+                thrust = 15;
+            }
+            else
+            {
+                thrust = 35;
+            }
+        }
     }
 
     public void Movement(int directionX, int directionY)
@@ -85,7 +109,9 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             playerHealth.TakeDamage(20);
         }
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("LayingDolphin") || collision.gameObject.CompareTag("StandingDolphin") || collision.gameObject.CompareTag("Spike"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("LayingDolphin") ||
+            collision.gameObject.CompareTag("StandingDolphin") || collision.gameObject.CompareTag("Spike") ||
+            collision.gameObject.CompareTag("ToxicBarrel"))
         {
             isGrounded = true;
         }

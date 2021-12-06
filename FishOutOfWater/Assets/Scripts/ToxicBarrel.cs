@@ -13,13 +13,29 @@ public class ToxicBarrel : MonoBehaviour
         invincible = false;
     }
 
-    void OnParticleCollision(GameObject other)
+    void OnParticleCollision(GameObject collision)
     {
-        if (other.gameObject.CompareTag("Player") && !invincible)
+        if (collision.gameObject.CompareTag("Player") && !invincible)
         {
-            playerHealth = other.GetComponent<PlayerHealth>();
+            playerHealth = collision.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(20);
             invincible = true;
+
+            var playerVelocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
+
+            if(playerVelocity.y < 0)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity = playerVelocity + new Vector2(0, 1) * 40;
+            }
+
+            if(playerVelocity == new Vector2(0, 0))
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity = playerVelocity + new Vector2(1, 1) * 40;
+            }
+            else if( playerVelocity.y > 0)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity = playerVelocity * 20;
+            }
 
             Invoke("resetInvulnerability", 0.5f);
         }
