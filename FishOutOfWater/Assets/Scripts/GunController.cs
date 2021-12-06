@@ -19,8 +19,11 @@ public class GunController : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
+    private WeaponUpgrades state;
+
     private void Start()
     {
+        state = WeaponUpgrades.Regular;
         ammo = 12;
         startTimeBtwShots = 0.1f;
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
@@ -30,9 +33,8 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
-        if (timeBtwShots <= 0 && playerHealth.currentHealth > 0)
+        if (timeBtwShots <= 0 && playerHealth.currentHealth > 0 && state == WeaponUpgrades.Regular)
         {
-
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 playerController.SetPlayerRotation(1, 0);
@@ -61,6 +63,34 @@ public class GunController : MonoBehaviour
         else
         {
             timeBtwShots -= Time.deltaTime;
+        }
+
+        if (state == WeaponUpgrades.Spray && playerHealth.currentHealth > 0 && timeBtwShots <= 0)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                playerController.SetPlayerRotation(1, 0);
+                playerController.SwitchGravity(0f);
+                Fire(1, 0);
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                playerController.SetPlayerRotation(-1, 0);
+                playerController.SwitchGravity(0f);
+                Fire(-1, 0);
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                playerController.SetPlayerRotation(0, 1);
+                playerController.SwitchGravity(8.92f);
+                Fire(0, 1);
+            }
+            else if (Input.GetKey(KeyCode.UpArrow))
+            {
+                playerController.SetPlayerRotation(0, -1);
+                playerController.SwitchGravity(8.92f);
+                Fire(0, -1);
+            }
         }
 
         if (playerController.rb.velocity.x < 4f && playerController.rb.velocity.x > -4f)

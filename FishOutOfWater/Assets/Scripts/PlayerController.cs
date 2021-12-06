@@ -13,13 +13,14 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
     private FishNetController fishNetController;
+    private WeaponUpgrades state;
 
     public bool isGrounded;
 
     private void Start()
     {
+        state = WeaponUpgrades.Regular;
         isGrounded = false;
-        jumpForce = 30;
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -27,16 +28,32 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(GameObject.FindGameObjectWithTag("FishNet") != null)
+        if (GameObject.FindGameObjectWithTag("FishNet") != null)
             fishNetController = GameObject.FindGameObjectWithTag("FishNet").GetComponent<FishNetController>();
 
-        if (isGrounded)
+        if (state == WeaponUpgrades.Regular || state == WeaponUpgrades.Spray)
         {
-            thrust = 15;
+            jumpForce = 30;
+            if (isGrounded)
+            {
+                thrust = 15;
+            }
+            else
+            {
+                thrust = 20;
+            }
         }
-        else
+        else if (state == WeaponUpgrades.Powerful)
         {
-            thrust = 20;
+            jumpForce = 45;
+            if (isGrounded)
+            {
+                thrust = 15;
+            }
+            else
+            {
+                thrust = 35;
+            }
         }
     }
 
