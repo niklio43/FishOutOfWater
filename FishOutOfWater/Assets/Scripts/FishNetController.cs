@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FishNetController : MonoBehaviour
@@ -16,11 +14,15 @@ public class FishNetController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("LayingDolphin") || collision.gameObject.CompareTag("StandingDolphin") || collision.gameObject.CompareTag("FishNetDolphin"))
+        if (collision.gameObject.CompareTag("Ground") ||
+            collision.gameObject.CompareTag("LayingDolphin") ||
+            collision.gameObject.CompareTag("StandingDolphin") ||
+            collision.gameObject.CompareTag("FishNetDolphin"))
         {
             Destroy(gameObject, 1.2f);
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
