@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public float thrust, jumpForce;
+    private float thrust, jumpForce;
     public Rigidbody2D rb;
     public ParticleSystem dust;
 
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         isGrounded = false;
+        jumpForce = 30;
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -28,6 +29,15 @@ public class PlayerController : MonoBehaviour
     {
         if(GameObject.FindGameObjectWithTag("FishNet") != null)
             fishNetController = GameObject.FindGameObjectWithTag("FishNet").GetComponent<FishNetController>();
+
+        if (isGrounded)
+        {
+            thrust = 15;
+        }
+        else
+        {
+            thrust = 20;
+        }
     }
 
     public void Movement(int directionX, int directionY)
@@ -85,7 +95,9 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             playerHealth.TakeDamage(20);
         }
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("LayingDolphin") || collision.gameObject.CompareTag("StandingDolphin") || collision.gameObject.CompareTag("Spike"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("LayingDolphin") ||
+            collision.gameObject.CompareTag("StandingDolphin") || collision.gameObject.CompareTag("Spike") ||
+            collision.gameObject.CompareTag("ToxicBarrel"))
         {
             isGrounded = true;
         }
