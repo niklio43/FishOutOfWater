@@ -28,7 +28,6 @@ public class GunController : MonoBehaviour
         startTimeBtwShots = 0.1f;
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
     }
 
     private void Update()
