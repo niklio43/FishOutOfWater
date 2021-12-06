@@ -13,9 +13,11 @@ public class FishNetDolphin : MonoBehaviour
     private GameObject Player;
     private GameObject net;
     private SpriteRenderer spriteRenderer;
+    private float timer;
 
     void Start()
     {
+        timer = 0;
         Health = 60;
         dead = false;
         netActive = false;
@@ -28,8 +30,13 @@ public class FishNetDolphin : MonoBehaviour
         if (Player != null)
             target = Player.transform.position;
 
-        if (!dead)
+        timer += Time.deltaTime;
+        Debug.Log(timer);
+        if (!dead && timer >= 2 && Player != null)
+        {
             Attack();
+            timer = 0;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -59,32 +66,28 @@ public class FishNetDolphin : MonoBehaviour
 
     private void Attack()
     {
-        if (Player != null)
+        Vector3 enemyDirectionLocal = transform.InverseTransformPoint(Player.transform.position);
+        if (enemyDirectionLocal.y > -5 && enemyDirectionLocal.y < 0)
         {
-            Vector3 enemyDirectionLocal = transform.InverseTransformPoint(Player.transform.position);
-            if (enemyDirectionLocal.y > -5 && enemyDirectionLocal.y < 0)
+            if (enemyDirectionLocal.x < 8 && enemyDirectionLocal.x > -8)
             {
-                Debug.Log("diff: " + enemyDirectionLocal.y);
-                Debug.Log("Enemy: " + transform.position.y);
-                if (enemyDirectionLocal.x < 8 && enemyDirectionLocal.x > -8)
+                if (enemyDirectionLocal.x < 3 && enemyDirectionLocal.x > -3)
                 {
-                    if (enemyDirectionLocal.x < 3 && enemyDirectionLocal.x > -3)
-                    {
-                        netActive = false;
-                    }
-                    else if (enemyDirectionLocal.x < 0 && !netActive)
-                    {
-                        net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
-                        netActive = true;
-                    }
-                    else if (enemyDirectionLocal.x > 0 && !netActive)
-                    {
-                        net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
-                        netActive = true;
-                    }
+                    netActive = false;
+                }
+                else if (enemyDirectionLocal.x < 0 && !netActive)
+                {
+                    net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
+                    netActive = true;
+                }
+                else if (enemyDirectionLocal.x > 0 && !netActive)
+                {
+                    net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
+                    netActive = true;
                 }
             }
         }
+
         if (net == null)
         {
             netActive = false;

@@ -1408,11 +1408,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6665966829111140574, guid: a790be94259a80a47b2cd67474fbe52f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 804
+      value: 825.7
       objectReference: {fileID: 0}
     - target: {fileID: 6665966829111140574, guid: a790be94259a80a47b2cd67474fbe52f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 476.06
+      value: 400.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a790be94259a80a47b2cd67474fbe52f, type: 3}
@@ -5990,7 +5990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6107485342925222877, guid: 6ce9ae44840b8d041aec6066da441db4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.0756254
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 6107485342925222877, guid: 6ce9ae44840b8d041aec6066da441db4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7448,6 +7448,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1392972090925372008, guid: b1dfecf184c12024086896416eff6117, type: 3}
+      propertyPath: thrust
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1392972090925372009, guid: b1dfecf184c12024086896416eff6117, type: 3}
       propertyPath: healthBar
       value: 
