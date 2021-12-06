@@ -1,21 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    private float thrust, jumpForce;
+    public bool isGrounded;
     public Rigidbody2D rb;
     public ParticleSystem dust;
 
     private Vector2 velocityCopy;
+    private float thrust, jumpForce;
+    private WeaponUpgrades state;
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
     private FishNetController fishNetController;
-    private WeaponUpgrades state;
-
-    public bool isGrounded;
 
     private void Start()
     {
