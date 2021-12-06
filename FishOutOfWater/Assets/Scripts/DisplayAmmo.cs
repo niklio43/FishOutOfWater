@@ -11,6 +11,7 @@ public class DisplayAmmo : MonoBehaviour
     private int numOfAmmo;
     private GameObject ammoCounter;
     private bool finished;
+    public List<GameObject> ammoCounterList = new List<GameObject>();
 
     private void Start()
     {
@@ -40,7 +41,6 @@ public class DisplayAmmo : MonoBehaviour
                 {
                     finished = true;
                 }
-
                 CreateEnemiesAroundPoint();
             }
         }
@@ -48,11 +48,7 @@ public class DisplayAmmo : MonoBehaviour
 
     public void CreateEnemiesAroundPoint()
     {
-            ammoCounter = Instantiate(enemyPefab, spawnPos, transform.rotation, gameObject.transform) as GameObject;
-    }
-
-    private void removeAmmo()
-    {
-        Destroy(gameObject.transform.GetChild(2).gameObject);
+        ammoCounter = Instantiate(enemyPefab, spawnPos, transform.rotation, gameObject.transform) as GameObject;
+        ammoCounterList.Add(ammoCounter);
     }
 }
