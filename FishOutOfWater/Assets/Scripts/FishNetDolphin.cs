@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FishNetDolphin : MonoBehaviour
@@ -7,13 +5,13 @@ public class FishNetDolphin : MonoBehaviour
     public bool netActive;
     public GameObject fishNet;
 
-    private int Health;
     private bool dead;
-    private Vector3 target;
-    private GameObject Player;
-    private GameObject net;
-    private SpriteRenderer spriteRenderer;
+    private int Health;
     private float timer;
+    private Vector3 target;
+    private GameObject net;
+    private GameObject Player;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -31,7 +29,7 @@ public class FishNetDolphin : MonoBehaviour
             target = Player.transform.position;
 
         timer += Time.deltaTime;
-        Debug.Log(timer);
+        Debug.Log(timer);   //Timer for how often the Enemy can attack
         if (!dead && timer >= 2 && Player != null)
         {
             Attack();
@@ -67,6 +65,8 @@ public class FishNetDolphin : MonoBehaviour
     private void Attack()
     {
         Vector3 enemyDirectionLocal = transform.InverseTransformPoint(Player.transform.position);
+
+        //If Player is within these coordinates from the Enemy, it may attack
         if (enemyDirectionLocal.y > -5 && enemyDirectionLocal.y < 0)
         {
             if (enemyDirectionLocal.x < 8 && enemyDirectionLocal.x > -8)

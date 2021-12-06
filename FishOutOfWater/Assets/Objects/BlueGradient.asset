@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85c01079f167a4f4faa0071037b6ab68, type: 3}
-  m_Name: SuperSoaker
+  m_Script: {fileID: 11500000, guid: 54d21f6ece3b46479f0c328f8c6007e0, type: 3}
+  m_Name: BlueGradient
   m_EditorClassIdentifier: 
-  ammo: 30
-  projectile: {fileID: 6802186761227567195, guid: be5389cd2fbc1a548bc36ffa3e8e7aaf, type: 3}
-  timeBtwShots: 0
-  thrust: 10
-  amoutOfBullet: 1
-  spread: 0
+  colorMode: 3
+  topLeft: {r: 1, g: 1, b: 1, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 1, g: 1, b: 1, a: 1}

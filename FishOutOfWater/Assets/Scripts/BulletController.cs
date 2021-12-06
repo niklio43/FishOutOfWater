@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
     public ParticleSystem bulletExplode;
+
     private GameObject child;
     private GameObject toxicChild;
+    private CameraShake cameraShake;
     private LayingDolphin layingDolphin;
     private StandingDolphin standingDolphin;
-    private CameraShake cameraShake;
-
 
     private void Start()
     {
@@ -67,5 +65,4 @@ public class BulletController : MonoBehaviour
             Destroy(collision.gameObject, 1f);
         }
     }
-
 }
