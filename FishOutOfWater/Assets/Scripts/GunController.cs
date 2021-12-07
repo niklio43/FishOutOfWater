@@ -18,7 +18,7 @@ public class GunController : MonoBehaviour
     public ParticleSystem reloadPS;
 
     private WeaponUpgrades state;
-
+    private GameObject sound;
     private GameObject Player;
 
     private DisplayAmmo displayAmmo;
@@ -26,6 +26,7 @@ public class GunController : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        sound = GameObject.FindGameObjectWithTag("AudioManager");
         displayAmmo = Player.GetComponent<DisplayAmmo>();
         state = WeaponUpgrades.Regular;
         ammo = 12;
@@ -125,6 +126,7 @@ public class GunController : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(directionX, directionY) * 20f;
             playerController.Movement(directionX, directionY);
             timeBtwShots = startTimeBtwShots;
+            sound.GetComponent<AudioController>().Play("Player Fire");
             Destroy(bullet, 3);
         }
     }
