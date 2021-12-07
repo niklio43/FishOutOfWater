@@ -13,7 +13,7 @@ public class GunController : MonoBehaviour
     private PlayerController playerController;
     private PlayerHealth playerHealth;
 
-    private int ammo;
+    public int ammo;
 
     public ParticleSystem reloadPS;
 
