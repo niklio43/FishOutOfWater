@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class DisplayAmmo : MonoBehaviour
 {
-    public GameObject enemyPefab;
+    public GameObject ammoCounter;
     private GunController gunController;
     private float radius, radians, vertical, horizontal;
     private Vector2 point, spawnDir, spawnPos;
     private int numOfAmmo;
     public List<GameObject> ammoCounterList = new List<GameObject>();
-    public List<GameObject> reloadList = new List<GameObject>();
     private SpriteRenderer spriteRenderer;
+    private GameObject[] bullets;
 
     private void Start()
     {
@@ -21,6 +21,11 @@ public class DisplayAmmo : MonoBehaviour
         CreateAmmoAroundPoint();
     }
 
+    private void Update()
+    {
+        point = transform.position;
+        bullets = GameObject.FindGameObjectsWithTag("ammoCounter");
+    }
 
     public void CreateAmmoAroundPoint()
     {
@@ -35,7 +40,7 @@ public class DisplayAmmo : MonoBehaviour
 
             spawnPos = point + spawnDir * radius;
 
-            ammoCounterList.Add(Instantiate(enemyPefab, spawnPos, Quaternion.Euler(0, 0, 0), gameObject.transform) as GameObject);
+            ammoCounterList.Add(Instantiate(ammoCounter, spawnPos, Quaternion.Euler(0, 0, 0), gameObject.transform) as GameObject);
         }
     }
 
@@ -45,23 +50,15 @@ public class DisplayAmmo : MonoBehaviour
         {
             spriteRenderer = ammoCounterList[0].GetComponent<SpriteRenderer>();
             spriteRenderer.color = new Color(1f, 1f, 1f, .3f);
-            reloadList.Add(ammoCounterList[0]);
             ammoCounterList.Remove(ammoCounterList[0]);
-
         }
     }
 
     public void addAmmo()
     {
-        for (int i = 0; i < reloadList.Count; i++)
-        {
-            Debug.Log("name: " + reloadList[i].name);
-            Debug.Log("i: " + i);
-            spriteRenderer = reloadList[i].GetComponent<SpriteRenderer>();
-            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
-            ammoCounterList.Add(reloadList[i]);
-            if(i == reloadList.Count -1)
-                reloadList.Clear();
-        }
+        ammoCounterList.Clear();
+        for(int i = 0; i < bullets.Length; i++)
+            Destroy(bullets[i]);
+        CreateAmmoAroundPoint();
     }
 }

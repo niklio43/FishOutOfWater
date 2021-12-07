@@ -1,42 +1,40 @@
-using UnityEngine.Audio;
 using System;
 using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    //private AudioSource audioSource;
-    //private PauseMenu paused;
-
     public Sound[] sounds;
+
+    private PauseMenu paused;
 
     void Awake()
     {
-        foreach(Sound sound in sounds)
+        foreach(Sound sound in sounds) //Create array of all sounds
         {
             sound.audio = gameObject.AddComponent<AudioSource>();
             sound.audio.clip = sound.clip;
             sound.audio.volume = sound.volume;
         }
 
-        //paused = FindObjectOfType<PauseMenu>();
+        paused = FindObjectOfType<PauseMenu>();
     }
 
     void Update()
     {
-        //Pause();
+        Pause();
     }
 
-    //public void Pause()
-    //{
-    //    if (paused.GamePaused)
-    //    {
-    //        audioSource.Pause();
-    //    }
-    //    else if (!paused.GamePaused)
-    //    {
-    //        audioSource.UnPause();
-    //    }
-    //}
+    public void Pause()
+    {
+        if (paused.GamePaused)
+        {
+            sounds[0].audio.Pause(); //Pause the background music
+        }
+        else if (!paused.GamePaused)
+        {
+            sounds[0].audio.UnPause();
+        }
+    }
 
     public void Play(string name)
     {

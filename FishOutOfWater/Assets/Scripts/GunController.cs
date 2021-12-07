@@ -110,6 +110,7 @@ public class GunController : MonoBehaviour
         {
             reloadPS.Play();
             Invoke("Reload", 0f); //reload timer
+            sound.GetComponent<AudioController>().Play("Reload");
         }
     }
 
