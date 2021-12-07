@@ -29,7 +29,6 @@ public class FishNetDolphin : MonoBehaviour
             target = Player.transform.position;
 
         timer += Time.deltaTime;
-        Debug.Log(timer);   //Timer for how often the Enemy can attack
         if (!dead && timer >= 2 && Player != null)
         {
             Attack();
