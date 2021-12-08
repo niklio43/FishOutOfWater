@@ -72,7 +72,6 @@ public class BulletController : MonoBehaviour
 
         if (gameObject.tag == "Bullet" && collision.gameObject.tag == "Player")
         {
-            Debug.Log("owie");
             Physics2D.IgnoreLayerCollision(7, 3);
         }
     }

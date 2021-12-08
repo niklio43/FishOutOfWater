@@ -433,8 +433,8 @@ MonoBehaviour:
   - {fileID: 8824369931689794285}
   - {fileID: 4713038520398721146}
   m_Bounds:
-    m_Center: {x: 0.00000029802322, y: 0.000044822693, z: 0}
-    m_Extent: {x: 0.8249998, y: 0.35495514, z: 0}
+    m_Center: {x: 0.0000005364418, y: 0.000044822693, z: 0}
+    m_Extent: {x: 0.8249996, y: 0.35495514, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1553389680047961583
@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 1211564649861800322}
   - component: {fileID: 1028746445883092580}
   - component: {fileID: -3832651795279997476}
+  - component: {fileID: -3535453170567388790}
   m_Layer: 0
   m_Name: RiggedLayingDolphin
   m_TagString: LayingDolphin
@@ -550,7 +551,7 @@ Transform:
   m_GameObject: {fileID: 4110924054834211648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.364599, y: -43.46615, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 5194902466715504569}
   - {fileID: 7482183965758337035}
@@ -637,6 +638,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &-3535453170567388790
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110924054834211648}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 3.2748494, y: 4.5685916}
+  m_Size: {x: 23.673262, y: 6.585241}
+  m_Direction: 1
 --- !u!1 &4121561494955596075
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,8 +756,8 @@ MonoBehaviour:
   - {fileID: 4713038520398721146}
   - {fileID: 8824369931689794285}
   m_Bounds:
-    m_Center: {x: -0.00000059604645, y: -0.004425168, z: 0}
-    m_Extent: {x: 1.1800004, y: 0.560575, z: 0}
+    m_Center: {x: -0.00000059604645, y: -0.0044251084, z: 0}
+    m_Extent: {x: 1.1800005, y: 0.5605751, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4409804312630987252
@@ -1099,8 +1116,8 @@ MonoBehaviour:
   - {fileID: 1474736955790348430}
   - {fileID: 7700599316600873260}
   m_Bounds:
-    m_Center: {x: -0.005610466, y: 0.00032663345, z: 0}
-    m_Extent: {x: 2.9523597, y: 2.7596729, z: 0}
+    m_Center: {x: -0.0056111813, y: 0.00033259392, z: 0}
+    m_Extent: {x: 2.9523597, y: 2.759675, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5397015449989855323

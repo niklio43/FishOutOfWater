@@ -19,6 +19,7 @@ public class FishNetController : MonoBehaviour
             collision.gameObject.CompareTag("StandingDolphin") ||
             collision.gameObject.CompareTag("FishNetDolphin"))
         {
+            Physics2D.IgnoreLayerCollision(9, 8);
             Destroy(gameObject, 1.2f);
         }
     }

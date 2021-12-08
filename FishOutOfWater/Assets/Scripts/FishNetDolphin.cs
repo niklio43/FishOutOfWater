@@ -68,18 +68,14 @@ public class FishNetDolphin : MonoBehaviour
         //If Player is within these coordinates from the Enemy, it may attack
         if (enemyDirectionLocal.y > -5 && enemyDirectionLocal.y < 0)
         {
-            Debug.Log("test");
-            if (enemyDirectionLocal.x < 8 && enemyDirectionLocal.x > -8)
+            if (enemyDirectionLocal.x < 16 && enemyDirectionLocal.x > -16)
             {
-                Debug.Log("test");
-                if (enemyDirectionLocal.x < 3 && enemyDirectionLocal.x > -3)
+                if (enemyDirectionLocal.x < 4 && enemyDirectionLocal.x > -4)
                 {
-                    Debug.Log("test");
                     netActive = false;
                 }
                 else if (enemyDirectionLocal.x < 0 && !netActive)
                 {
-                    Debug.Log("test");
                     net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
                     netActive = true;
                 }
