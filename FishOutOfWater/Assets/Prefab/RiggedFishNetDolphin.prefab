@@ -799,6 +799,7 @@ GameObject:
   - component: {fileID: 4181162531495156408}
   - component: {fileID: 4181162531495156409}
   - component: {fileID: 4181162531495156410}
+  - component: {fileID: -3206522186342579036}
   m_Layer: 0
   m_Name: RiggedFishNetDolphin
   m_TagString: FishNetDolphin
@@ -876,6 +877,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   netActive: 0
   fishNet: {fileID: 7845761332231552202, guid: aa1d8a6cf2b71be4381b9cbb3fa7929d, type: 3}
+--- !u!95 &-3206522186342579036
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4703944849561274067}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26e33d41b5336c94bb3c0575416d5202, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4766721830275717624
 GameObject:
   m_ObjectHideFlags: 0
