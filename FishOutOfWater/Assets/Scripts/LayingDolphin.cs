@@ -16,7 +16,7 @@ public class LayingDolphin : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && Health > 0)
         {
             playerHealth.TakeDamage(20);
         }
@@ -24,7 +24,7 @@ public class LayingDolphin : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && Health > 0)
         {
             targetPos = Player.transform.position;
             transform.position = Vector3.MoveTowards(transform.position, targetPos, 15 * Time.deltaTime);
