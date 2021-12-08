@@ -61,7 +61,6 @@ public class FishNetDolphin : MonoBehaviour
     {
         dead = true;
         Destroy(gameObject, 2);
-        spriteRenderer.color = Color.red;
     }
 
     private void Attack()

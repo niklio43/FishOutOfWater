@@ -73,6 +73,5 @@ public class StandingDolphin : MonoBehaviour
     {
         isDead = true;
         Destroy(gameObject, 2);
-        spriteRenderer.color = Color.red;
     }
 }

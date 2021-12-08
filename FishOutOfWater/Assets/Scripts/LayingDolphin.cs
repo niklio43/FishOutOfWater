@@ -33,6 +33,5 @@ public class LayingDolphin : MonoBehaviour
     private void Dead()
     {
         Destroy(gameObject, 2);
-        spriteRenderer.color = Color.red;
     }
 }
