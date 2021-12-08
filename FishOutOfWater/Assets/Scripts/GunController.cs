@@ -17,6 +17,9 @@ public class GunController : MonoBehaviour
 
     public ParticleSystem reloadPS;
 
+    public Animator anim;
+    private bool isShooting;
+
     private WeaponUpgrades state;
     private GameObject sound;
     private GameObject Player;
@@ -25,6 +28,7 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
+        isShooting = false;
         Player = GameObject.FindGameObjectWithTag("Player");
         sound = GameObject.FindGameObjectWithTag("AudioManager");
         displayAmmo = Player.GetComponent<DisplayAmmo>();
@@ -37,6 +41,7 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
+        anim.SetBool("isShooting", isShooting);
         if (timeBtwShots <= 0 && playerHealth.currentHealth > 0 && state == WeaponUpgrades.Regular)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -53,13 +58,11 @@ public class GunController : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                playerController.SetPlayerRotation(0, 1);
                 playerController.SwitchGravity(8.92f);
                 Fire(0, 1);
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                playerController.SetPlayerRotation(0, -1);
                 playerController.SwitchGravity(8.92f);
                 Fire(0, -1);
             }
@@ -127,9 +130,16 @@ public class GunController : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(directionX, directionY) * 20f;
             playerController.Movement(directionX, directionY);
             timeBtwShots = startTimeBtwShots;
+            isShooting = true;
+            Invoke("ResetBool", 0.5f);
             sound.GetComponent<AudioController>().Play("Player Fire");
             Destroy(bullet, 3);
         }
+    }
+
+    private void ResetBool()
+    {
+        isShooting = false;
     }
 
     public void Reload()
