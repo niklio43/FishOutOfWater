@@ -4,12 +4,10 @@ public class LayingDolphin : MonoBehaviour
 {
     private int Health;
     private PlayerHealth playerHealth;
-    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         Health = 60;
-        spriteRenderer = GetComponent<SpriteRenderer>();
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
 
