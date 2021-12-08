@@ -18,9 +18,6 @@ public class GunController : MonoBehaviour
     public ParticleSystem reloadPS;
 
     public Animator anim;
-    private bool isShooting;
-    private bool isShootingUp;
-    private bool isShootingDown;
 
     private WeaponUpgrades state;
     private GameObject sound;
@@ -32,9 +29,6 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
-        isShooting = false;
-        isShootingUp = false;
-        isShootingDown = false;
         Player = GameObject.FindGameObjectWithTag("Player");
         sound = GameObject.FindGameObjectWithTag("AudioManager");
         displayAmmo = Player.GetComponent<DisplayAmmo>();
@@ -48,19 +42,8 @@ public class GunController : MonoBehaviour
     private void Update()
     {
         playerGunArm = GameObject.FindGameObjectWithTag("PlayerGunArm").transform.position;
+        transform.rotation = GameObject.FindGameObjectWithTag("PlayerGunArm").transform.rotation;
         transform.position = playerGunArm;
-        Debug.Log("pos: " + playerGunArm);
-        anim.SetBool("isShooting", isShooting);
-        anim.SetBool("isShootingUp", isShootingUp);
-        anim.SetBool("isShootingDown", isShootingDown);
-        if(isShootingUp || isShootingDown)
-        {
-            transform.rotation = GameObject.FindGameObjectWithTag("PlayerGunArm").transform.rotation;
-        }
-        else
-        {
-            transform.rotation = Quaternion.identity;
-        }
 
         if (timeBtwShots <= 0 && playerHealth.currentHealth > 0 && state == WeaponUpgrades.Regular)
         {
@@ -152,27 +135,19 @@ public class GunController : MonoBehaviour
             timeBtwShots = startTimeBtwShots;
             if(directionX > 0 && directionY == 0 || directionX < 0 && directionY == 0)
             {
-                isShooting = true;
+                anim.SetTrigger("isShooting");
             }
             if(directionY > 0 && directionX == 0)
             {
-                isShootingUp = true;
+                anim.SetTrigger("isShootingUp");
             }
             if(directionY < 0 && directionX == 0)
             {
-                isShootingDown = true;
+                anim.SetTrigger("isShootingDown");
             }
-            Invoke("ResetBool", 1f);
             sound.GetComponent<AudioController>().Play("Player Fire");
             Destroy(bullet, 3);
         }
-    }
-
-    private void ResetBool()
-    {
-        isShooting = false;
-        isShootingUp = false;
-        isShootingDown = false;
     }
 
     public void Reload()

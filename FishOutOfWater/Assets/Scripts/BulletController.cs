@@ -69,5 +69,11 @@ public class BulletController : MonoBehaviour
             Destroy(collision.gameObject, 1f);
             sound.GetComponent<AudioController>().Play("Toxic Explode");
         }
+
+        if (gameObject.tag == "Bullet" && collision.gameObject.tag == "Player")
+        {
+            Debug.Log("owie");
+            Physics2D.IgnoreLayerCollision(7, 3);
+        }
     }
 }

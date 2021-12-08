@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 998656269380368849}
   - component: {fileID: 2361569701015525096}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4449855233121015828}
   - component: {fileID: 5860761976968261778}
   - component: {fileID: 1148136169425477420}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Layer 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 2126300826609025425}
   - component: {fileID: 2984709655553510384}
   - component: {fileID: 6624749318695622105}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Layer 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 639299595148898210}
   - component: {fileID: 839121358646276131}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5099054843516437543}
   - component: {fileID: 3658215385575490944}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bone_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5058380115858373912}
   - component: {fileID: 6521801618884017046}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4673828373463288818}
   - component: {fileID: 7480278396087547132}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bone_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 374932722756726991}
   - component: {fileID: 7551828465966945949}
   - component: {fileID: 7551828465966945938}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RiggedPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 4530744169240610233}
   - component: {fileID: 6941401119913752178}
   - component: {fileID: 6341203334713858957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Layer 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,7 +936,7 @@ GameObject:
   - component: {fileID: 1138321474325573846}
   - component: {fileID: 4961182760550786402}
   - component: {fileID: 8215914793839258659}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Layer 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1043,7 +1043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3398564481116800966}
   - component: {fileID: 5502542087250812727}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1127,7 +1127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8124049243300382320}
   - component: {fileID: 6106928135486993500}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bone_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1209,7 +1209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9077856651482268886}
   - component: {fileID: 1508981828023612311}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1336,6 +1336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: dustPS
       objectReference: {fileID: 0}
+    - target: {fileID: 126918308284407098, guid: 8d371d1e3021cbf4b842aaf193b86983, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d371d1e3021cbf4b842aaf193b86983, type: 3}
 --- !u!198 &3324991475106793794 stripped
@@ -1355,6 +1359,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7760147234417563562}
     m_Modifications:
+    - target: {fileID: 5669483546035672427, guid: baa1416ab3ddea941a1684c61991fa16, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669483546626043408, guid: baa1416ab3ddea941a1684c61991fa16, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5669483546937236180, guid: baa1416ab3ddea941a1684c61991fa16, type: 3}
       propertyPath: m_SortingOrder
       value: 6
@@ -1418,6 +1430,10 @@ PrefabInstance:
     - target: {fileID: 5669483546937236183, guid: baa1416ab3ddea941a1684c61991fa16, type: 3}
       propertyPath: m_Name
       value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669483546937236183, guid: baa1416ab3ddea941a1684c61991fa16, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baa1416ab3ddea941a1684c61991fa16, type: 3}

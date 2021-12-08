@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4957412757479691509}
   - component: {fileID: 5845086175191529753}
   - component: {fileID: 6302954731265703392}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BulletParent
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 6644583119648738725}
   - component: {fileID: 3666555030946681660}
   - component: {fileID: 1550338176055258716}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,6 +399,10 @@ PrefabInstance:
     - target: {fileID: 2455271513660148907, guid: 8a0cb10f317e5af4184b452d2d8ea2ac, type: 3}
       propertyPath: m_Name
       value: bulletExplode
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455271513660148907, guid: 8a0cb10f317e5af4184b452d2d8ea2ac, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5448687050678285415, guid: 8a0cb10f317e5af4184b452d2d8ea2ac, type: 3}
       propertyPath: m_RootOrder
