@@ -12,7 +12,6 @@ public class StandingDolphin : MonoBehaviour
 
     private GameObject Player;
     private GameObject sound;
-    private SpriteRenderer spriteRenderer;
 
     private bool isDead;
 
@@ -24,7 +23,6 @@ public class StandingDolphin : MonoBehaviour
         fireRate = 0.4f;
         sound = GameObject.FindGameObjectWithTag("AudioManager");
         Player = GameObject.FindGameObjectWithTag("Player");
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
