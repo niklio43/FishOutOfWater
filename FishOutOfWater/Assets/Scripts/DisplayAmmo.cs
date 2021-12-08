@@ -38,7 +38,7 @@ public class DisplayAmmo : MonoBehaviour
 
             spawnDir = new Vector2(horizontal, vertical);
 
-            spawnPos = point + spawnDir * radius;
+            spawnPos = new Vector2(point.x, point.y + 1.8f) + spawnDir * radius;
 
             ammoCounterList.Add(Instantiate(ammoCounter, spawnPos, Quaternion.Euler(0, 0, 0), gameObject.transform) as GameObject);
         }
