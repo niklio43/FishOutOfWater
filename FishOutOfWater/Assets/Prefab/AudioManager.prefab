@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2618525106715236317
+--- !u!1 &8442847748780696020
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2618525106715236291}
-  - component: {fileID: 2618525106715236316}
+  - component: {fileID: 8442847748780696010}
+  - component: {fileID: 8442847748780696021}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: AudioManager
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2618525106715236291
+--- !u!4 &8442847748780696010
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618525106715236317}
+  m_GameObject: {fileID: 8442847748780696020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.421687, y: -5.158633, z: -57.84737}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2618525106715236316
+--- !u!114 &8442847748780696021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618525106715236317}
+  m_GameObject: {fileID: 8442847748780696020}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fa3edaa27072aa44ba358c06e272382, type: 3}
@@ -50,13 +50,25 @@ MonoBehaviour:
     audio: {fileID: 0}
   - name: Player Fire
     clip: {fileID: 8300000, guid: a748c45155b4bff449635ca1d7ca11ec, type: 3}
-    volume: 0.5
+    volume: 0.4
     audio: {fileID: 0}
   - name: Enemy Fire
     clip: {fileID: 8300000, guid: a748c45155b4bff449635ca1d7ca11ec, type: 3}
-    volume: 0.75
+    volume: 0.6
     audio: {fileID: 0}
   - name: Reload
-    clip: {fileID: 8300000, guid: ab508661df420cb4f9476579168ace52, type: 3}
+    clip: {fileID: 8300000, guid: 41b08795c4d26f94a88924b25f0af2e3, type: 3}
     volume: 0.5
+    audio: {fileID: 0}
+  - name: Player Damage
+    clip: {fileID: 8300000, guid: 84a924f6ed75a2b4b9a99c316a8e020d, type: 3}
+    volume: 1
+    audio: {fileID: 0}
+  - name: Dolphin Damage
+    clip: {fileID: 8300000, guid: 21d3cdd51f8810f46b9edd14be8f4e44, type: 3}
+    volume: 0.1
+    audio: {fileID: 0}
+  - name: Toxic Explode
+    clip: {fileID: 8300000, guid: 24d3a0e431ff80c42a0f610353a38b70, type: 3}
+    volume: 0.6
     audio: {fileID: 0}
