@@ -10,6 +10,7 @@ public class FishNetDolphin : MonoBehaviour
     private float timer;
     private Vector3 target;
     private GameObject net;
+    private GameObject sound;
     private GameObject Player;
     private SpriteRenderer spriteRenderer;
 
@@ -20,6 +21,7 @@ public class FishNetDolphin : MonoBehaviour
         dead = false;
         netActive = false;
         Player = GameObject.FindGameObjectWithTag("Player");
+        sound = GameObject.FindGameObjectWithTag("AudioManager");
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -42,6 +44,7 @@ public class FishNetDolphin : MonoBehaviour
         {
             Destroy(collision.gameObject);
             TakeDamage(20);
+            sound.GetComponent<AudioController>().Play("Dolphin Damage");
         }
     }
 
