@@ -133,15 +133,15 @@ public class GunController : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(directionX, directionY) * 20f;
             playerController.Movement(directionX, directionY);
             timeBtwShots = startTimeBtwShots;
-            if(directionX > 0 && directionY == 0 || directionX < 0 && directionY == 0)
+            if (directionX > 0 && directionY == 0 || directionX < 0 && directionY == 0)
             {
                 anim.SetTrigger("isShooting");
             }
-            if(directionY > 0 && directionX == 0)
+            if (directionY > 0 && directionX == 0)
             {
                 anim.SetTrigger("isShootingUp");
             }
-            if(directionY < 0 && directionX == 0)
+            if (directionY < 0 && directionX == 0)
             {
                 anim.SetTrigger("isShootingDown");
             }
