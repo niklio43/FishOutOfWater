@@ -533,8 +533,8 @@ GameObject:
   - component: {fileID: 3526284455836967061}
   - component: {fileID: 1211564649861800322}
   - component: {fileID: 1028746445883092580}
-  - component: {fileID: -3832651795279997476}
   - component: {fileID: -3535453170567388790}
+  - component: {fileID: -4364955081491287980}
   m_Layer: 0
   m_Name: RiggedLayingDolphin
   m_TagString: LayingDolphin
@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb112a844464fb0419f7bed29e791876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: -3832651795279997476}
+  anim: {fileID: -4364955081491287980}
 --- !u!50 &1211564649861800322
 Rigidbody2D:
   serializedVersion: 4
@@ -620,7 +620,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.806489, y: 3.4917498}
   m_EdgeRadius: 0
---- !u!95 &-3832651795279997476
+--- !u!70 &-3535453170567388790
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110924054834211648}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 3.2748494, y: 4.5685916}
+  m_Size: {x: 23.673262, y: 6.585241}
+  m_Direction: 1
+--- !u!95 &-4364955081491287980
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -639,22 +655,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &-3535453170567388790
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4110924054834211648}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 3.2748494, y: 4.5685916}
-  m_Size: {x: 23.673262, y: 6.585241}
-  m_Direction: 1
 --- !u!1 &4121561494955596075
 GameObject:
   m_ObjectHideFlags: 0
