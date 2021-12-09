@@ -4,7 +4,6 @@ public class BulletController : MonoBehaviour
 {
     public ParticleSystem bulletExplode;
 
-    private GameObject sound;
     private GameObject child;
     private GameObject toxicChild;
     private CameraShake cameraShake;
@@ -13,7 +12,6 @@ public class BulletController : MonoBehaviour
 
     private void Start()
     {
-        sound = GameObject.FindGameObjectWithTag("AudioManager");
         cameraShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
     }
 
@@ -45,7 +43,6 @@ public class BulletController : MonoBehaviour
             Destroy(child);
             Destroy(gameObject, 0.1f);
             layingDolphin.TakeDamage(20);
-            sound.GetComponent<AudioController>().Play("Dolphin Damage");
         }
         if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("StandingDolphin"))
         {
@@ -54,7 +51,6 @@ public class BulletController : MonoBehaviour
             Destroy(child);
             Destroy(gameObject, 0.1f);
             standingDolphin.TakeDamage(20);
-            sound.GetComponent<AudioController>().Play("Dolphin Damage");
         }
         if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("ToxicBarrel"))
         {
@@ -67,12 +63,6 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject, 0.1f);
             Destroy(toxicChild);
             Destroy(collision.gameObject, 1f);
-            sound.GetComponent<AudioController>().Play("Toxic Explode");
-        }
-
-        if (gameObject.tag == "Bullet" && collision.gameObject.tag == "Player")
-        {
-            Physics2D.IgnoreLayerCollision(7, 3);
         }
     }
 }

@@ -11,7 +11,7 @@ public class StandingDolphin : MonoBehaviour
     private float fireRate, nextFire;
 
     private GameObject Player;
-    private GameObject sound;
+    private SpriteRenderer spriteRenderer;
 
     private bool isDead;
 
@@ -21,8 +21,8 @@ public class StandingDolphin : MonoBehaviour
         Health = 60;
         nextFire = -1f;
         fireRate = 0.4f;
-        sound = GameObject.FindGameObjectWithTag("AudioManager");
         Player = GameObject.FindGameObjectWithTag("Player");
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -53,7 +53,6 @@ public class StandingDolphin : MonoBehaviour
             Target = Player.transform.position - transform.position;
             bullet.GetComponent<Rigidbody2D>().velocity = Target * 10f;
             nextFire = fireRate;
-            sound.GetComponent<AudioController>().Play("Enemy Fire");
             Destroy(bullet, 3);
         }
     }
@@ -71,5 +70,6 @@ public class StandingDolphin : MonoBehaviour
     {
         isDead = true;
         Destroy(gameObject, 2);
+        spriteRenderer.color = Color.red;
     }
 }

@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 velocityCopy;
     private float thrust, jumpForce;
-
-    private GameObject sound;
     private WeaponUpgrades state;
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
@@ -19,7 +17,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         state = WeaponUpgrades.Regular;
-        sound = GameObject.FindGameObjectWithTag("AudioManager");
         isGrounded = false;
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
@@ -111,7 +108,6 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             playerHealth.TakeDamage(20);
-            sound.GetComponent<AudioController>().Play("Player Damage");
         }
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("LayingDolphin") ||
             collision.gameObject.CompareTag("StandingDolphin") || collision.gameObject.CompareTag("Spike") ||
@@ -122,7 +118,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Spike"))
         {
             playerHealth.TakeDamage(20);
-            sound.GetComponent<AudioController>().Play("Player Damage");
         }
     }
 
