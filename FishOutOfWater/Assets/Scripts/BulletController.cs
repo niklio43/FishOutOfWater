@@ -38,15 +38,6 @@ public class BulletController : MonoBehaviour
             Destroy(child);
             Destroy(gameObject, 0.1f);
         }
-        if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("LayingDolphin"))
-        {
-            layingDolphin = collision.gameObject.GetComponent<LayingDolphin>();
-            bulletExplode.Play();
-            Destroy(child);
-            Destroy(gameObject, 0.1f);
-            layingDolphin.TakeDamage(20);
-            sound.GetComponent<AudioController>().Play("Dolphin Damage");
-        }
         if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("StandingDolphin"))
         {
             standingDolphin = collision.gameObject.GetComponent<StandingDolphin>();
@@ -73,6 +64,19 @@ public class BulletController : MonoBehaviour
         if (gameObject.tag == "Bullet" && collision.gameObject.tag == "Player")
         {
             Physics2D.IgnoreLayerCollision(7, 3);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("LayingDolphin"))
+        {
+            layingDolphin = collision.gameObject.GetComponent<LayingDolphin>();
+            bulletExplode.Play();
+            Destroy(child);
+            Destroy(gameObject, 0.1f);
+            layingDolphin.TakeDamage(20);
+            sound.GetComponent<AudioController>().Play("Dolphin Damage");
         }
     }
 }
