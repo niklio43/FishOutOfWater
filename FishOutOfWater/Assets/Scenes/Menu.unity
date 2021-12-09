@@ -180,6 +180,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a16fdea79db888a4d98e71eea24b5a4a, type: 3}
+--- !u!1 &815233192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 670818190394367201, guid: 0ba11192ddcb2434ab15f802ccb06b94, type: 3}
+  m_PrefabInstance: {fileID: 1464722049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &815233196
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815233192}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd3b002db43cde3458322851ffba0754, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &895412565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -244,6 +268,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 670818190394367207, guid: 0ba11192ddcb2434ab15f802ccb06b94, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670818190394367207, guid: 0ba11192ddcb2434ab15f802ccb06b94, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6f3b5f6117b55524db7e11a1332d5811, type: 3}
     - target: {fileID: 670818190646472678, guid: 0ba11192ddcb2434ab15f802ccb06b94, type: 3}
       propertyPath: m_Name
       value: Canvas
