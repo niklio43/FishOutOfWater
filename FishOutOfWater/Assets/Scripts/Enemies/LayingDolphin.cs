@@ -32,6 +32,15 @@ public class LayingDolphin : MonoBehaviour
         anim.SetBool("isMoving", isMoving);
         anim.SetBool("isAttacking", isAttacking);
         anim.SetBool("isDead", isDead);
+
+        if (Player.transform.position.x - gameObject.transform.position.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (Player.transform.position.x - gameObject.transform.position.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -39,6 +48,7 @@ public class LayingDolphin : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && Health > 0)
         {
             speed = 0.1f;
+            isMoving = false;
             isAttacking = true;
 
             timer += Time.deltaTime;
@@ -82,7 +92,9 @@ public class LayingDolphin : MonoBehaviour
 
     private void Dead()
     {
+        isMoving = false;
+        isAttacking = false;
         isDead = true;
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 3.333f);
     }
 }
