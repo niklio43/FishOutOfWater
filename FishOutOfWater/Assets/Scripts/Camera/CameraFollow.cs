@@ -6,13 +6,7 @@ public class CameraFollow : MonoBehaviour
 
     public Transform target;
 
-    private Vector3 offset;
     private Vector3 velocity = Vector3.zero;
-
-    private void Start()
-    {
-        offset = new Vector3(0, 6, -20);
-    }
 
     private void FixedUpdate()
     {
