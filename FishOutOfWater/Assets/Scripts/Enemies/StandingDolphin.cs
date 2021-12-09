@@ -13,20 +13,24 @@ public class StandingDolphin : MonoBehaviour
     private GameObject Player;
     private GameObject sound;
 
-    private bool isDead;
+    public Animator anim;
+
+    private bool isDead, isAttacking;
 
     void Start()
     {
         isDead = false;
+        isAttacking = false;
         Health = 60;
         nextFire = -1f;
-        fireRate = 0.4f;
+        fireRate = 1.1f;
         sound = GameObject.FindGameObjectWithTag("AudioManager");
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
+        anim.SetBool("isAttacking", isAttacking);
         if (Player != null && Health != 0)
         {
             if (Player.transform.position.x > transform.position.x)
@@ -49,12 +53,17 @@ public class StandingDolphin : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && nextFire < 0 && isDead == false)
         {
+            isAttacking = true;
             GameObject bullet = Instantiate(Bullet, transform.GetChild(0).gameObject.transform.position, transform.rotation);
             Target = Player.transform.position - transform.position;
             bullet.GetComponent<Rigidbody2D>().velocity = Target * 10f;
             nextFire = fireRate;
             sound.GetComponent<AudioController>().Play("Enemy Fire");
             Destroy(bullet, 3);
+        }
+        else
+        {
+            isAttacking = false;
         }
     }
 
@@ -69,7 +78,9 @@ public class StandingDolphin : MonoBehaviour
 
     private void Dead()
     {
+        isAttacking = false;
         isDead = true;
+        anim.SetTrigger("isDead");
         Destroy(gameObject, 2);
     }
 }
