@@ -10,8 +10,8 @@ public class FishNetDolphin : MonoBehaviour
     private float timer;
     private Vector3 target;
     private GameObject net;
+    private GameObject sound;
     private GameObject Player;
-    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class FishNetDolphin : MonoBehaviour
         dead = false;
         netActive = false;
         Player = GameObject.FindGameObjectWithTag("Player");
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        sound = GameObject.FindGameObjectWithTag("AudioManager");
     }
 
     void Update()
@@ -42,6 +42,7 @@ public class FishNetDolphin : MonoBehaviour
         {
             Destroy(collision.gameObject);
             TakeDamage(20);
+            sound.GetComponent<AudioController>().Play("Dolphin Damage");
         }
     }
 
@@ -58,7 +59,6 @@ public class FishNetDolphin : MonoBehaviour
     {
         dead = true;
         Destroy(gameObject, 2);
-        spriteRenderer.color = Color.red;
     }
 
     private void Attack()
@@ -68,9 +68,9 @@ public class FishNetDolphin : MonoBehaviour
         //If Player is within these coordinates from the Enemy, it may attack
         if (enemyDirectionLocal.y > -5 && enemyDirectionLocal.y < 0)
         {
-            if (enemyDirectionLocal.x < 8 && enemyDirectionLocal.x > -8)
+            if (enemyDirectionLocal.x < 16 && enemyDirectionLocal.x > -16)
             {
-                if (enemyDirectionLocal.x < 3 && enemyDirectionLocal.x > -3)
+                if (enemyDirectionLocal.x < 4 && enemyDirectionLocal.x > -4)
                 {
                     netActive = false;
                 }

@@ -19,11 +19,8 @@ public class DisplayAmmo : MonoBehaviour
         gunController = gameObject.transform.GetChild(0).GetComponent<GunController>();
         point = transform.position;
         radius = 2;
-    }
-
-    private void Update()
-    {
         numOfAmmo = gunController.ammo;
+
         if (!finished)
         {
             for (int i = 0; i <= numOfAmmo; i++)
@@ -37,13 +34,20 @@ public class DisplayAmmo : MonoBehaviour
 
                 spawnPos = point + spawnDir * radius;
 
-                if(i == numOfAmmo)
+                if (i == numOfAmmo)
                 {
                     finished = true;
                 }
                 CreateAmmoAroundPoint();
             }
         }
+    }
+
+    private void Update()
+    {
+        numOfAmmo = gunController.ammo;
+
+
     }
 
     public void CreateAmmoAroundPoint()
