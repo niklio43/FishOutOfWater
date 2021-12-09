@@ -14,9 +14,13 @@ public class FishNetDolphin : MonoBehaviour
     private GameObject Player;
     private SpriteRenderer[] bodyParts;
 
+    public Animator anim;
+
+    private bool isAttacking;
 
     void Start()
     {
+        isAttacking = false;
         timer = 0;
         Health = 60;
         dead = false;
@@ -28,6 +32,7 @@ public class FishNetDolphin : MonoBehaviour
 
     void Update()
     {
+        anim.SetBool("isAttacking", isAttacking);
         if (Player != null)
             target = Player.transform.position;
 
@@ -66,6 +71,7 @@ public class FishNetDolphin : MonoBehaviour
     private void Dead()
     {
         dead = true;
+        anim.SetTrigger("isDead");
         Destroy(gameObject, 2);
     }
 
@@ -81,18 +87,25 @@ public class FishNetDolphin : MonoBehaviour
                 if (enemyDirectionLocal.x < 4 && enemyDirectionLocal.x > -4)
                 {
                     netActive = false;
+                    isAttacking = false;
                 }
                 else if (enemyDirectionLocal.x < 0 && !netActive)
                 {
+                    isAttacking = true;
                     net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
                     netActive = true;
                 }
                 else if (enemyDirectionLocal.x > 0 && !netActive)
                 {
+                    isAttacking = true;
                     net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
                     netActive = true;
                 }
             }
+        }
+        else
+        {
+            isAttacking = false;
         }
 
         if (net == null)
