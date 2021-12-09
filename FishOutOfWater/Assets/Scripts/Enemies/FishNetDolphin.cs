@@ -12,19 +12,27 @@ public class FishNetDolphin : MonoBehaviour
     private GameObject net;
     private GameObject sound;
     private GameObject Player;
+    private SpriteRenderer[] bodyParts;
+
+    public Animator anim;
+
+    private bool isAttacking;
 
     void Start()
     {
+        isAttacking = false;
         timer = 0;
         Health = 60;
         dead = false;
         netActive = false;
         Player = GameObject.FindGameObjectWithTag("Player");
         sound = GameObject.FindGameObjectWithTag("AudioManager");
+        CollectBody();
     }
 
     void Update()
     {
+        anim.SetBool("isAttacking", isAttacking);
         if (Player != null)
             target = Player.transform.position;
 
@@ -49,6 +57,11 @@ public class FishNetDolphin : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health = Health - damage;
+        foreach (SpriteRenderer part in bodyParts)
+        {
+            part.color = Color.red;
+        }
+        Invoke("ReturnColor", 0.1f);
         if (Health <= 0)
         {
             Dead();
@@ -58,6 +71,7 @@ public class FishNetDolphin : MonoBehaviour
     private void Dead()
     {
         dead = true;
+        anim.SetTrigger("isDead");
         Destroy(gameObject, 2);
     }
 
@@ -73,23 +87,48 @@ public class FishNetDolphin : MonoBehaviour
                 if (enemyDirectionLocal.x < 4 && enemyDirectionLocal.x > -4)
                 {
                     netActive = false;
+                    isAttacking = false;
                 }
                 else if (enemyDirectionLocal.x < 0 && !netActive)
                 {
+                    isAttacking = true;
                     net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
                     netActive = true;
                 }
                 else if (enemyDirectionLocal.x > 0 && !netActive)
                 {
+                    isAttacking = true;
                     net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
                     netActive = true;
                 }
             }
         }
+        else
+        {
+            isAttacking = false;
+        }
 
         if (net == null)
         {
             netActive = false;
+        }
+    }
+
+    private void CollectBody()
+    {
+        bodyParts = new SpriteRenderer[4];
+
+        for (int i = 0; i < bodyParts.Length; i++)
+        {
+            bodyParts[i] = transform.GetChild(i + 1).gameObject.GetComponent<SpriteRenderer>();
+        }
+    }
+
+    private void ReturnColor()
+    {
+        foreach (SpriteRenderer part in bodyParts)
+        {
+            part.color = Color.white;
         }
     }
 }

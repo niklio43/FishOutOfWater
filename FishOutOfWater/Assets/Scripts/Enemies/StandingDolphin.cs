@@ -11,6 +11,7 @@ public class StandingDolphin : MonoBehaviour
     private float fireRate, nextFire;
 
     private GameObject Player;
+    private SpriteRenderer[] bodyParts;
     private GameObject sound;
 
     public Animator anim;
@@ -26,6 +27,7 @@ public class StandingDolphin : MonoBehaviour
         fireRate = 1.1f;
         sound = GameObject.FindGameObjectWithTag("AudioManager");
         Player = GameObject.FindGameObjectWithTag("Player");
+        CollectBody();
     }
 
     void Update()
@@ -70,6 +72,11 @@ public class StandingDolphin : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health = Health - damage;
+        foreach (SpriteRenderer part in bodyParts)
+        {
+            part.color = Color.red;
+        }
+        Invoke("ReturnColor", 0.1f);
         if (Health <= 0)
         {
             Dead();
@@ -82,5 +89,32 @@ public class StandingDolphin : MonoBehaviour
         isDead = true;
         anim.SetTrigger("isDead");
         Destroy(gameObject, 2);
+    }
+
+    private void CollectBody()
+    {
+        bodyParts = new SpriteRenderer[3];
+
+        for (int i = 0; i < bodyParts.Length; i++)
+        {
+            if ((i + 1) == 1)
+                bodyParts[i] = transform.GetChild(i + 1).gameObject.GetComponent<SpriteRenderer>();
+            else if ((i + 3) == 4)
+            {
+                bodyParts[i] = transform.GetChild(i + 3).gameObject.GetComponent<SpriteRenderer>();
+            }
+            else if ((i + 3) == 5)
+            {
+                bodyParts[i] = transform.GetChild(i + 3).gameObject.GetComponent<SpriteRenderer>();
+            }
+        }
+    }
+
+    private void ReturnColor()
+    {
+        foreach (SpriteRenderer part in bodyParts)
+        {
+            part.color = Color.white;
+        }
     }
 }
