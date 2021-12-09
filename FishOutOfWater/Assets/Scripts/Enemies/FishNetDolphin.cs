@@ -12,6 +12,8 @@ public class FishNetDolphin : MonoBehaviour
     private GameObject net;
     private GameObject sound;
     private GameObject Player;
+    private SpriteRenderer[] bodyParts;
+
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class FishNetDolphin : MonoBehaviour
         netActive = false;
         Player = GameObject.FindGameObjectWithTag("Player");
         sound = GameObject.FindGameObjectWithTag("AudioManager");
+        CollectBody();
     }
 
     void Update()
@@ -49,6 +52,11 @@ public class FishNetDolphin : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health = Health - damage;
+        foreach (SpriteRenderer part in bodyParts)
+        {
+            part.color = Color.red;
+        }
+        Invoke("ReturnColor", 0.1f);
         if (Health <= 0)
         {
             Dead();
@@ -90,6 +98,24 @@ public class FishNetDolphin : MonoBehaviour
         if (net == null)
         {
             netActive = false;
+        }
+    }
+
+    private void CollectBody()
+    {
+        bodyParts = new SpriteRenderer[4];
+
+        for (int i = 0; i < bodyParts.Length; i++)
+        {
+            bodyParts[i] = transform.GetChild(i + 1).gameObject.GetComponent<SpriteRenderer>();
+        }
+    }
+
+    private void ReturnColor()
+    {
+        foreach (SpriteRenderer part in bodyParts)
+        {
+            part.color = Color.white;
         }
     }
 }

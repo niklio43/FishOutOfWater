@@ -4,6 +4,7 @@ public class LayingDolphin : MonoBehaviour
 {
     private int Health;
     private GameObject Player;
+    private SpriteRenderer[] bodyParts;
     private PlayerHealth playerHealth;
     private Vector2 targetPos;
 
@@ -25,6 +26,7 @@ public class LayingDolphin : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = Player.GetComponent<PlayerHealth>();
         timer = 0;
+        CollectBody();
     }
 
     private void Update()
@@ -84,6 +86,11 @@ public class LayingDolphin : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health = Health - damage;
+        foreach(SpriteRenderer part in bodyParts)
+        {
+            part.color = Color.red;
+        }
+        Invoke("ReturnColor", 0.1f);
         if (Health <= 0)
         {
             Dead();
@@ -96,5 +103,26 @@ public class LayingDolphin : MonoBehaviour
         isAttacking = false;
         isDead = true;
         Destroy(gameObject, 3.333f);
+    }
+
+    private void CollectBody()
+    {
+        bodyParts = new SpriteRenderer[3];
+
+        for(int i = 0; i < bodyParts.Length; i++)
+        {
+            if (transform.GetChild(i).CompareTag("LDBody"))
+                bodyParts[i] = transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>();
+            else
+                bodyParts[i] = transform.GetChild(i+2).gameObject.GetComponent<SpriteRenderer>();
+        }
+    }
+
+    private void ReturnColor()
+    {
+        foreach(SpriteRenderer part in bodyParts)
+        {
+            part.color = Color.white;
+        }
     }
 }
