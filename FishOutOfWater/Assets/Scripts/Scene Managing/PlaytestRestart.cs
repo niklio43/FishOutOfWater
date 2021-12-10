@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PlaytestRestart : MonoBehaviour
 {
     string sceneName;
+    private DisplayAmmo displayAmmo;
 
     void Start()
     {
@@ -15,6 +16,8 @@ public class PlaytestRestart : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(sceneName);
+            displayAmmo = GameObject.FindGameObjectWithTag("Player").GetComponent<DisplayAmmo>();
+            displayAmmo.CreateAmmoAroundPoint();
         }
     }
 }
