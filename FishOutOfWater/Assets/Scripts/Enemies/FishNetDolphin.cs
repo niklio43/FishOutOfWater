@@ -7,7 +7,6 @@ public class FishNetDolphin : MonoBehaviour
 
     private bool dead;
     private int Health;
-    private float timer;
     private Vector3 target;
     private GameObject net;
     private GameObject sound;
@@ -21,7 +20,6 @@ public class FishNetDolphin : MonoBehaviour
     void Start()
     {
         isAttacking = false;
-        timer = 0;
         Health = 60;
         dead = false;
         netActive = false;
@@ -36,11 +34,13 @@ public class FishNetDolphin : MonoBehaviour
         if (Player != null)
             target = Player.transform.position;
 
-        timer += Time.deltaTime;
-        if (!dead && timer >= 2 && Player != null)
+        if (!GameObject.FindGameObjectWithTag("FishNet"))
         {
-            Attack();
-            timer = 0;
+            netActive = false;
+        }
+        else
+        {
+            netActive = true;
         }
     }
 
@@ -75,40 +75,21 @@ public class FishNetDolphin : MonoBehaviour
         Destroy(gameObject, 2);
     }
 
-    private void Attack()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        Vector3 enemyDirectionLocal = transform.InverseTransformPoint(Player.transform.position);
-
-        //If Player is within these coordinates from the Enemy, it may attack
-        if (enemyDirectionLocal.y > -5 && enemyDirectionLocal.y < 0)
+        if (collision.CompareTag("Player") && !dead && Player != null)
         {
-            if (enemyDirectionLocal.x < 16 && enemyDirectionLocal.x > -16)
+            if(!netActive)
             {
-                if (enemyDirectionLocal.x < 4 && enemyDirectionLocal.x > -4)
-                {
-                    netActive = false;
-                    isAttacking = false;
-                }
-                else if (enemyDirectionLocal.x < 0 && !netActive)
-                {
-                    isAttacking = true;
-                    net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
-                    netActive = true;
-                }
-                else if (enemyDirectionLocal.x > 0 && !netActive)
-                {
-                    isAttacking = true;
-                    net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
-                    netActive = true;
-                }
+                netActive = true;
+                net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
             }
         }
-        else
-        {
-            isAttacking = false;
-        }
+    }
 
-        if (net == null)
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
         {
             netActive = false;
         }
@@ -120,7 +101,7 @@ public class FishNetDolphin : MonoBehaviour
 
         for (int i = 0; i < bodyParts.Length; i++)
         {
-            bodyParts[i] = transform.GetChild(i + 1).gameObject.GetComponent<SpriteRenderer>();
+            bodyParts[i] = transform.GetChild(i + 2).gameObject.GetComponent<SpriteRenderer>();
         }
     }
 
