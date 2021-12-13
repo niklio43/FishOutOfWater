@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        state = WeaponUpgrades.Regular;
+        state = WeaponUpgrades.Spray;
         sound = GameObject.FindGameObjectWithTag("AudioManager");
         isGrounded = false;
         rb = GetComponent<Rigidbody2D>();
