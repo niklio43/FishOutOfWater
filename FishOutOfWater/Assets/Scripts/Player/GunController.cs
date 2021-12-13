@@ -34,7 +34,7 @@ public class GunController : MonoBehaviour
         displayAmmo = Player.GetComponent<DisplayAmmo>();
         state = WeaponUpgrades.Spray;
         ammo = 12;
-        startTimeBtwShots = 0.1f;
+        startTimeBtwShots = 0.15f;
         playerHealth = Player.GetComponent<PlayerHealth>();
         playerController = Player.GetComponent<PlayerController>();
     }
