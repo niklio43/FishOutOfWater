@@ -8,14 +8,13 @@ public class FishNetDolphin : MonoBehaviour
     private bool dead;
     private int Health;
     private Vector3 target;
+    private bool isAttacking;
+
+    public Animator anim;
     private GameObject net;
     private GameObject sound;
     private GameObject Player;
     private SpriteRenderer[] bodyParts;
-
-    public Animator anim;
-
-    private bool isAttacking;
 
     void Start()
     {
@@ -95,7 +94,7 @@ public class FishNetDolphin : MonoBehaviour
         }
     }
 
-    private void CollectBody()
+    private void CollectBody() //Gathers the different parts of the prefab with sprite renderers
     {
         bodyParts = new SpriteRenderer[4];
 

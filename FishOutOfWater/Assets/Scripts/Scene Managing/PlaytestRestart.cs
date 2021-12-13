@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class PlaytestRestart : MonoBehaviour
 {
-    string sceneName;
+    public string sceneName;
+
     private DisplayAmmo displayAmmo;
 
     void Start()
