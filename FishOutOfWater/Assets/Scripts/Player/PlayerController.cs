@@ -85,11 +85,11 @@ public class PlayerController : MonoBehaviour
         }
         if (Vertical > 0 && Horizontal == 0)
         {
-            transform.eulerAngles = new Vector3(0, 0, 90);
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else if (Vertical < 0 && Horizontal == 0)
         {
-            transform.eulerAngles = new Vector3(0, 0, -90);
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
     }
 
