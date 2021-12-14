@@ -8,7 +8,7 @@ public class Alerted : MonoBehaviour
 
     private GameObject exclamation;
 
-    public bool isActive;
+    public bool isActive, playSound;
 
     //hover hastighet
     [SerializeField]
@@ -27,6 +27,7 @@ public class Alerted : MonoBehaviour
         pos = exclamation.transform.position;
         exclamation.SetActive(false);
         isActive = false;
+        playSound = false;
         sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
     }
 
@@ -42,6 +43,7 @@ public class Alerted : MonoBehaviour
         {
             exclamation.SetActive(false);
             isActive = false;
+            playSound = false;
         }
 
         if(isActive)
@@ -51,7 +53,12 @@ public class Alerted : MonoBehaviour
             //sätter nya positionen
             exclamation.transform.position = new Vector3(exclamation.transform.position.x, newY, exclamation.transform.position.z);
         }
-            sound.Play("Alert Sound");
+
+        if(isActive && !playSound)
+        {
+            sound.PlayOnce("Alert Sound");
+            playSound = true;
+        }
     }
 
     void DrawAlerted()
