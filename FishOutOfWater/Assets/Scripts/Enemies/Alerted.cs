@@ -19,12 +19,15 @@ public class Alerted : MonoBehaviour
 
     Vector3 pos;
 
+    private AudioController sound;
+
     void Start()
     {
         DrawAlerted();
         pos = exclamation.transform.position;
         exclamation.SetActive(false);
         isActive = false;
+        sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
     }
 
     private void Update()
@@ -48,10 +51,11 @@ public class Alerted : MonoBehaviour
             //sätter nya positionen
             exclamation.transform.position = new Vector3(exclamation.transform.position.x, newY, exclamation.transform.position.z);
         }
+            sound.Play("Alert Sound");
     }
 
     void DrawAlerted()
     {
-        exclamation = Instantiate(AlertedPrefab, new Vector2(transform.position.x, transform.position.y + 5.5f), transform.rotation);
+        exclamation = Instantiate(AlertedPrefab, new Vector2(transform.position.x, transform.position.y + 5f), transform.rotation);
     }
 }
