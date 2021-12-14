@@ -42,4 +42,11 @@ public class AudioController : MonoBehaviour
 
         s.audio.Play();
     }
+
+    public void PlayOnce(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        s.audio.PlayOneShot(s.clip);
+    }
 }
