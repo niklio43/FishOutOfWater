@@ -53,7 +53,7 @@ public class StandingDolphin : MonoBehaviour
     //If player enters trigger, dolphin starts shooting towards player
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && nextFire < 0 && isDead == false)
+        if (collision.gameObject.CompareTag("Player") && nextFire < 0 && !isDead)
         {
             isAttacking = true;
             GameObject bullet = Instantiate(Bullet, transform.GetChild(0).gameObject.transform.position, transform.rotation);
