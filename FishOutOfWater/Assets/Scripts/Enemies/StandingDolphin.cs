@@ -16,10 +16,14 @@ public class StandingDolphin : MonoBehaviour
 
     public Animator anim;
 
-    private bool isDead, isAttacking;
+    private Alerted alerted;
+
+    public bool isDead;
+    private bool isAttacking;
 
     void Start()
     {
+        alerted = GetComponent<Alerted>();
         isDead = false;
         isAttacking = false;
         Health = 60;
@@ -53,7 +57,7 @@ public class StandingDolphin : MonoBehaviour
     //If player enters trigger, dolphin starts shooting towards player
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && nextFire < 0 && isDead == false)
+        if (collision.gameObject.CompareTag("Player") && nextFire < 0 && !isDead)
         {
             isAttacking = true;
             GameObject bullet = Instantiate(Bullet, transform.GetChild(0).gameObject.transform.position, transform.rotation);
@@ -71,12 +75,15 @@ public class StandingDolphin : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Health = Health - damage;
-        foreach (SpriteRenderer part in bodyParts)
+        if (!isDead)
         {
-            part.color = Color.red;
+            Health = Health - damage;
+            foreach (SpriteRenderer part in bodyParts)
+            {
+                part.color = Color.red;
+            }
+            Invoke("ReturnColor", 0.1f);
         }
-        Invoke("ReturnColor", 0.1f);
         if (Health <= 0)
         {
             Dead();
@@ -85,6 +92,7 @@ public class StandingDolphin : MonoBehaviour
 
     private void Dead()
     {
+        alerted.isActive = false;
         isAttacking = false;
         isDead = true;
         anim.SetTrigger("isDead");
