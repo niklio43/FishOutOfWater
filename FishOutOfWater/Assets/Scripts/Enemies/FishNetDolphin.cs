@@ -49,18 +49,22 @@ public class FishNetDolphin : MonoBehaviour
         {
             Destroy(collision.gameObject);
             TakeDamage(20);
-            sound.GetComponent<AudioController>().Play("Dolphin Damage");
+            if(!dead)
+                sound.GetComponent<AudioController>().Play("Dolphin Damage");
         }
     }
 
     public void TakeDamage(int damage)
     {
-        Health = Health - damage;
-        foreach (SpriteRenderer part in bodyParts)
+        if (!dead)
         {
-            part.color = Color.red;
+            Health = Health - damage;
+            foreach (SpriteRenderer part in bodyParts)
+            {
+                part.color = Color.red;
+            }
+            Invoke("ReturnColor", 0.1f);
         }
-        Invoke("ReturnColor", 0.1f);
         if (Health <= 0)
         {
             Dead();

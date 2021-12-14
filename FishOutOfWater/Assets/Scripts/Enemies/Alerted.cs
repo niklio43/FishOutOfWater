@@ -21,8 +21,11 @@ public class Alerted : MonoBehaviour
 
     private AudioController sound;
 
+    private StandingDolphin standingDolphin;
+
     void Start()
     {
+        standingDolphin = GetComponent<StandingDolphin>();
         DrawAlerted();
         pos = exclamation.transform.position;
         exclamation.SetActive(false);
@@ -54,7 +57,7 @@ public class Alerted : MonoBehaviour
             exclamation.transform.position = new Vector3(exclamation.transform.position.x, newY, exclamation.transform.position.z);
         }
 
-        if(isActive && !playSound)
+        if(isActive && !playSound && !standingDolphin.isDead)
         {
             sound.PlayOnce("Alert Sound");
             playSound = true;

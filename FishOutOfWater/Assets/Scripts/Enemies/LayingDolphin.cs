@@ -9,7 +9,8 @@ public class LayingDolphin : MonoBehaviour
     private float speed;
     private float timer;
     private Vector2 targetPos;
-    private bool isMoving, isAttacking, isDead;
+    public bool isDead;
+    private bool isMoving, isAttacking;
 
     private GameObject Player;
     private SpriteRenderer[] bodyParts;
@@ -84,12 +85,15 @@ public class LayingDolphin : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Health = Health - damage;
-        foreach(SpriteRenderer part in bodyParts)
+        if (!isDead)
         {
-            part.color = Color.red;
+            Health = Health - damage;
+            foreach (SpriteRenderer part in bodyParts)
+            {
+                part.color = Color.red;
+            }
+            Invoke("ReturnColor", 0.1f);
         }
-        Invoke("ReturnColor", 0.1f);
         if (Health <= 0)
         {
             Dead();
