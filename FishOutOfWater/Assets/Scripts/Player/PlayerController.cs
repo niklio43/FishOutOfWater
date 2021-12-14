@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        state = WeaponUpgrades.Regular;
+        state = WeaponUpgrades.Spray;
         sound = GameObject.FindGameObjectWithTag("AudioManager");
         isGrounded = false;
         rb = GetComponent<Rigidbody2D>();
@@ -85,11 +85,11 @@ public class PlayerController : MonoBehaviour
         }
         if (Vertical > 0 && Horizontal == 0)
         {
-            transform.eulerAngles = new Vector3(0, 0, 90);
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else if (Vertical < 0 && Horizontal == 0)
         {
-            transform.eulerAngles = new Vector3(0, 0, -90);
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
     }
 

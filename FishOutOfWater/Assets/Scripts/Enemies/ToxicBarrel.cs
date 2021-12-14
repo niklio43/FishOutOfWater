@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ToxicBarrel : MonoBehaviour
 {
-    public ParticleSystem toxicExplosion;
-    private PlayerHealth playerHealth;
     public bool invincible;
+
+    public ParticleSystem toxicExplosion;
+
+    private PlayerHealth playerHealth;
 
     private void Start()
     {

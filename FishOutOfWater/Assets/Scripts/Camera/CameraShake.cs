@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    public static CameraShake instance;
     Vector3 startPos;
     float elapsedTime;
+
+    public static CameraShake instance;
 
     void Awake()
     {

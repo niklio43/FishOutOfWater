@@ -32,9 +32,9 @@ public class GunController : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         sound = GameObject.FindGameObjectWithTag("AudioManager");
         displayAmmo = Player.GetComponent<DisplayAmmo>();
-        state = WeaponUpgrades.Regular;
+        state = WeaponUpgrades.Spray;
         ammo = 12;
-        startTimeBtwShots = 0.1f;
+        startTimeBtwShots = 0.15f;
         playerHealth = Player.GetComponent<PlayerHealth>();
         playerController = Player.GetComponent<PlayerController>();
     }

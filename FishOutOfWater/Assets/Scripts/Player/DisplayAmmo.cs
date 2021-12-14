@@ -4,19 +4,21 @@ using UnityEngine;
 public class DisplayAmmo : MonoBehaviour
 {
     public GameObject ammoCounter;
-    private GunController gunController;
-    private float radius, radians, vertical, horizontal;
-    private Vector2 point, spawnDir, spawnPos;
-    private int numOfAmmo;
     public List<GameObject> ammoCounterList = new List<GameObject>();
-    private SpriteRenderer spriteRenderer;
+
+    private int numOfAmmo;
+    private Vector2 point, spawnDir, spawnPos;
+    private float radius, radians, vertical, horizontal;
+
     private GameObject[] bullets;
+    private GunController gunController;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
-        gunController = gameObject.transform.GetChild(0).GetComponent<GunController>();
-        point = transform.position;
         radius = 2;
+        point = transform.position;
+        gunController = gameObject.transform.GetChild(0).GetComponent<GunController>();
         numOfAmmo = gunController.ammo - 1;
         CreateAmmoAroundPoint();
     }

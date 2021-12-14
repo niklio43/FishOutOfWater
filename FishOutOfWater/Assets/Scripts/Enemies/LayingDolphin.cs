@@ -2,19 +2,18 @@ using UnityEngine;
 
 public class LayingDolphin : MonoBehaviour
 {
-    private int Health;
-    private GameObject Player;
-    private SpriteRenderer[] bodyParts;
-    private PlayerHealth playerHealth;
-    private Vector2 targetPos;
-
-    private bool isMoving, isAttacking, isDead;
 
     public Animator anim;
 
+    private int Health;
     private float speed;
-
     private float timer;
+    private Vector2 targetPos;
+    private bool isMoving, isAttacking, isDead;
+
+    private GameObject Player;
+    private SpriteRenderer[] bodyParts;
+    private PlayerHealth playerHealth;
 
     void Start()
     {
@@ -105,7 +104,7 @@ public class LayingDolphin : MonoBehaviour
         Destroy(gameObject, 3.333f);
     }
 
-    private void CollectBody()
+    private void CollectBody() // Gathers the different parts of the prefab with sprite renderers
     {
         bodyParts = new SpriteRenderer[3];
 
