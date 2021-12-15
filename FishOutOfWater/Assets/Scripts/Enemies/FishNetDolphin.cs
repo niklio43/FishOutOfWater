@@ -9,11 +9,9 @@ public class FishNetDolphin : MonoBehaviour
     private int Health;
     private bool isAttacking;
     public bool setPos;
-    private bool gravity;
 
     public Animator anim;
     private GameObject sound;
-    private GameObject Player;
     private SpriteRenderer[] bodyParts;
 
     public Vector3 fishNetStartPos;
@@ -26,20 +24,20 @@ public class FishNetDolphin : MonoBehaviour
 
     private NetTrigger netTrigger;
 
+    private bool reachedTarget;
+
     void Start()
     {
+        reachedTarget = false;
         netTrigger = transform.GetChild(1).gameObject.GetComponent<NetTrigger>();
         fishNetDolphinArm = transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject;
         fishNet = transform.GetChild(0).gameObject;
-        rightArmPos = transform.GetChild(3).gameObject.transform.position;
         fishNetStartPos = GameObject.FindGameObjectWithTag("FishNet").transform.position;
         isAttacking = false;
         Health = 60;
         dead = false;
         setPos = false;
-        gravity = false;
         netActive = false;
-        Player = GameObject.FindGameObjectWithTag("Player");
         sound = GameObject.FindGameObjectWithTag("AudioManager");
         CollectBody();
     }
@@ -51,54 +49,33 @@ public class FishNetDolphin : MonoBehaviour
         if (!netTrigger.throwing)
         {
             fishNet.transform.position = new Vector3(fishNetDolphinArm.transform.position.x - 0.5f, fishNetDolphinArm.transform.position.y - 0.5f, fishNetDolphinArm.transform.transform.position.z);
+            reachedTarget = false;
+        }
+        else if (netTrigger.throwing && !reachedTarget)
+        {
+            fishNet.transform.position = Vector3.Lerp(fishNet.transform.position, netTrigger.targetPos, 5 * Time.deltaTime);
+            isAttacking = true;
+        }
+        
+        
+        if (Vector3.Distance(fishNet.transform.position, netTrigger.targetPos) <= 0.3)
+        {
+            reachedTarget = true;
+            isAttacking = false;
         }
 
-        rightArmPos = transform.GetChild(3).gameObject.transform.position;
-
-        if (!GameObject.FindGameObjectWithTag("FishNet"))
+        if (reachedTarget)
         {
-            netActive = false;
+            GameObject.FindGameObjectWithTag("FishNet").GetComponent<Rigidbody2D>().gravityScale = 5;
         }
         else
         {
-            netActive = true;
+            GameObject.FindGameObjectWithTag("FishNet").GetComponent<Rigidbody2D>().gravityScale = 0;
         }
 
-        if (setPos)
-        {
-            SetNewFishnetPos();
-        }
-        else if (gravity)
-        {
-            GravityOn();
-        }
+        Debug.Log(reachedTarget);
     }
 
-    public IEnumerator SetStartPos ()
-    {
-        yield return new WaitForSeconds(2f);
-        fishNet.transform.position = new Vector2(fishNetStartPos.x, fishNetStartPos.y);
-        fishNet.transform.rotation = netTrigger.transform.rotation;
-        fishNet.GetComponent<Rigidbody2D>().gravityScale = 0f;
-        fishNet.GetComponent<Rigidbody2D>().velocity = new Vector2 (0, 0);
-    }
-
-    public void SetNewFishnetPos()
-    {
-        fishNet.transform.position = Vector3.Lerp(fishNet.transform.position, netTrigger.targetPos, 15 * Time.deltaTime);
-        if(fishNet.transform.position == netTrigger.targetPos)
-        {
-            setPos = false;
-            gravity = true;
-        }
-    }
-
-    private void GravityOn()
-    {
-        fishNet.GetComponent<Rigidbody2D>().gravityScale = 5f;
-        gravity = false;
-        StartCoroutine(SetStartPos());
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
