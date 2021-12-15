@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     private WeaponUpgrades state;
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
-    private FishNetController fishNetController;
 
     private void Start()
     {
@@ -28,8 +27,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (GameObject.FindGameObjectWithTag("FishNet") != null)
-            fishNetController = GameObject.FindGameObjectWithTag("FishNet").GetComponent<FishNetController>();
 
         if (state == WeaponUpgrades.Regular || state == WeaponUpgrades.Spray)
         {
@@ -59,17 +56,14 @@ public class PlayerController : MonoBehaviour
 
     public void Movement(int directionX, int directionY)
     {
-        if (fishNetController == null || !fishNetController.caughtByFishNet)
-        {
-            velocityCopy = rb.velocity; //To adjust the x and y variables separately
-            velocityCopy.x = -directionX * thrust;
-            velocityCopy.y = -directionY * jumpForce;
-            rb.velocity = velocityCopy;
+        velocityCopy = rb.velocity; //To adjust the x and y variables separately
+        velocityCopy.x = -directionX * thrust;
+        velocityCopy.y = -directionY * jumpForce;
+        rb.velocity = velocityCopy;
 
-            if (velocityCopy.x != 0)
-            {
-                CreateDust();
-            }
+        if (velocityCopy.x != 0)
+        {
+            CreateDust();
         }
     }
 
