@@ -8,6 +8,8 @@ public class FishNetDolphin : MonoBehaviour
     public bool dead;
     private int Health;
     private bool isAttacking;
+    public bool setPos;
+    private bool gravity;
 
     public Animator anim;
     private GameObject sound;
@@ -34,6 +36,8 @@ public class FishNetDolphin : MonoBehaviour
         isAttacking = false;
         Health = 60;
         dead = false;
+        setPos = false;
+        gravity = false;
         netActive = false;
         Player = GameObject.FindGameObjectWithTag("Player");
         sound = GameObject.FindGameObjectWithTag("AudioManager");
@@ -59,6 +63,15 @@ public class FishNetDolphin : MonoBehaviour
         {
             netActive = true;
         }
+
+        if (setPos)
+        {
+            SetNewFishnetPos();
+        }
+        else if (gravity)
+        {
+            GravityOn();
+        }
     }
 
     public IEnumerator SetStartPos ()
@@ -72,8 +85,18 @@ public class FishNetDolphin : MonoBehaviour
 
     public void SetNewFishnetPos()
     {
-        fishNet.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 5, Player.transform.position.z);
+        fishNet.transform.position = Vector3.Lerp(fishNet.transform.position, netTrigger.targetPos, 15 * Time.deltaTime);
+        if(fishNet.transform.position == netTrigger.targetPos)
+        {
+            setPos = false;
+            gravity = true;
+        }
+    }
+
+    private void GravityOn()
+    {
         fishNet.GetComponent<Rigidbody2D>().gravityScale = 5f;
+        gravity = false;
         StartCoroutine(SetStartPos());
     }
 
