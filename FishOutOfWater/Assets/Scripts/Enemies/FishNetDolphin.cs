@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class FishNetDolphin : MonoBehaviour
 {
@@ -47,12 +48,6 @@ public class FishNetDolphin : MonoBehaviour
         {
             fishNet.transform.position = new Vector3(fishNetDolphinArm.transform.position.x - 0.5f, fishNetDolphinArm.transform.position.y - 0.5f, fishNetDolphinArm.transform.transform.position.z);
         }
-        else
-        {
-            fishNet.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 5, Player.transform.position.z);
-            fishNet.GetComponent<Rigidbody2D>().gravityScale = 3f;
-            //netTrigger.throwing = false;
-        }
 
         rightArmPos = transform.GetChild(3).gameObject.transform.position;
 
@@ -66,13 +61,25 @@ public class FishNetDolphin : MonoBehaviour
         }
     }
 
+    public IEnumerator CreateFishnet()
+    {
+        yield return new WaitForSeconds(2);
+        Instantiate(fishNet, new Vector2(fishNetStartPos.x, fishNetStartPos.y), netTrigger.transform.rotation);
+    }
+
+    public void SetNewFishnetPos()
+    {
+        fishNet.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 5, Player.transform.position.z);
+        fishNet.GetComponent<Rigidbody2D>().gravityScale = 3f;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
             TakeDamage(20);
-            if(!dead)
+            if (!dead)
                 sound.GetComponent<AudioController>().Play("Dolphin Damage");
         }
     }
