@@ -4,13 +4,24 @@ public class FishNetController : MonoBehaviour
 {
     public bool caughtByFishNet;
 
+    private NetTrigger netTrigger;
+
     private GameObject Player;
 
     private void Start()
     {
         caughtByFishNet = false;
+        netTrigger = GameObject.FindGameObjectWithTag("netTrigger").GetComponent<NetTrigger>();
         Player = GameObject.FindGameObjectWithTag("Player");
     }
+
+    //private void Update()
+    //{
+    //    if (caughtByFishNet)
+    //    {
+    //        netTrigger.throwing = false;
+    //    }
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -8,6 +8,7 @@ public class NetTrigger : MonoBehaviour
     private FishNetDolphin fishNetDolphin;
     private GameObject Player;
     public GameObject fishNet;
+    public Vector3 targetPos;
 
     public bool throwing;
 
@@ -24,7 +25,8 @@ public class NetTrigger : MonoBehaviour
         if (collision.CompareTag("Player") && !fishNetDolphin.dead && Player != null)
         {
             throwing = true;
-            fishNetDolphin.SetNewFishnetPos();
+            fishNetDolphin.setPos = true;
+            targetPos = new Vector3(Player.transform.position.x, Player.transform.position.y + 5, Player.transform.position.z); 
             GetComponent<Collider2D>().enabled = false;
             Invoke("EnableCollider", 2f);
         }
