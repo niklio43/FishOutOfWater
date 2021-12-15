@@ -1,23 +1,36 @@
 using UnityEngine;
+using System.Collections;
 
 public class FishNetDolphin : MonoBehaviour
 {
     public bool netActive;
-    public GameObject fishNet;
 
-    private bool dead;
+    public bool dead;
     private int Health;
-    private Vector3 target;
     private bool isAttacking;
 
     public Animator anim;
-    private GameObject net;
     private GameObject sound;
     private GameObject Player;
     private SpriteRenderer[] bodyParts;
 
+    public Vector3 fishNetStartPos;
+
+    public Vector3 rightArmPos;
+
+    private GameObject fishNet;
+
+    private GameObject fishNetDolphinArm;
+
+    private NetTrigger netTrigger;
+
     void Start()
     {
+        netTrigger = transform.GetChild(1).gameObject.GetComponent<NetTrigger>();
+        fishNetDolphinArm = transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject;
+        fishNet = transform.GetChild(0).gameObject;
+        rightArmPos = transform.GetChild(3).gameObject.transform.position;
+        fishNetStartPos = GameObject.FindGameObjectWithTag("FishNet").transform.position;
         isAttacking = false;
         Health = 60;
         dead = false;
@@ -30,8 +43,13 @@ public class FishNetDolphin : MonoBehaviour
     void Update()
     {
         anim.SetBool("isAttacking", isAttacking);
-        if (Player != null)
-            target = Player.transform.position;
+
+        if (!netTrigger.throwing)
+        {
+            fishNet.transform.position = new Vector3(fishNetDolphinArm.transform.position.x - 0.5f, fishNetDolphinArm.transform.position.y - 0.5f, fishNetDolphinArm.transform.transform.position.z);
+        }
+
+        rightArmPos = transform.GetChild(3).gameObject.transform.position;
 
         if (!GameObject.FindGameObjectWithTag("FishNet"))
         {
@@ -43,24 +61,40 @@ public class FishNetDolphin : MonoBehaviour
         }
     }
 
+    public IEnumerator CreateFishnet()
+    {
+        yield return new WaitForSeconds(2);
+        Instantiate(fishNet, new Vector2(fishNetStartPos.x, fishNetStartPos.y), netTrigger.transform.rotation);
+    }
+
+    public void SetNewFishnetPos()
+    {
+        fishNet.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 5, Player.transform.position.z);
+        fishNet.GetComponent<Rigidbody2D>().gravityScale = 3f;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
             TakeDamage(20);
-            sound.GetComponent<AudioController>().Play("Dolphin Damage");
+            if (!dead)
+                sound.GetComponent<AudioController>().Play("Dolphin Damage");
         }
     }
 
     public void TakeDamage(int damage)
     {
-        Health = Health - damage;
-        foreach (SpriteRenderer part in bodyParts)
+        if (!dead)
         {
-            part.color = Color.red;
+            Health = Health - damage;
+            foreach (SpriteRenderer part in bodyParts)
+            {
+                part.color = Color.red;
+            }
+            Invoke("ReturnColor", 0.1f);
         }
-        Invoke("ReturnColor", 0.1f);
         if (Health <= 0)
         {
             Dead();
@@ -74,33 +108,13 @@ public class FishNetDolphin : MonoBehaviour
         Destroy(gameObject, 2);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && !dead && Player != null)
-        {
-            if(!netActive)
-            {
-                netActive = true;
-                net = Instantiate(fishNet, new Vector2(target.x, transform.position.y), transform.rotation);
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            netActive = false;
-        }
-    }
-
     private void CollectBody() //Gathers the different parts of the prefab with sprite renderers
     {
         bodyParts = new SpriteRenderer[4];
 
         for (int i = 0; i < bodyParts.Length; i++)
         {
-            bodyParts[i] = transform.GetChild(i + 2).gameObject.GetComponent<SpriteRenderer>();
+            bodyParts[i] = transform.GetChild(i + 3).gameObject.GetComponent<SpriteRenderer>();
         }
     }
 

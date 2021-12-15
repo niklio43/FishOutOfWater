@@ -45,7 +45,8 @@ public class BulletController : MonoBehaviour
             Destroy(child);
             Destroy(gameObject, 0.1f);
             standingDolphin.TakeDamage(20);
-            sound.Play("Dolphin Damage");
+            if(!standingDolphin.isDead)
+                sound.Play("Dolphin Damage");
         }
         if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("ToxicBarrel"))
         {
@@ -76,7 +77,8 @@ public class BulletController : MonoBehaviour
             Destroy(child);
             Destroy(gameObject, 0.1f);
             layingDolphin.TakeDamage(20);
-            sound.Play("Dolphin Damage");
+            if(!layingDolphin.isDead)
+                sound.Play("Dolphin Damage");
         }
     }
 }

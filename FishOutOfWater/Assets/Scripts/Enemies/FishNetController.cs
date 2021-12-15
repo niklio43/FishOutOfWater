@@ -6,21 +6,28 @@ public class FishNetController : MonoBehaviour
 
     private GameObject Player;
 
+    private FishNetDolphin fishNetDolphin;
+
     private void Start()
     {
+        fishNetDolphin = transform.GetComponentInParent<FishNetDolphin>();
         caughtByFishNet = false;
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") ||
-            collision.gameObject.CompareTag("LayingDolphin") ||
-            collision.gameObject.CompareTag("StandingDolphin") ||
-            collision.gameObject.CompareTag("FishNetDolphin"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("FishNetDolphin"))
         {
             Physics2D.IgnoreLayerCollision(9, 8);
-            Destroy(gameObject, 1.2f);
+        }
+
+        if (collision.gameObject.CompareTag("Ground") || 
+            collision.gameObject.CompareTag("LayingDolphin") || 
+            collision.gameObject.CompareTag("StandingDolphin"))
+        {
+            Destroy(gameObject, 2);
+            StartCoroutine(fishNetDolphin.CreateFishnet());
         }
     }
 
@@ -41,7 +48,8 @@ public class FishNetController : MonoBehaviour
             if (caughtByFishNet && Player.GetComponent<PlayerController>().isGrounded)
             {
                 caughtByFishNet = false;
-                Destroy(gameObject, 1.2f);
+                Destroy(gameObject, 2);
+                StartCoroutine(fishNetDolphin.CreateFishnet());
             }
         }
     }
