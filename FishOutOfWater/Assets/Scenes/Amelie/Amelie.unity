@@ -73402,9 +73402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e579c9e9ac1eeab479f545711920901c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishNet: {fileID: 0}
+  fishNet: {fileID: 7845761332231552202, guid: aa1d8a6cf2b71be4381b9cbb3fa7929d, type: 3}
   throwing: 0
-  isActive: 0
 --- !u!1 &2038978036
 GameObject:
   m_ObjectHideFlags: 0
@@ -75406,6 +75405,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 781315762946503341, guid: c25500f8127649a4e950b51ab0f757d5, type: 3}
+      propertyPath: m_TagString
+      value: netTrigger
+      objectReference: {fileID: 0}
     - target: {fileID: 1375686537920995439, guid: c25500f8127649a4e950b51ab0f757d5, type: 3}
       propertyPath: m_TagString
       value: FishNetDolphinArm

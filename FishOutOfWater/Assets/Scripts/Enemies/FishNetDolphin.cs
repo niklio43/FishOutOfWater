@@ -61,16 +61,20 @@ public class FishNetDolphin : MonoBehaviour
         }
     }
 
-    public IEnumerator CreateFishnet()
+    public IEnumerator SetStartPos ()
     {
-        yield return new WaitForSeconds(2);
-        Instantiate(fishNet, new Vector2(fishNetStartPos.x, fishNetStartPos.y), netTrigger.transform.rotation);
+        yield return new WaitForSeconds(2f);
+        fishNet.transform.position = new Vector2(fishNetStartPos.x, fishNetStartPos.y);
+        fishNet.transform.rotation = netTrigger.transform.rotation;
+        fishNet.GetComponent<Rigidbody2D>().gravityScale = 0f;
+        fishNet.GetComponent<Rigidbody2D>().velocity = new Vector2 (0, 0);
     }
 
     public void SetNewFishnetPos()
     {
         fishNet.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 5, Player.transform.position.z);
-        fishNet.GetComponent<Rigidbody2D>().gravityScale = 3f;
+        fishNet.GetComponent<Rigidbody2D>().gravityScale = 5f;
+        StartCoroutine(SetStartPos());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

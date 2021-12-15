@@ -25,12 +25,19 @@ public class NetTrigger : MonoBehaviour
         {
             throwing = true;
             fishNetDolphin.SetNewFishnetPos();
+            GetComponent<Collider2D>().enabled = false;
+            Invoke("EnableCollider", 2f);
         }
+    }
+
+    void EnableCollider()
+    {
+        GetComponent<Collider2D>().enabled = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !fishNetDolphin.dead && Player != null)
+        if (collision.CompareTag("Player") && !fishNetDolphin.dead && Player != null && Player.GetComponent<PlayerController>().isGrounded)
         {
             throwing = false;
         }
