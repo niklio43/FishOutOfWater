@@ -14,10 +14,8 @@ public class PlayerController : MonoBehaviour
     private WeaponUpgrades state;
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
-    private FishNetController fishNetController;
     private void Start()
     {
-        fishNetController = GameObject.FindGameObjectWithTag("FishNet").GetComponent<FishNetController>();
         state = WeaponUpgrades.Spray;
         sound = GameObject.FindGameObjectWithTag("AudioManager");
         isGrounded = false;
