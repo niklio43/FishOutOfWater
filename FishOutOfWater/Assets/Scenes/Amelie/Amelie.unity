@@ -73403,6 +73403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishNet: {fileID: 7845761332231552202, guid: aa1d8a6cf2b71be4381b9cbb3fa7929d, type: 3}
+  targetPos: {x: 0, y: 0, z: 0}
   throwing: 0
 --- !u!1 &2038978036
 GameObject:
@@ -75413,6 +75414,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: FishNetDolphinArm
       objectReference: {fileID: 0}
+    - target: {fileID: 6424307360881019824, guid: c25500f8127649a4e950b51ab0f757d5, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424307360881019824, guid: c25500f8127649a4e950b51ab0f757d5, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424307360881019824, guid: c25500f8127649a4e950b51ab0f757d5, type: 3}
+      propertyPath: m_SleepingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7168679740538018523, guid: c25500f8127649a4e950b51ab0f757d5, type: 3}
       propertyPath: m_Name
       value: RiggedFishNetDolphinNew
@@ -75824,6 +75837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   netActive: 0
   dead: 0
+  setPos: 0
   anim: {fileID: 6154303939420345844}
   fishNetStartPos: {x: 0, y: 0, z: 0}
   rightArmPos: {x: 0, y: 0, z: 0}

@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     private WeaponUpgrades state;
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
-
     private void Start()
     {
         state = WeaponUpgrades.Spray;
@@ -27,7 +26,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
         if (state == WeaponUpgrades.Regular || state == WeaponUpgrades.Spray)
         {
             jumpForce = 30;
@@ -56,7 +54,8 @@ public class PlayerController : MonoBehaviour
 
     public void Movement(int directionX, int directionY)
     {
-        velocityCopy = rb.velocity; //To adjust the x and y variables separately
+        //To adjust the x and y variables separately
+        velocityCopy = rb.velocity;
         velocityCopy.x = -directionX * thrust;
         velocityCopy.y = -directionY * jumpForce;
         rb.velocity = velocityCopy;
