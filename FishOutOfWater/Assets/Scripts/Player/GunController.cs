@@ -29,15 +29,19 @@ public class GunController : MonoBehaviour
 
     private FishNetController fishNetController;
 
+    private void Awake()
+    {
+        ammo = 12;
+    }
+
     private void Start()
     {
         if(GameObject.FindGameObjectWithTag("FishNet") != null)
             fishNetController = GameObject.FindGameObjectWithTag("FishNet").GetComponent<FishNetController>();
         Player = GameObject.FindGameObjectWithTag("Player");
         sound = GameObject.FindGameObjectWithTag("AudioManager");
-        displayAmmo = Player.GetComponent<DisplayAmmo>();
+        displayAmmo = GameObject.FindGameObjectWithTag("AmmoCounterHolder").GetComponent<DisplayAmmo>();
         state = WeaponUpgrades.Spray;
-        ammo = 12;
         startTimeBtwShots = 0.15f;
         playerHealth = Player.GetComponent<PlayerHealth>();
         playerController = Player.GetComponent<PlayerController>();
