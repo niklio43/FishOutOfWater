@@ -33,7 +33,6 @@ public class DisplayAmmo : MonoBehaviour
 
     public void CreateAmmoAroundPoint()
     {
-        Debug.Log(gunController.ammo);
         for (int i = 0; i <= numOfAmmo; i++)
         {
             radians = Mathf.PI / numOfAmmo * i;
