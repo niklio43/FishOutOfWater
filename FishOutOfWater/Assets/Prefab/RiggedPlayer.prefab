@@ -637,7 +637,6 @@ GameObject:
   - component: {fileID: 5823445449448906780}
   - component: {fileID: 3551977815784017671}
   - component: {fileID: 2641661648882247301}
-  - component: {fileID: 374932722756726991}
   - component: {fileID: 7551828465966945949}
   - component: {fileID: 7551828465966945938}
   m_Layer: 7
@@ -770,20 +769,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 0}
---- !u!114 &374932722756726991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3366312901225108178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8819bafd3ed52b4282e282ccf06d198, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoCounter: {fileID: 8759772397390791790, guid: 10403c398b06ea74c80280263ca9713d, type: 3}
-  ammoCounterList: []
 --- !u!70 &7551828465966945949
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
