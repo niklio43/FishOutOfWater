@@ -20,28 +20,31 @@ public class NetTrigger : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    private void Update()
+    {
+        if (throwing)
+        {
+            GetComponent<Collider2D>().enabled = false;
+        }
+        else
+        {
+            GetComponent<Collider2D>().enabled = true;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !fishNetDolphin.dead && Player != null)
         {
             throwing = true;
-            fishNetDolphin.setPos = true;
-            targetPos = new Vector3(Player.transform.position.x, Player.transform.position.y + 5, Player.transform.position.z); 
-            GetComponent<Collider2D>().enabled = false;
-            Invoke("EnableCollider", 2f);
+            targetPos = new Vector3(Player.transform.position.x, Player.transform.position.y + 5, Player.transform.position.z);
+
+            Invoke("ToggleThrow", 3);
         }
     }
 
-    void EnableCollider()
+    private void ToggleThrow()
     {
-        GetComponent<Collider2D>().enabled = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && !fishNetDolphin.dead && Player != null && Player.GetComponent<PlayerController>().isGrounded)
-        {
-            throwing = false;
-        }
+        throwing = false;
     }
 }

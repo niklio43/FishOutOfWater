@@ -15,13 +15,22 @@ public class FishNetController : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    //private void Update()
-    //{
-    //    if (caughtByFishNet)
-    //    {
-    //        netTrigger.throwing = false;
-    //    }
-    //}
+    private void Update()
+    {
+        if (!netTrigger.throwing)
+        {
+            caughtByFishNet = false;
+        }
+
+        if (caughtByFishNet)
+        {
+            Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        }
+        else
+        {
+            Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -42,14 +51,9 @@ public class FishNetController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && caughtByFishNet && Player.GetComponent<PlayerController>().isGrounded)
         {
-            collision.attachedRigidbody.velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
-
-            if (caughtByFishNet && Player.GetComponent<PlayerController>().isGrounded)
-            {
-                caughtByFishNet = false;
-            }
+            caughtByFishNet = false;
         }
     }
 }
