@@ -7,30 +7,33 @@ public class DisplayAmmo : MonoBehaviour
     public List<GameObject> ammoCounterList = new List<GameObject>();
 
     private int numOfAmmo;
-    private Vector2 point, spawnDir, spawnPos;
+    private Vector2 spawnDir, spawnPos;
     private float radius, radians, vertical, horizontal;
 
     private GameObject[] bullets;
     private GunController gunController;
     private SpriteRenderer spriteRenderer;
 
+    private GameObject Player;
+
     private void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         radius = 2;
-        point = transform.position;
-        gunController = gameObject.transform.GetChild(0).GetComponent<GunController>();
+        gunController = GameObject.FindGameObjectWithTag("Gun").GetComponent<GunController>();
         numOfAmmo = gunController.ammo - 1;
         CreateAmmoAroundPoint();
     }
 
     private void Update()
     {
-        point = transform.position;
+        transform.position = Player.transform.position;
         bullets = GameObject.FindGameObjectsWithTag("ammoCounter");
     }
 
     public void CreateAmmoAroundPoint()
     {
+        Debug.Log(gunController.ammo);
         for (int i = 0; i <= numOfAmmo; i++)
         {
             radians = Mathf.PI / numOfAmmo * i;
@@ -40,7 +43,7 @@ public class DisplayAmmo : MonoBehaviour
 
             spawnDir = new Vector2(horizontal, vertical);
 
-            spawnPos = new Vector2(point.x, point.y + 1.8f) + spawnDir * radius;
+            spawnPos = new Vector2(transform.position.x, transform.position.y + 1.8f) + spawnDir * radius;
 
             ammoCounterList.Add(Instantiate(ammoCounter, spawnPos, Quaternion.Euler(0, 0, 0), gameObject.transform) as GameObject);
         }
