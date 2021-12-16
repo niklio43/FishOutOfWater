@@ -13,7 +13,8 @@ public class BulletController : MonoBehaviour
 
     private void Start()
     {
-        sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
+        if(GameObject.FindGameObjectWithTag("AudioManager") != null)
+            sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
         cameraShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
     }
 
