@@ -17,6 +17,11 @@ public class FishNetController : MonoBehaviour
 
     private void Update()
     {
+        if (!netTrigger.throwing)
+        {
+            caughtByFishNet = false;
+        }
+
         if (caughtByFishNet)
         {
             Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
@@ -46,11 +51,7 @@ public class FishNetController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            caughtByFishNet = true;
-        }
-        else if (caughtByFishNet && Player.GetComponent<PlayerController>().isGrounded)
+        if (collision.CompareTag("Player") && caughtByFishNet && Player.GetComponent<PlayerController>().isGrounded)
         {
             caughtByFishNet = false;
         }

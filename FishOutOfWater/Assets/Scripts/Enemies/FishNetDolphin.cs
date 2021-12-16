@@ -53,27 +53,28 @@ public class FishNetDolphin : MonoBehaviour
         }
         else if (netTrigger.throwing && !reachedTarget)
         {
-            fishNet.transform.position = Vector3.Lerp(fishNet.transform.position, netTrigger.targetPos, 5 * Time.deltaTime);
+            fishNet.transform.position = Vector3.Lerp(fishNet.transform.position, netTrigger.targetPos, 0.1f);
             isAttacking = true;
         }
         
         
-        if (Vector3.Distance(fishNet.transform.position, netTrigger.targetPos) <= 0.3)
+        if (Vector3.Distance(fishNet.transform.position, netTrigger.targetPos) <= 0.3f)
         {
             reachedTarget = true;
             isAttacking = false;
         }
+    }
 
-        if (reachedTarget)
+    private void FixedUpdate()
+    {
+        if (reachedTarget || fishNet.GetComponent<FishNetController>().caughtByFishNet)
         {
-            GameObject.FindGameObjectWithTag("FishNet").GetComponent<Rigidbody2D>().gravityScale = 5;
+            fishNet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -1500 * Time.deltaTime);
         }
         else
         {
-            GameObject.FindGameObjectWithTag("FishNet").GetComponent<Rigidbody2D>().gravityScale = 0;
+            fishNet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
-
-        Debug.Log(reachedTarget);
     }
 
 

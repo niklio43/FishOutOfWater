@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
         if (state == WeaponUpgrades.Regular || state == WeaponUpgrades.Spray)
         {
             jumpForce = 30;
