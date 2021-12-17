@@ -10,6 +10,7 @@ public class BulletController : MonoBehaviour
     private CameraShake cameraShake;
     private LayingDolphin layingDolphin;
     private StandingDolphin standingDolphin;
+    private FishNetDolphin fishNetDolphin;
 
     private void Start()
     {
@@ -79,6 +80,16 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject, 0.1f);
             layingDolphin.TakeDamage(20);
             if(!layingDolphin.isDead)
+                sound.Play("Dolphin Damage");
+        }
+        if (collision.gameObject.CompareTag("FishNet"))
+        {
+            fishNetDolphin = collision.gameObject.GetComponentInParent<FishNetDolphin>();
+            bulletExplode.Play();
+            Destroy(child);
+            Destroy(gameObject, 0.1f);
+            fishNetDolphin.TakeDamage(20);
+            if (!fishNetDolphin.dead)
                 sound.Play("Dolphin Damage");
         }
     }
