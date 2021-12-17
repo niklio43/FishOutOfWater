@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
     {
         spriteRenderer.color = Color.red;
         Destroy(gameObject, 2);
-        SceneManager.LoadScene("Amelie");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
