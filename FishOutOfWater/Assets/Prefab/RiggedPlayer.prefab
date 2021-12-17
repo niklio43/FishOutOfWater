@@ -99,7 +99,6 @@ GameObject:
   - component: {fileID: 3059718635767300861}
   - component: {fileID: 7354984431050765029}
   - component: {fileID: 7354984431050765034}
-  - component: {fileID: 1723782706358230919}
   - component: {fileID: 7354984431163656941}
   m_Layer: 7
   m_Name: RiggedPlayer
@@ -266,22 +265,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1723782706358230919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2335352917013165738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f35c79ab80c534ca432c4ec7ca9db5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numOfBubbles: 0
-  bubbles: []
-  fullBubble: {fileID: 0}
-  emptyBubble: {fileID: 0}
 --- !u!114 &7354984431163656941
 MonoBehaviour:
   m_ObjectHideFlags: 0
