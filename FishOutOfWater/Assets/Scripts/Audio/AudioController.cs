@@ -21,7 +21,7 @@ public class AudioController : MonoBehaviour
 
     void Update()
     {
-        Pause();
+            Pause();
     }
 
     public void Pause()
