@@ -5,8 +5,6 @@ public class PlaytestRestart : MonoBehaviour
 {
     public string sceneName;
 
-    private DisplayAmmo displayAmmo;
-
     void Start()
     {
         sceneName = SceneManager.GetActiveScene().name;
@@ -17,8 +15,6 @@ public class PlaytestRestart : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(sceneName);
-            displayAmmo = GameObject.FindGameObjectWithTag("Player").GetComponent<DisplayAmmo>();
-            displayAmmo.CreateAmmoAroundPoint();
         }
     }
 }
