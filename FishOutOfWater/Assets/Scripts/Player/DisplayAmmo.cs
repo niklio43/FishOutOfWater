@@ -11,7 +11,6 @@ public class DisplayAmmo : MonoBehaviour
     private Vector2 spawnDir, spawnPos;
     private float radius, radians, vertical, horizontal;
 
-    private GameObject[] bullets;
     private GunController gunController;
     private SpriteRenderer spriteRenderer;
 
@@ -33,7 +32,6 @@ public class DisplayAmmo : MonoBehaviour
     private void Update()
     {
         transform.position = Player.transform.position;
-        bullets = GameObject.FindGameObjectsWithTag("ammoCounter");
     }
 
     public void CreateAmmoAroundPoint()
