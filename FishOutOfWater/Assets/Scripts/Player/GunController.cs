@@ -133,7 +133,7 @@ public class GunController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (playerController.isGrounded && ammo <= 0 || Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
+        if (playerController.isGrounded && ammo < 12 || Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
         {
             reloadPS.Play();
             Invoke("Reload", 0f); //reload timer
