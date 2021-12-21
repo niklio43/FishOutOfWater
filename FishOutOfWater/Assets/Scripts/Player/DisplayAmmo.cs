@@ -69,7 +69,7 @@ public class DisplayAmmo : MonoBehaviour
         isReloading = false;
     }
 
-    public void removeAmmo()
+    public void RemoveAmmo()
     {
         if (ammoCounterList.Count >= 0)
         {
@@ -79,7 +79,7 @@ public class DisplayAmmo : MonoBehaviour
         }
     }
 
-    public void addAmmo()
+    public void AddAmmo()
     {
         StartCoroutine(ReloadAmmo());
     }

@@ -143,12 +143,12 @@ public class GunController : MonoBehaviour
 
     public void Fire(int directionX, int directionY)
     {
-        if (!playerController.isGrounded && ammo >= 0)
+        if (!playerController.isGrounded && ammo > 0)
         {
-            displayAmmo.removeAmmo();
+            displayAmmo.RemoveAmmo();
             ammo--;
         }
-        if (ammo >= 0)
+        if (ammo > 0)
         {
             GameObject bullet = Instantiate(projectile, shotPoint.position, transform.rotation);
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(directionX, directionY) * 20f;
@@ -173,7 +173,7 @@ public class GunController : MonoBehaviour
 
     public void Reload()
     {
-        displayAmmo.addAmmo();
+        displayAmmo.AddAmmo();
         ammo = 12;
     }
 }
