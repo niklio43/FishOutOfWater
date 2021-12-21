@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void CollectBody() // Gathers the different parts of the prefab with sprite renderers
     {
-        bodyParts = new SpriteRenderer[7];
+        bodyParts = new SpriteRenderer[6];
 
         for (int i = 0; i < bodyParts.Length; i++)
         {
