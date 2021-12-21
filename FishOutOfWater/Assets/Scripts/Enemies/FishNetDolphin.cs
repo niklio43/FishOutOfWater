@@ -3,28 +3,22 @@ using System.Collections;
 
 public class FishNetDolphin : MonoBehaviour
 {
-    public bool netActive;
 
     public bool dead;
     private int Health;
-    private bool isAttacking;
     public bool setPos;
-
-    public Animator anim;
-    private GameObject sound;
-    private SpriteRenderer[] bodyParts;
-
-    public Vector3 fishNetStartPos;
-
+    public bool netActive;
+    private bool isAttacking;
     public Vector3 rightArmPos;
-
-    private GameObject fishNet;
-
-    private GameObject fishNetDolphinArm;
-
-    private NetTrigger netTrigger;
+    public Vector3 fishNetStartPos;
+    public Animator anim;
 
     private bool reachedTarget;
+    private GameObject sound;
+    private GameObject fishNet;
+    private NetTrigger netTrigger;
+    private SpriteRenderer[] bodyParts;
+    private GameObject fishNetDolphinArm;
 
     void Start()
     {
@@ -57,7 +51,6 @@ public class FishNetDolphin : MonoBehaviour
             isAttacking = true;
         }
         
-        
         if (Vector3.Distance(fishNet.transform.position, netTrigger.targetPos) <= 0.3f)
         {
             reachedTarget = true;
@@ -76,7 +69,6 @@ public class FishNetDolphin : MonoBehaviour
             fishNet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

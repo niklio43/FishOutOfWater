@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class NetTrigger : MonoBehaviour
 {
-
-    private FishNetDolphin fishNetDolphin;
-    private GameObject Player;
-    public GameObject fishNet;
-    public Vector3 targetPos;
-
     public bool throwing;
+    public Vector3 targetPos;
+    public GameObject fishNet;
 
+    private GameObject Player;
+    private FishNetDolphin fishNetDolphin;
 
     private void Start()
     {

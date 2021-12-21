@@ -2,19 +2,17 @@ using UnityEngine;
 
 public class LayingDolphin : MonoBehaviour
 {
-
+    public bool isDead;
     public Animator anim;
 
     private int Health;
     private float speed;
     private float timer;
     private Vector2 targetPos;
-    public bool isDead;
     private bool isMoving, isAttacking;
-
     private GameObject Player;
-    private SpriteRenderer[] bodyParts;
     private PlayerHealth playerHealth;
+    private SpriteRenderer[] bodyParts;
 
     void Start()
     {
