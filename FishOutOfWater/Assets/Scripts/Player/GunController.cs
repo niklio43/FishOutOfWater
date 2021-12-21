@@ -33,7 +33,7 @@ public class GunController : MonoBehaviour
 
     private void Awake()
     {
-        ammo = 12;
+        ammo = 13;
     }
 
     private void Start()
