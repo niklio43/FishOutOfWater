@@ -26,7 +26,7 @@ public class DisplayAmmo : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         radius = 2;
         gunController = GameObject.FindGameObjectWithTag("Gun").GetComponent<GunController>();
-        numOfAmmo = gunController.ammo - 1;
+        numOfAmmo = gunController.ammo;
         CreateAmmoAroundPoint();
     }
 
