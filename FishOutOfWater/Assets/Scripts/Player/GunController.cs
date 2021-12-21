@@ -174,6 +174,6 @@ public class GunController : MonoBehaviour
     public void Reload()
     {
         displayAmmo.AddAmmo();
-        ammo = 12;
+        ammo = 13;
     }
 }
