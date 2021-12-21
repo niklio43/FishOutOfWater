@@ -29,6 +29,8 @@ public class GunController : MonoBehaviour
 
     private FishNetController fishNetController;
 
+    private GameObject fishNet;
+
     private void Awake()
     {
         ammo = 12;
@@ -36,7 +38,8 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
-        if(GameObject.FindGameObjectWithTag("FishNet") != null)
+        fishNet = GameObject.FindGameObjectWithTag("FishNet");
+        if (GameObject.FindGameObjectWithTag("FishNet") != null)
             fishNetController = GameObject.FindGameObjectWithTag("FishNet").GetComponent<FishNetController>();
         Player = GameObject.FindGameObjectWithTag("Player");
         sound = GameObject.FindGameObjectWithTag("AudioManager");
@@ -53,76 +56,64 @@ public class GunController : MonoBehaviour
         transform.rotation = GameObject.FindGameObjectWithTag("PlayerGunArm").transform.rotation;
         transform.position = playerGunArm;
 
-        if (timeBtwShots <= 0 && playerHealth.currentHealth > 0 && state == WeaponUpgrades.Regular)
+        if (state == WeaponUpgrades.Spray && playerHealth.currentHealth > 0 && timeBtwShots <= 0 && !displayAmmo.isReloading)
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
-                if (GameObject.FindGameObjectWithTag("FishNet") == null)
+                if (fishNet == null)
                 {
                     playerController.SetPlayerRotation(1, 0);
                     playerController.SwitchGravity(0f);
                     Fire(1, 0);
                 }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && fishNetController.caughtByFishNet)
-                {
-                    Debug.Log("Frozen");
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && !fishNetController.caughtByFishNet)
+                else if (fishNet != null && !fishNetController.caughtByFishNet)
                 {
                     playerController.SetPlayerRotation(1, 0);
                     playerController.SwitchGravity(0f);
                     Fire(1, 0);
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
-                if (GameObject.FindGameObjectWithTag("FishNet") == null)
+                if (fishNet == null)
                 {
                     playerController.SetPlayerRotation(-1, 0);
                     playerController.SwitchGravity(0f);
                     Fire(-1, 0);
                 }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && fishNetController.caughtByFishNet)
-                {
-                    Debug.Log("Frozen");
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && !fishNetController.caughtByFishNet)
+                else if (fishNet != null && !fishNetController.caughtByFishNet)
                 {
                     playerController.SetPlayerRotation(-1, 0);
                     playerController.SwitchGravity(0f);
                     Fire(-1, 0);
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
-                if (GameObject.FindGameObjectWithTag("FishNet") == null)
+                if (fishNet == null)
                 {
+                    playerController.SetPlayerRotation(0, 1);
                     playerController.SwitchGravity(8.92f);
                     Fire(0, 1);
                 }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && fishNetController.caughtByFishNet)
+                else if (fishNet != null && !fishNetController.caughtByFishNet)
                 {
-                    Debug.Log("Frozen");
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && !fishNetController.caughtByFishNet)
-                {
+                    playerController.SetPlayerRotation(0, 1);
                     playerController.SwitchGravity(8.92f);
                     Fire(0, 1);
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
-                if (GameObject.FindGameObjectWithTag("FishNet") == null)
+                if (fishNet == null)
                 {
+                    playerController.SetPlayerRotation(0, -1);
                     playerController.SwitchGravity(8.92f);
                     Fire(0, -1);
                 }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && fishNetController.caughtByFishNet)
+                else if (fishNet != null && !fishNetController.caughtByFishNet)
                 {
-                    Debug.Log("Frozen");
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && !fishNetController.caughtByFishNet)
-                {
+                    playerController.SetPlayerRotation(0, -1);
                     playerController.SwitchGravity(8.92f);
                     Fire(0, -1);
                 }
@@ -131,86 +122,6 @@ public class GunController : MonoBehaviour
         else
         {
             timeBtwShots -= Time.deltaTime;
-        }
-
-        if (state == WeaponUpgrades.Spray && playerHealth.currentHealth > 0 && timeBtwShots <= 0)
-        {
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                if (GameObject.FindGameObjectWithTag("FishNet") == null)
-                {
-                    playerController.SetPlayerRotation(1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(1, 0);
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && fishNetController.caughtByFishNet)
-                {
-                    Debug.Log("Frozen");
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(1, 0);
-                }
-            }
-            else if (Input.GetKey(KeyCode.RightArrow))
-            {
-                if (GameObject.FindGameObjectWithTag("FishNet") == null)
-                {
-                    playerController.SetPlayerRotation(-1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(-1, 0);
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && fishNetController.caughtByFishNet)
-                {
-                    Debug.Log("Frozen");
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(-1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(-1, 0);
-                }
-            }
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
-                if (GameObject.FindGameObjectWithTag("FishNet") == null)
-                {
-                    playerController.SetPlayerRotation(0, 1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, 1);
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && fishNetController.caughtByFishNet)
-                {
-                    Debug.Log("Frozen");
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(0, 1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, 1);
-                }
-            }
-            else if (Input.GetKey(KeyCode.UpArrow))
-            {
-                if (GameObject.FindGameObjectWithTag("FishNet") == null)
-                {
-                    playerController.SetPlayerRotation(0, -1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, -1);
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && fishNetController.caughtByFishNet)
-                {
-                    Debug.Log("Frozen");
-                }
-                else if (GameObject.FindGameObjectWithTag("FishNet") != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(0, -1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, -1);
-                }
-            }
         }
 
         if (playerController.rb.velocity.x < 4f && playerController.rb.velocity.x > -4f)
@@ -222,7 +133,7 @@ public class GunController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
+        if (playerController.isGrounded && ammo <= 0 || Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
         {
             reloadPS.Play();
             Invoke("Reload", 0f); //reload timer

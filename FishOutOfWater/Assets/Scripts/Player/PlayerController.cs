@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private GameObject sound;
     private WeaponUpgrades state;
     private PlayerHealth playerHealth;
-    private SpriteRenderer spriteRenderer;
+
     private void Start()
     {
         state = WeaponUpgrades.Spray;
@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -32,10 +31,12 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 thrust = 15;
+                jumpForce = 45;
             }
             else
             {
                 thrust = 20;
+                jumpForce = 30;
             }
         }
         else if (state == WeaponUpgrades.Powerful)
@@ -93,8 +94,6 @@ public class PlayerController : MonoBehaviour
 
     public void Dead()
     {
-        spriteRenderer.color = Color.red;
-        Destroy(gameObject, 2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

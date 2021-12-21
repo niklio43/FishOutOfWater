@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class DisplayAmmo : MonoBehaviour
@@ -16,13 +17,16 @@ public class DisplayAmmo : MonoBehaviour
 
     private GameObject Player;
 
+    public bool isReloading;
+
     private void Start()
     {
+        isReloading = false;
         Player = GameObject.FindGameObjectWithTag("Player");
         radius = 2;
         gunController = GameObject.FindGameObjectWithTag("Gun").GetComponent<GunController>();
         numOfAmmo = gunController.ammo - 1;
-        CreateAmmoAroundPoint();
+        StartCoroutine(CreateAmmoAroundPoint());
     }
 
     private void Update()
@@ -31,10 +35,12 @@ public class DisplayAmmo : MonoBehaviour
         bullets = GameObject.FindGameObjectsWithTag("ammoCounter");
     }
 
-    public void CreateAmmoAroundPoint()
+    public IEnumerator CreateAmmoAroundPoint()
     {
         for (int i = 0; i <= numOfAmmo; i++)
         {
+            isReloading = true;
+
             radians = Mathf.PI / numOfAmmo * i;
 
             vertical = Mathf.Sin(radians);
@@ -45,7 +51,9 @@ public class DisplayAmmo : MonoBehaviour
             spawnPos = new Vector2(transform.position.x, transform.position.y + 1.8f) + spawnDir * radius;
 
             ammoCounterList.Add(Instantiate(ammoCounter, spawnPos, Quaternion.Euler(0, 0, 0), gameObject.transform) as GameObject);
+            yield return new WaitForSeconds(0.1f);
         }
+        isReloading = false;
     }
 
     public void removeAmmo()
@@ -63,6 +71,6 @@ public class DisplayAmmo : MonoBehaviour
         ammoCounterList.Clear();
         for (int i = 0; i < bullets.Length; i++)
             Destroy(bullets[i]);
-        CreateAmmoAroundPoint();
+        StartCoroutine(CreateAmmoAroundPoint());
     }
 }
