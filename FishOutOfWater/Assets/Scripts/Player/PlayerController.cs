@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 thrust = 15;
-                jumpForce = 45;
+                jumpForce = 50;
             }
             else
             {
@@ -45,10 +45,12 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 thrust = 15;
+                jumpForce = 60;
             }
             else
             {
                 thrust = 35;
+                jumpForce = 45;
             }
         }
     }
