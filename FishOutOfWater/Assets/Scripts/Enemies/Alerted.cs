@@ -1,27 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Alerted : MonoBehaviour
 {
+    public bool isActive, playSound;
     public GameObject AlertedPrefab;
 
+    private Vector3 pos;
+    private AudioController sound;
     private GameObject exclamation;
+    private StandingDolphin standingDolphin;
 
-    public bool isActive, playSound;
-
-    //hover hastighet
+    //hover speed
     [SerializeField]
     float speed = 5f;
-    //max höjd
+    //max height
     [SerializeField]
     float height = 0.2f;
-
-    Vector3 pos;
-
-    private AudioController sound;
-
-    private StandingDolphin standingDolphin;
 
     void Start()
     {

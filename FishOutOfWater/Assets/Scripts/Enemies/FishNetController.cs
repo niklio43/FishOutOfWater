@@ -4,9 +4,8 @@ public class FishNetController : MonoBehaviour
 {
     public bool caughtByFishNet;
 
-    private NetTrigger netTrigger;
-
     private GameObject Player;
+    private NetTrigger netTrigger;
 
     private void Start()
     {

@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class StandingDolphin : MonoBehaviour
 {
+    public bool isDead;
+    public Animator anim;
     public GameObject Bullet;
 
     private int Health;
     private Vector3 Target;
-    private float fireRate, nextFire;
-
-    private GameObject Player;
-    private SpriteRenderer[] bodyParts;
-    private GameObject sound;
-
-    public Animator anim;
-
-    private Alerted alerted;
-
-    public bool isDead;
     private bool isAttacking;
+    private float fireRate, nextFire;
+    private Alerted alerted;
+    private GameObject Player;
+    private AudioController sound;
+    private SpriteRenderer[] bodyParts;
 
     void Start()
     {
@@ -29,7 +25,7 @@ public class StandingDolphin : MonoBehaviour
         Health = 60;
         nextFire = -1f;
         fireRate = 1.1f;
-        sound = GameObject.FindGameObjectWithTag("AudioManager");
+        sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
         Player = GameObject.FindGameObjectWithTag("Player");
         CollectBody();
     }
@@ -62,9 +58,16 @@ public class StandingDolphin : MonoBehaviour
             isAttacking = true;
             GameObject bullet = Instantiate(Bullet, transform.GetChild(0).gameObject.transform.position, transform.rotation);
             Target = Player.transform.position - transform.position;
-            bullet.GetComponent<Rigidbody2D>().velocity = Target * 10f;
+            if(transform.eulerAngles.y == 180)
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 0);
+            }
+            else
+            {
+                bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-10, 0);
+            }
             nextFire = fireRate;
-            sound.GetComponent<AudioController>().Play("Enemy Fire");
+            sound.Play("Enemy Fire");
             Destroy(bullet, 3);
         }
         else
