@@ -36,10 +36,10 @@ public class DisplayAmmo : MonoBehaviour
 
     public void CreateAmmoAroundPoint()
     {
-        for (int i = 0; i <= numOfAmmo; i++)
+        for (int i = 0; i <= 11; i++)
         {
 
-            radians = Mathf.PI / numOfAmmo * i;
+            radians = Mathf.PI / 11 * i;
 
             vertical = Mathf.Sin(radians);
             horizontal = Mathf.Cos(radians);
@@ -54,7 +54,7 @@ public class DisplayAmmo : MonoBehaviour
 
     public IEnumerator ReloadAmmo()
     {
-        for(int i = 0; i < shotsTaken; i++)
+        for (int i = 0; i < shotsTaken; i++)
         {
             isReloading = true;
 
@@ -69,12 +69,10 @@ public class DisplayAmmo : MonoBehaviour
 
     public void RemoveAmmo()
     {
-        if (ammoCounterList.Count >= 0)
-        {
-            spriteRenderer = ammoCounterList[shotsTaken].GetComponent<SpriteRenderer>();
-            spriteRenderer.color = Color.gray;
-            shotsTaken++;
-        }
+        Debug.Log(shotsTaken);
+        spriteRenderer = ammoCounterList[shotsTaken].GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Color.gray;
+        shotsTaken++;
     }
 
     public void AddAmmo()
