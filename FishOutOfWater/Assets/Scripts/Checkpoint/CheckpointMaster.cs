@@ -30,9 +30,9 @@ public class CheckpointMaster : MonoBehaviour
         if(scene.name != sceneName)
         {
             player = GameObject.FindWithTag("Player");
-            lastCPPos = player.transform.position;
+            if(player != null)
+                lastCPPos = player.transform.position;
             sceneName = scene.name;
-            Debug.Log(lastCPPos);
         }
     }
 }
