@@ -20,11 +20,11 @@ public class GunController : MonoBehaviour
     public Animator anim;
 
     private WeaponUpgrades state;
-    private GameObject sound;
+    private AudioController sound;
     private GameObject Player;
 
     private DisplayAmmo displayAmmo;
-
+    private bool playOnce;
     private Vector2 playerGunArm;
 
     private FishNetController fishNetController;
@@ -44,10 +44,11 @@ public class GunController : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("FishNet") != null)
             fishNetController = GameObject.FindGameObjectWithTag("FishNet").GetComponent<FishNetController>();
         Player = GameObject.FindGameObjectWithTag("Player");
-        sound = GameObject.FindGameObjectWithTag("AudioManager");
+        sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
         displayAmmo = GameObject.FindGameObjectWithTag("AmmoCounterHolder").GetComponent<DisplayAmmo>();
         state = WeaponUpgrades.Spray;
         startTimeBtwShots = 0.15f;
+        playOnce = false;
         playerHealth = Player.GetComponent<PlayerHealth>();
         playerController = Player.GetComponent<PlayerController>();
         groundChecker = GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>();
@@ -140,7 +141,7 @@ public class GunController : MonoBehaviour
         {
             reloadPS.Play();
             Invoke("Reload", 0f); //reload timer
-            sound.GetComponent<AudioController>().Play("Reload");
+            sound.Play("Reload");
         }
     }
 
@@ -169,8 +170,13 @@ public class GunController : MonoBehaviour
             {
                 anim.SetTrigger("isShootingDown");
             }
-            sound.GetComponent<AudioController>().Play("Player Fire");
+            sound.Play("Player Fire");
             Destroy(bullet, 3);
+        }
+        else if(ammo <= 0 && !playOnce)
+        {
+            StartCoroutine(OutOfAmmo());
+            playOnce = true;
         }
     }
 
@@ -178,5 +184,12 @@ public class GunController : MonoBehaviour
     {
         displayAmmo.AddAmmo();
         ammo = 13;
+    }
+
+    private IEnumerator OutOfAmmo()
+    {
+        sound.Play("Gun Click");
+        yield return new WaitForSeconds(0.2f);
+        playOnce = false;
     }
 }
