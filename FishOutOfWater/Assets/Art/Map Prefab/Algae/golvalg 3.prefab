@@ -837,6 +837,7 @@ GameObject:
   - component: {fileID: 59627100325269150}
   - component: {fileID: 635305499221048449}
   - component: {fileID: -1417985715832034215}
+  - component: {fileID: 6780371398456391327}
   m_Layer: 0
   m_Name: golvalg 3
   m_TagString: DisableAnim
@@ -908,6 +909,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &6780371398456391327
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5178554914736985489}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.2209091}
+  serializedVersion: 2
+  m_Radius: 0.0001
 --- !u!1 &5180926189153407513
 GameObject:
   m_ObjectHideFlags: 0
