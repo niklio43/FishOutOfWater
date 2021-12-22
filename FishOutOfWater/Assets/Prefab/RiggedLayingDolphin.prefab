@@ -572,6 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb112a844464fb0419f7bed29e791876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
   anim: {fileID: -4364955081491287980}
 --- !u!50 &1211564649861800322
 Rigidbody2D:
@@ -644,7 +645,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4110924054834211648}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 738582210faa2b54898e2f6404c7301e, type: 2}
   m_CullingMode: 0
