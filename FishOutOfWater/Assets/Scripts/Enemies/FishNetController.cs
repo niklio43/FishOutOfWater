@@ -28,6 +28,7 @@ public class FishNetController : MonoBehaviour
         else
         {
             Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+            
         }
     }
 

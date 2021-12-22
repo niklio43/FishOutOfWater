@@ -1010,8 +1010,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a312111c7190c9549accd56bf6a97d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 175877592412478650, guid: 2db8afa5bd009ee428e736679ebe8d62, type: 3}
+  isDead: 0
   anim: {fileID: -628516174491793632}
+  Bullet: {fileID: 175877592412478650, guid: 2db8afa5bd009ee428e736679ebe8d62, type: 3}
 --- !u!114 &2155809844600030874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,7 +1025,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc2f8b4f7ddfbf4dbcfae0cfb7eeec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  playSound: 0
   AlertedPrefab: {fileID: 5064145284109486335, guid: e9c947e1c1c1cf742a11a9c05a5f1900, type: 3}
+  speed: 5
+  height: 0.2
 --- !u!70 &5408033237442573349
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1049,7 +1054,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5615300695865678984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 894fe99059aeb314588cee012f4c546e, type: 2}
   m_CullingMode: 0

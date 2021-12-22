@@ -46,7 +46,7 @@ MonoBehaviour:
   sounds:
   - name: Background Music
     clip: {fileID: 8300000, guid: 7ed4baab779b302418abc979de76153e, type: 3}
-    volume: 0.25
+    volume: 0.15
     audio: {fileID: 0}
   - name: Player Fire
     clip: {fileID: 8300000, guid: a748c45155b4bff449635ca1d7ca11ec, type: 3}
@@ -62,7 +62,7 @@ MonoBehaviour:
     audio: {fileID: 0}
   - name: Player Damage
     clip: {fileID: 8300000, guid: e23aa3e1fcc57204ca44c3e8edae37cb, type: 3}
-    volume: 1
+    volume: 0.25
     audio: {fileID: 0}
   - name: Dolphin Damage
     clip: {fileID: 8300000, guid: 21d3cdd51f8810f46b9edd14be8f4e44, type: 3}
@@ -78,9 +78,17 @@ MonoBehaviour:
     audio: {fileID: 0}
   - name: Main Menu Music
     clip: {fileID: 8300000, guid: ffe57689f8dd8b547957e40900da63d2, type: 3}
-    volume: 0.25
+    volume: 0.15
     audio: {fileID: 0}
   - name: Gun Click
     clip: {fileID: 8300000, guid: 51a20ebb2a7049e4ca85091529c8427a, type: 3}
     volume: 0.25
+    audio: {fileID: 0}
+  - name: Button Hover
+    clip: {fileID: 8300000, guid: 4695889da3a20f5469e21ac5cea5c17b, type: 3}
+    volume: 1
+    audio: {fileID: 0}
+  - name: Button Click
+    clip: {fileID: 8300000, guid: 6fd92d80c6963a7469444fdc374faf58, type: 3}
+    volume: 1
     audio: {fileID: 0}

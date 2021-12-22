@@ -40,6 +40,11 @@ public class FishNetDolphin : MonoBehaviour
     {
         anim.SetBool("isAttacking", isAttacking);
 
+        /*if(fishNet.GetComponent<FishNetController>().caughtByFishNet && GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>().isGrounded)
+        {
+            netTrigger.throwing = false;
+        }*/
+
         if (!netTrigger.throwing)
         {
             fishNet.transform.position = new Vector3(fishNetDolphinArm.transform.position.x - 0.5f, fishNetDolphinArm.transform.position.y - 0.5f, fishNetDolphinArm.transform.transform.position.z);

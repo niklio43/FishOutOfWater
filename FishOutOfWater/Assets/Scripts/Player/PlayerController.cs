@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                thrust = 20;
+                thrust = 25;
                 jumpForce = 30;
             }
         }

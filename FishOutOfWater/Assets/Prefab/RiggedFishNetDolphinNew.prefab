@@ -194,9 +194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e579c9e9ac1eeab479f545711920901c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishNet: {fileID: 7845761332231552202, guid: aa1d8a6cf2b71be4381b9cbb3fa7929d, type: 3}
-  targetPos: {x: 0, y: 0, z: 0}
   throwing: 0
+  targetPos: {x: 0, y: 0, z: 0}
+  fishNet: {fileID: 7845761332231552202, guid: aa1d8a6cf2b71be4381b9cbb3fa7929d, type: 3}
 --- !u!1 &3269369959985683102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,7 +1014,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9092691625969642714}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 26e33d41b5336c94bb3c0575416d5202, type: 2}
   m_CullingMode: 0
@@ -1074,12 +1074,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75cb5d4385cb0f343b685ceab995bae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  netActive: 0
   dead: 0
   setPos: 0
-  anim: {fileID: 7351629053632438306}
-  fishNetStartPos: {x: 0, y: 0, z: 0}
+  netActive: 0
   rightArmPos: {x: 0, y: 0, z: 0}
+  fishNetStartPos: {x: 0, y: 0, z: 0}
+  anim: {fileID: 7351629053632438306}
 --- !u!1001 &2029289708568614298
 PrefabInstance:
   m_ObjectHideFlags: 0
