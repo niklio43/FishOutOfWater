@@ -31,6 +31,8 @@ public class GunController : MonoBehaviour
 
     private GameObject fishNet;
 
+    private GroundChecker groundChecker;
+
     private void Awake()
     {
         ammo = 13;
@@ -48,6 +50,7 @@ public class GunController : MonoBehaviour
         startTimeBtwShots = 0.15f;
         playerHealth = Player.GetComponent<PlayerHealth>();
         playerController = Player.GetComponent<PlayerController>();
+        groundChecker = GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>();
     }
 
     private void Update()
@@ -133,7 +136,7 @@ public class GunController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (playerController.isGrounded && ammo < 12 || Input.GetKeyDown(KeyCode.Space) && playerController.isGrounded)
+        if (groundChecker.isGrounded && ammo < 12 || Input.GetKeyDown(KeyCode.Space) && groundChecker.isGrounded)
         {
             reloadPS.Play();
             Invoke("Reload", 0f); //reload timer
@@ -143,7 +146,7 @@ public class GunController : MonoBehaviour
 
     public void Fire(int directionX, int directionY)
     {
-        if (!playerController.isGrounded && ammo > 0)
+        if (!groundChecker.isGrounded && ammo > 0)
         {
             displayAmmo.RemoveAmmo();
             ammo--;
