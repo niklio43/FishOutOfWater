@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool isGrounded;
     public Rigidbody2D rb;
     public ParticleSystem dust;
 
@@ -14,11 +13,13 @@ public class PlayerController : MonoBehaviour
     private WeaponUpgrades state;
     private PlayerHealth playerHealth;
 
+    private GroundChecker groundChecker;
+
     private void Start()
     {
+        groundChecker = GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>();
         state = WeaponUpgrades.Spray;
         sound = GameObject.FindGameObjectWithTag("AudioManager");
-        isGrounded = false;
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
     }
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
         if (state == WeaponUpgrades.Regular || state == WeaponUpgrades.Spray)
         {
             jumpForce = 30;
-            if (isGrounded)
+            if (groundChecker.isGrounded)
             {
                 thrust = 15;
                 jumpForce = 50;
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
         else if (state == WeaponUpgrades.Powerful)
         {
             jumpForce = 45;
-            if (isGrounded)
+            if (groundChecker.isGrounded)
             {
                 thrust = 15;
                 jumpForce = 60;
@@ -107,26 +108,10 @@ public class PlayerController : MonoBehaviour
             playerHealth.TakeDamage(20);
             sound.GetComponent<AudioController>().Play("Player Damage");
         }
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("LayingDolphin") ||
-            collision.gameObject.CompareTag("StandingDolphin") || collision.gameObject.CompareTag("Spike") ||
-            collision.gameObject.CompareTag("ToxicBarrel"))
-        {
-            isGrounded = true;
-        }
         if (collision.gameObject.CompareTag("Spike"))
         {
             playerHealth.TakeDamage(20);
             sound.GetComponent<AudioController>().Play("Player Damage");
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("LayingDolphin") ||
-            collision.gameObject.CompareTag("StandingDolphin") || collision.gameObject.CompareTag("Spike") ||
-            collision.gameObject.CompareTag("ToxicBarrel"))
-        {
-            isGrounded = false;
         }
     }
 
