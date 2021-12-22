@@ -69,7 +69,6 @@ public class DisplayAmmo : MonoBehaviour
 
     public void RemoveAmmo()
     {
-        Debug.Log(shotsTaken);
         if(shotsTaken < 12)
         {
             spriteRenderer = ammoCounterList[shotsTaken].GetComponent<SpriteRenderer>();
