@@ -9,7 +9,6 @@ public class StandingDolphin : MonoBehaviour
     public GameObject Bullet;
 
     private int Health;
-    private Vector3 Target;
     private bool isAttacking;
     private float fireRate, nextFire;
     private Alerted alerted;
@@ -57,7 +56,6 @@ public class StandingDolphin : MonoBehaviour
         {
             isAttacking = true;
             GameObject bullet = Instantiate(Bullet, transform.GetChild(0).gameObject.transform.position, transform.rotation);
-            Target = Player.transform.position - transform.position;
             if(transform.eulerAngles.y == 180)
             {
                 bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 0);

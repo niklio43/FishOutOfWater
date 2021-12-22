@@ -31,7 +31,7 @@ public class Alerted : MonoBehaviour
     private void Update()
     {
         var distance = Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
-        if(distance < 14 && distance > 9)
+        if (distance < 14 && distance > 9 && standingDolphin.isDead == false)
         {
             exclamation.SetActive(true);
             isActive = true;
