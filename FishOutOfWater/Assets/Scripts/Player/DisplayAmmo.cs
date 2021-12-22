@@ -70,9 +70,12 @@ public class DisplayAmmo : MonoBehaviour
     public void RemoveAmmo()
     {
         Debug.Log(shotsTaken);
-        spriteRenderer = ammoCounterList[shotsTaken].GetComponent<SpriteRenderer>();
-        spriteRenderer.color = Color.gray;
-        shotsTaken++;
+        if(shotsTaken < 12)
+        {
+            spriteRenderer = ammoCounterList[shotsTaken].GetComponent<SpriteRenderer>();
+            spriteRenderer.color = Color.gray;
+            shotsTaken++;
+        }
     }
 
     public void AddAmmo()
