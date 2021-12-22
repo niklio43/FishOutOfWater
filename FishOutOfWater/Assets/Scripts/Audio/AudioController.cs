@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioController : MonoBehaviour
 {
@@ -16,11 +17,13 @@ public class AudioController : MonoBehaviour
             sound.audio.volume = sound.volume;
         }
 
-        paused = FindObjectOfType<PauseMenu>();
+        if(SceneManager.GetActiveScene().name != "Menu")
+            paused = FindObjectOfType<PauseMenu>();
     }
 
     void Update()
     {
+        if(SceneManager.GetActiveScene().name != "Menu")
             Pause();
     }
 
