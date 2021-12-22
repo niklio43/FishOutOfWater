@@ -43,6 +43,11 @@ public class Alerted : MonoBehaviour
             playSound = false;
         }
 
+        if (standingDolphin.isDead)
+        {
+            isActive = false;
+        }
+
         if(isActive)
         {
             //kalkylerar nya y positionen
