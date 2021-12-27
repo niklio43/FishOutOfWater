@@ -10,6 +10,7 @@ public class FishNetDolphin : MonoBehaviour
     private bool isAttacking;
     public Vector3 rightArmPos;
     public Vector3 fishNetStartPos;
+    private Vector3 net, target;
     public Animator anim;
 
     private bool reachedTarget;
@@ -44,6 +45,9 @@ public class FishNetDolphin : MonoBehaviour
             netTrigger.throwing = false;
         }*/
 
+        net = new Vector3(fishNet.transform.position.x, 0, 0);
+        target = new Vector3(netTrigger.targetPos.x, 0, 0);
+
         if (!netTrigger.throwing)
         {
             fishNet.transform.position = new Vector3(fishNetDolphinArm.transform.position.x - 0.5f, fishNetDolphinArm.transform.position.y - 0.5f, fishNetDolphinArm.transform.transform.position.z);
@@ -55,7 +59,7 @@ public class FishNetDolphin : MonoBehaviour
             isAttacking = true;
         }
         
-        if (Vector3.Distance(fishNet.transform.position, netTrigger.targetPos) <= 0.3f)
+        if (Vector3.Distance(net, target) <= 0.3f)
         {
             reachedTarget = true;
             isAttacking = false;
