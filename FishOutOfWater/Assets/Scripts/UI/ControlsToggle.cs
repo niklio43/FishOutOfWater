@@ -11,11 +11,11 @@ public class ControlsToggle : MonoBehaviour
     {
         toggle = GetComponent<Toggle>();
         sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
-        toggle.onValueChanged.AddListener(delegate {sound.InvertControl();} );
-
         if (sound.invertedControls)
             toggle.isOn = true;
         else if (!sound.invertedControls)
             toggle.isOn = false;
+        toggle.onValueChanged.AddListener(delegate {sound.InvertControl();} );
+
     }
 }
