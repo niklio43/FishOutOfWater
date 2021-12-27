@@ -12,6 +12,10 @@ public class FishNetController : MonoBehaviour
         caughtByFishNet = false;
         netTrigger = GameObject.FindGameObjectWithTag("netTrigger").GetComponent<NetTrigger>();
         Player = GameObject.FindGameObjectWithTag("Player");
+        Physics2D.IgnoreLayerCollision(9, 8, true);
+        Physics2D.IgnoreLayerCollision(11, 8, true);
+        Physics2D.IgnoreLayerCollision(12, 8, true);
+        Physics2D.IgnoreLayerCollision(3, 8, true);
     }
 
     private void Update()
@@ -28,16 +32,6 @@ public class FishNetController : MonoBehaviour
         else
         {
             Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
-            
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("FishNetDolphin") || collision.gameObject.CompareTag("Spike"))
-        {
-            Physics2D.IgnoreLayerCollision(9, 8);
-            Physics2D.IgnoreLayerCollision(11, 8);
         }
     }
 
