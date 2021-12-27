@@ -11,12 +11,15 @@ public class BulletController : MonoBehaviour
     private LayingDolphin layingDolphin;
     private StandingDolphin standingDolphin;
     private FishNetDolphin fishNetDolphin;
+    private FishNetController fishNetController;
 
     private void Start()
     {
         if(GameObject.FindGameObjectWithTag("AudioManager") != null)
             sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
         cameraShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
+        Physics2D.IgnoreLayerCollision(3, 8, true);
+        Physics2D.IgnoreLayerCollision(7, 3, true);
     }
 
     public void CreateBulletExplode()
@@ -63,11 +66,6 @@ public class BulletController : MonoBehaviour
             Destroy(collision.gameObject, 1f);
             sound.Play("Toxic Explode");
         }
-
-        if (gameObject.tag == "Bullet" && collision.gameObject.tag == "Player")
-        {
-            Physics2D.IgnoreLayerCollision(7, 3);
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -84,13 +82,17 @@ public class BulletController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("FishNet"))
         {
-            fishNetDolphin = collision.gameObject.GetComponentInParent<FishNetDolphin>();
-            bulletExplode.Play();
-            Destroy(child);
-            Destroy(gameObject, 0.1f);
-            fishNetDolphin.TakeDamage(20);
-            if (!fishNetDolphin.dead)
-                sound.Play("Dolphin Damage");
+            fishNetController = collision.gameObject.GetComponent<FishNetController>();
+            if (!fishNetController.copy)
+            {
+                fishNetDolphin = collision.gameObject.GetComponentInParent<FishNetDolphin>();
+                bulletExplode.Play();
+                Destroy(child);
+                Destroy(gameObject, 0.1f);
+                fishNetDolphin.TakeDamage(20);
+                if (!fishNetDolphin.dead)
+                    sound.Play("Dolphin Damage");
+            }
         }
     }
 }
