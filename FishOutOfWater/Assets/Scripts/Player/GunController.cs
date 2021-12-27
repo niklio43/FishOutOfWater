@@ -2,41 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class GunController : MonoBehaviour
 {
+    public int ammo;
+    public bool inverted;
+    public Animator anim;
     public Transform shotPoint;
     public GameObject projectile;
-    public bool inverted;
-
-    private float timeBtwShots, startTimeBtwShots;
-
-    private PlayerController playerController;
-    private PlayerHealth playerHealth;
-
-    public int ammo;
-
     public ParticleSystem reloadPS;
 
-    public Animator anim;
-
+    private bool playOnce;
+    private Vector2 inputVector;
+    private Vector2 playerGunArm;
+    private float timeBtwShots, startTimeBtwShots;
+    private Inputs inputs;
+    private GameObject Player;
+    private GameObject fishNet;
     private WeaponUpgrades state;
     private AudioController sound;
-    private GameObject Player;
-
     private DisplayAmmo displayAmmo;
-    private bool playOnce;
-    private Vector2 playerGunArm;
-
-    private FishNetController fishNetController;
-
-    private GameObject fishNet;
-
+    private PlayerInput playerInput;
+    private PlayerHealth playerHealth;
     private GroundChecker groundChecker;
+    private PlayerController playerController;
+    private FishNetController fishNetController;
 
     private void Awake()
     {
+        inputs = new Inputs();
         ammo = 13;
+
+        inputs.Enable();
     }
 
     private void Start()
@@ -62,10 +60,13 @@ public class GunController : MonoBehaviour
         transform.rotation = GameObject.FindGameObjectWithTag("PlayerGunArm").transform.rotation;
         transform.position = playerGunArm;
 
+        inputVector = inputs.Player.Movement.ReadValue<Vector2>();
+
         if (inverted)
-            InvertedControls();
+            Movement(-inputVector);
         else
-            Controls();
+            Movement(inputVector);
+
 
         if (playerController.rb.velocity.x < 4f && playerController.rb.velocity.x > -4f)
         {
@@ -76,7 +77,7 @@ public class GunController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (groundChecker.isGrounded && ammo <= 12 || Input.GetKeyDown(KeyCode.Space) && groundChecker.isGrounded)
+        if (groundChecker.isGrounded && ammo <= 12)
         {
             reloadPS.Play();
             Invoke("Reload", 0f); //reload timer
@@ -132,140 +133,90 @@ public class GunController : MonoBehaviour
         playOnce = false;
     }
 
-    private void Controls()
+    public void Up()
     {
-        if (state == WeaponUpgrades.Spray && playerHealth.currentHealth > 0 && timeBtwShots <= 0 && !displayAmmo.isReloading)
+        if (fishNet == null)
         {
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-            {
-                if (fishNet == null)
-                {
-                    playerController.SetPlayerRotation(1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(1, 0);
-                }
-                else if (fishNet != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(1, 0);
-                }
-            }
-            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-            {
-                if (fishNet == null)
-                {
-                    playerController.SetPlayerRotation(-1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(-1, 0);
-                }
-                else if (fishNet != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(-1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(-1, 0);
-                }
-            }
-            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-            {
-                if (fishNet == null)
-                {
-                    playerController.SetPlayerRotation(0, 1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, 1);
-                }
-                else if (fishNet != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(0, 1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, 1);
-                }
-            }
-            else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-            {
-                if (fishNet == null)
-                {
-                    playerController.SetPlayerRotation(0, -1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, -1);
-                }
-                else if (fishNet != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(0, -1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, -1);
-                }
-            }
+            playerController.SetPlayerRotation(0, -1);
+            playerController.SwitchGravity(8.92f);
+            Fire(0, -1);
         }
-        else
+        else if (fishNet != null && !fishNetController.caughtByFishNet)
         {
-            timeBtwShots -= Time.deltaTime;
+            playerController.SetPlayerRotation(0, -1);
+            playerController.SwitchGravity(8.92f);
+            Fire(0, -1);
         }
     }
 
-    private void InvertedControls()
+    public void Down()
     {
+        if (fishNet == null)
+        {
+            playerController.SetPlayerRotation(0, 1);
+            playerController.SwitchGravity(8.92f);
+            Fire(0, 1);
+        }
+        else if (fishNet != null && !fishNetController.caughtByFishNet)
+        {
+            playerController.SetPlayerRotation(0, 1);
+            playerController.SwitchGravity(8.92f);
+            Fire(0, 1);
+        }
+    }
+
+    public void Left()
+    {
+        if (fishNet == null)
+        {
+            playerController.SetPlayerRotation(1, 0);
+            playerController.SwitchGravity(0f);
+            Fire(1, 0);
+        }
+        else if (fishNet != null && !fishNetController.caughtByFishNet)
+        {
+            playerController.SetPlayerRotation(1, 0);
+            playerController.SwitchGravity(0f);
+            Fire(1, 0);
+        }
+    }
+
+    public void Right()
+    {
+        if (fishNet == null)
+        {
+            playerController.SetPlayerRotation(-1, 0);
+            playerController.SwitchGravity(0f);
+            Fire(-1, 0);
+        }
+        else if (fishNet != null && !fishNetController.caughtByFishNet)
+        {
+            playerController.SetPlayerRotation(-1, 0);
+            playerController.SwitchGravity(0f);
+            Fire(-1, 0);
+        }
+    }
+
+    private void Movement(Vector2 inputVector)
+    {
+
         if (state == WeaponUpgrades.Spray && playerHealth.currentHealth > 0 && timeBtwShots <= 0 && !displayAmmo.isReloading)
         {
-            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            if (inputVector == new Vector2(0, 1))
             {
-                if (fishNet == null)
-                {
-                    playerController.SetPlayerRotation(1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(1, 0);
-                }
-                else if (fishNet != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(1, 0);
-                }
+                Up();
             }
-            else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            else if (inputVector == new Vector2(0, -1))
             {
-                if (fishNet == null)
-                {
-                    playerController.SetPlayerRotation(-1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(-1, 0);
-                }
-                else if (fishNet != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(-1, 0);
-                    playerController.SwitchGravity(0f);
-                    Fire(-1, 0);
-                }
+                Down();
             }
-            else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+            else if (inputVector == new Vector2(-1, 0))
             {
-                if (fishNet == null)
-                {
-                    playerController.SetPlayerRotation(0, 1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, 1);
-                }
-                else if (fishNet != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(0, 1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, 1);
-                }
+                Left();
             }
-            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+            else if (inputVector == new Vector2(1, 0))
             {
-                if (fishNet == null)
-                {
-                    playerController.SetPlayerRotation(0, -1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, -1);
-                }
-                else if (fishNet != null && !fishNetController.caughtByFishNet)
-                {
-                    playerController.SetPlayerRotation(0, -1);
-                    playerController.SwitchGravity(8.92f);
-                    Fire(0, -1);
-                }
+                Right();
             }
         }
         else
