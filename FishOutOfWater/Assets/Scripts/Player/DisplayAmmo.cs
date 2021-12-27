@@ -49,7 +49,7 @@ public class DisplayAmmo : MonoBehaviour
 
     public IEnumerator ReloadAmmo()
     {
-        for (int i = 0; i < shotsTaken; i++)
+        for (int i = shotsTaken - 1; i >= 0; i--)
         {
             isReloading = true;
 

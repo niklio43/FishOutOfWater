@@ -23,7 +23,6 @@ public class GunController : MonoBehaviour
     private WeaponUpgrades state;
     private AudioController sound;
     private DisplayAmmo displayAmmo;
-    private PlayerInput playerInput;
     private PlayerHealth playerHealth;
     private GroundChecker groundChecker;
     private PlayerController playerController;
