@@ -1,8 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject firstButton, optionsButton, creditsButton;
+
+    public void Start()
+    {
+        EventSystem.current.SetSelectedGameObject(firstButton);
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -11,6 +19,21 @@ public class MainMenu : MonoBehaviour
     public void PlayAgain()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void OpenOptions()
+    {
+        EventSystem.current.SetSelectedGameObject(optionsButton);
+    }
+
+    public void OpenCredits()
+    {
+        EventSystem.current.SetSelectedGameObject(creditsButton);
+    }
+
+    public void ClosingMenu()
+    {
+        EventSystem.current.SetSelectedGameObject(firstButton);
     }
 
     public void QuitGame()

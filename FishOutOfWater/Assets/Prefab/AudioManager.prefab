@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa3edaa27072aa44ba358c06e272382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuVolume: 0
+  invertedControls: 0
   sounds:
   - name: Background Music
     clip: {fileID: 8300000, guid: 7ed4baab779b302418abc979de76153e, type: 3}
@@ -50,11 +52,11 @@ MonoBehaviour:
     audio: {fileID: 0}
   - name: Player Fire
     clip: {fileID: 8300000, guid: a748c45155b4bff449635ca1d7ca11ec, type: 3}
-    volume: 0.4
+    volume: 0.2
     audio: {fileID: 0}
   - name: Enemy Fire
     clip: {fileID: 8300000, guid: a748c45155b4bff449635ca1d7ca11ec, type: 3}
-    volume: 0.6
+    volume: 0.5
     audio: {fileID: 0}
   - name: Reload
     clip: {fileID: 8300000, guid: 41b08795c4d26f94a88924b25f0af2e3, type: 3}
@@ -70,11 +72,11 @@ MonoBehaviour:
     audio: {fileID: 0}
   - name: Toxic Explode
     clip: {fileID: 8300000, guid: 24d3a0e431ff80c42a0f610353a38b70, type: 3}
-    volume: 0.6
+    volume: 0.3
     audio: {fileID: 0}
   - name: Alert Sound
     clip: {fileID: 8300000, guid: 12c060370bfa4af459e0f2ab7a1b44b4, type: 3}
-    volume: 0.25
+    volume: 0.2
     audio: {fileID: 0}
   - name: Main Menu Music
     clip: {fileID: 8300000, guid: ffe57689f8dd8b547957e40900da63d2, type: 3}
@@ -86,9 +88,9 @@ MonoBehaviour:
     audio: {fileID: 0}
   - name: Button Hover
     clip: {fileID: 8300000, guid: 4695889da3a20f5469e21ac5cea5c17b, type: 3}
-    volume: 1
+    volume: 0.5
     audio: {fileID: 0}
   - name: Button Click
     clip: {fileID: 8300000, guid: 6fd92d80c6963a7469444fdc374faf58, type: 3}
-    volume: 1
+    volume: 0.5
     audio: {fileID: 0}
