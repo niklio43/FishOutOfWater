@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FishNetController : MonoBehaviour
 {
-    public bool caughtByFishNet;
+    public bool caughtByFishNet, copy;
 
     private GameObject Player;
     private NetTrigger netTrigger;
@@ -15,10 +15,12 @@ public class FishNetController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(9, 8, true);
         Physics2D.IgnoreLayerCollision(11, 8, true);
         Physics2D.IgnoreLayerCollision(12, 8, true);
+        Physics2D.IgnoreLayerCollision(3, 8, true);
     }
 
     private void Update()
     {
+        copy = netTrigger.throwing;
         if (!netTrigger.throwing)
         {
             caughtByFishNet = false;
