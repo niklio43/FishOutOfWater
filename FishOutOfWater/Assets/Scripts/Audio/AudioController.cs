@@ -98,8 +98,5 @@ public class AudioController : MonoBehaviour
             invertedControls = true;
         else if (invertedControls == true)
             invertedControls = false;
-
-        Debug.Log(invertedControls);
-
     }
 }
