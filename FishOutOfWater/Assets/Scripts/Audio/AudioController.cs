@@ -4,27 +4,51 @@ using UnityEngine.SceneManagement;
 
 public class AudioController : MonoBehaviour
 {
+    [HideInInspector]
+    public float menuVolume;
+    [HideInInspector]
+    public bool invertedControls;
     public Sound[] sounds;
 
     private PauseMenu paused;
+    private static AudioController instance;
+
 
     void Awake()
     {
-        foreach(Sound sound in sounds) //Create array of all sounds
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(instance);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        foreach (Sound sound in sounds) //Create array of all sounds
         {
             sound.audio = gameObject.AddComponent<AudioSource>();
             sound.audio.clip = sound.clip;
             sound.audio.volume = sound.volume;
         }
-
-        if(SceneManager.GetActiveScene().name != "Menu")
-            paused = FindObjectOfType<PauseMenu>();
+        menuVolume = -1;
+        invertedControls = false;
+        Debug.Log(invertedControls);
     }
 
     void Update()
     {
         if(SceneManager.GetActiveScene().name != "Menu")
+        {
             Pause();
+            if (sounds[8].audio.isPlaying)
+            {
+                sounds[8].audio.Stop();
+            }
+        }
     }
 
     public void Pause()
@@ -51,5 +75,30 @@ public class AudioController : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
         s.audio.PlayOneShot(s.clip);
+    }
+
+    public void MenuVolume(float volume)
+    {
+        foreach (Sound sound in sounds)
+        {
+            sound.audio.volume = sound.volume * volume;
+        }
+        menuVolume = volume;
+    }
+    
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "Menu")
+        {
+            paused = FindObjectOfType<PauseMenu>();
+        }
+    }
+
+    public void InvertControl()
+    {
+        if (invertedControls == false)
+            invertedControls = true;
+        else if (invertedControls == true)
+            invertedControls = false;
     }
 }
