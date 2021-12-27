@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class AudioSliderController : MonoBehaviour, ISelectHandler
+public class AudioSliderController : MonoBehaviour, ISelectHandler, IMoveHandler, IDropHandler
 {
     private Slider slider;
 
@@ -23,5 +23,15 @@ public class AudioSliderController : MonoBehaviour, ISelectHandler
     public void OnSelect(BaseEventData eventData)
     {
         sound.Play("Button Hover");
+    }
+
+    public void OnMove(AxisEventData eventData)
+    {
+        sound.Play("Button Click");
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        sound.Play("Button Click");
     }
 }
