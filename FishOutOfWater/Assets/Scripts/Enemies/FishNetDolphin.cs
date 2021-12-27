@@ -64,8 +64,6 @@ public class FishNetDolphin : MonoBehaviour
             reachedTarget = true;
             isAttacking = false;
         }
-
-        Debug.Log("reachedTarget: " + reachedTarget);
     }
 
     private void FixedUpdate()

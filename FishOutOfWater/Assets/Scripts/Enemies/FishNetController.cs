@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FishNetController : MonoBehaviour
 {
-    public bool caughtByFishNet;
+    public bool caughtByFishNet, copy;
 
     private GameObject Player;
     private NetTrigger netTrigger;
@@ -20,6 +20,7 @@ public class FishNetController : MonoBehaviour
 
     private void Update()
     {
+        copy = netTrigger.throwing;
         if (!netTrigger.throwing)
         {
             caughtByFishNet = false;
