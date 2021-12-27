@@ -35,8 +35,6 @@ public class AudioController : MonoBehaviour
             sound.audio.volume = sound.volume;
         }
         menuVolume = -1;
-        invertedControls = false;
-        Debug.Log(invertedControls);
     }
 
     void Update()
