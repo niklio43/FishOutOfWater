@@ -37,7 +37,7 @@ public class NetTrigger : MonoBehaviour
             throwing = true;
             targetPos = new Vector3(Player.transform.position.x, Player.transform.position.y + 5, Player.transform.position.z);
 
-            Invoke("ToggleThrow", 3);
+            Invoke("ToggleThrow", 1);
         }
     }
 

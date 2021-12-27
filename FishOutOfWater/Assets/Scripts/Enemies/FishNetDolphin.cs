@@ -3,7 +3,6 @@ using System.Collections;
 
 public class FishNetDolphin : MonoBehaviour
 {
-
     public bool dead;
     private int Health;
     public bool setPos;
@@ -61,6 +60,8 @@ public class FishNetDolphin : MonoBehaviour
             reachedTarget = true;
             isAttacking = false;
         }
+
+        Debug.Log("reachedTarget: " + reachedTarget);
     }
 
     private void FixedUpdate()
