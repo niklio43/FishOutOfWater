@@ -6,9 +6,12 @@ public class PauseMenu : MonoBehaviour
 {
     public bool GamePaused = false;
     public GameObject firstButton;
+    public GameObject optionsButton;
 
     private Inputs inputs;
     public GameObject pauseMenuUI;
+    public GameObject darkScreen;
+    public GameObject optionsMenuUI;
 
     private void Awake()
     {
@@ -18,18 +21,18 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        EventSystem.current.SetSelectedGameObject(firstButton);
+        ButtonSelected();
     }
 
     void Update()
     {
         if (inputs.Player.Pause.triggered)
         {
-            if (GamePaused)
+            if (GamePaused && pauseMenuUI.activeInHierarchy)
             {
                 Resume();
             }
-            else
+            else if(!optionsMenuUI.activeInHierarchy)
             {
                 Pause();
             }
@@ -39,6 +42,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        darkScreen.SetActive(false);
         Time.timeScale = 1f;
         GamePaused = false;
     }
@@ -46,6 +50,7 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        darkScreen.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;
     }
@@ -54,6 +59,16 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
+    }
+
+    public void ButtonSelected()
+    {
+        EventSystem.current.SetSelectedGameObject(firstButton);
+    }
+
+    public void OptionsButton()
+    {
+        EventSystem.current.SetSelectedGameObject(optionsButton);
     }
 
     public void QuitGame()

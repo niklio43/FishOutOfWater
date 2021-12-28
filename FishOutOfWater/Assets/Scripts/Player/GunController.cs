@@ -50,7 +50,6 @@ public class GunController : MonoBehaviour
         playerHealth = Player.GetComponent<PlayerHealth>();
         playerController = Player.GetComponent<PlayerController>();
         groundChecker = GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>();
-        inverted = sound.invertedControls;
     }
 
     private void Update()
@@ -58,6 +57,7 @@ public class GunController : MonoBehaviour
         playerGunArm = GameObject.FindGameObjectWithTag("PlayerGunArm").transform.position;
         transform.rotation = GameObject.FindGameObjectWithTag("PlayerGunArm").transform.rotation;
         transform.position = playerGunArm;
+        inverted = sound.invertedControls;
 
         inputVector = inputs.Player.Movement.ReadValue<Vector2>();
 
