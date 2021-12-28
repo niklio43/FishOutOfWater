@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
-        health = 5;
+        health = 1;
     }
 
     void Update()
