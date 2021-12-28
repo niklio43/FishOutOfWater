@@ -7,12 +7,11 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public KeyCode MoveRight;
     public KeyCode MoveLeft;
-
-
+    
 
     void Start()
     {
-        
+
     }
 
     
@@ -26,6 +25,5 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
-
     }
 }
