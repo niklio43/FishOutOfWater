@@ -91,6 +91,10 @@ public class GunController : MonoBehaviour
             displayAmmo.RemoveAmmo();
             ammo--;
         }
+        if(!groundChecker.isGrounded && ammo <= 0)
+        {
+            playerController.Drift(directionX);
+        }
         if (ammo > 0)
         {
             GameObject bullet = Instantiate(projectile, shotPoint.position, transform.rotation);
