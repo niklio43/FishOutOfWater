@@ -1234,10 +1234,10 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1251805764}
   m_Lens:
     FieldOfView: 13.2
-    OrthographicSize: 16
+    OrthographicSize: 12
     NearClipPlane: 0.3
     FarClipPlane: 100
     Dutch: 0
@@ -1258,7 +1258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192817140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0099983215, y: 5.9599996, z: -70}
+  m_LocalPosition: {x: -14.559999, y: 9.97, z: -70}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1694293777}
@@ -12584,10 +12584,10 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1251805764}
   m_Lens:
     FieldOfView: 13.2
-    OrthographicSize: 16
+    OrthographicSize: 14
     NearClipPlane: 0.3
     FarClipPlane: 100
     Dutch: 0
@@ -12608,7 +12608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723398237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.22, y: 5.9599996, z: -70}
+  m_LocalPosition: {x: 5.9799995, y: 53.79, z: -70}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 242587267}
@@ -12963,10 +12963,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 20.521921, y: 11.571899}
-      - {x: -20.46841, y: 11.598466}
-      - {x: -20.583508, y: -11.572263}
-      - {x: 20.514235, y: -11.55199}
+    - - {x: 58.780273, y: 41.70345}
+      - {x: 43.6864, y: 41.84485}
+      - {x: 43.960793, y: 25.707928}
+      - {x: 64.36705, y: 20.99442}
 --- !u!114 &762100443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12988,7 +12988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762100441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53.5, y: -19.8, z: 0}
+  m_LocalPosition: {x: 6.42, y: -54.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 723398240}
@@ -14008,7 +14008,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080809766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53.469208, y: -19.80018, z: -70}
+  m_LocalPosition: {x: 53.479904, y: -44.706203, z: -70}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15114,6 +15114,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cf7f6456a62154186e7215d560989c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1251805764 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7308999620776686546, guid: 26d9af6e53cce374e868ef9f5f88c5f6, type: 3}
+  m_PrefabInstance: {fileID: 1251805755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1252692832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15516,7 +15521,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1251805764}
   m_Lens:
     FieldOfView: 13.2
     OrthographicSize: 16
@@ -15540,7 +15545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329345976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.22, y: 5.9599996, z: -70}
+  m_LocalPosition: {x: -41.1, y: 43.82, z: -70}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 311119756}
@@ -15994,10 +15999,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 20.521921, y: 11.571899}
-      - {x: -20.46841, y: 11.598466}
-      - {x: -20.583508, y: -11.572263}
-      - {x: 20.514235, y: -11.55199}
+    - - {x: 22.505575, y: 12.348712}
+      - {x: -22.564388, y: 14.008839}
+      - {x: -23.308275, y: -18.174587}
+      - {x: 22.718985, y: -17.49257}
 --- !u!114 &1439777040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16019,7 +16024,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439777038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.9, y: -13, z: 0}
+  m_LocalPosition: {x: 26.96, y: -11.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 192817143}
@@ -38213,9 +38218,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 20.521921, y: 11.571899}
-      - {x: -20.46841, y: 11.598466}
-      - {x: -20.583508, y: -11.572263}
+    - - {x: 19.18094, y: 9.02066}
+      - {x: -3.1580963, y: 14.615922}
+      - {x: -17.258091, y: 9.740246}
+      - {x: -19.221123, y: -11.1530695}
       - {x: 20.514235, y: -11.55199}
 --- !u!114 &2100215703
 MonoBehaviour:
