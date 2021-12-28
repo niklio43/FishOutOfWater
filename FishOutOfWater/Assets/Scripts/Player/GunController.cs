@@ -69,7 +69,7 @@ public class GunController : MonoBehaviour
 
         if (playerController.rb.velocity.x < 4f && playerController.rb.velocity.x > -4f)
         {
-            playerController.SwitchGravity(8.92f);
+            playerController.SwitchGravity(9.8f);
         }
 
     }
@@ -141,13 +141,13 @@ public class GunController : MonoBehaviour
         if (fishNet == null)
         {
             playerController.SetPlayerRotation(0, -1);
-            playerController.SwitchGravity(8.92f);
+            playerController.SwitchGravity(9.8f);
             Fire(0, -1);
         }
         else if (fishNet != null && !fishNetController.caughtByFishNet)
         {
             playerController.SetPlayerRotation(0, -1);
-            playerController.SwitchGravity(8.92f);
+            playerController.SwitchGravity(9.8f);
             Fire(0, -1);
         }
     }
@@ -157,13 +157,13 @@ public class GunController : MonoBehaviour
         if (fishNet == null)
         {
             playerController.SetPlayerRotation(0, 1);
-            playerController.SwitchGravity(8.92f);
+            playerController.SwitchGravity(9.8f);
             Fire(0, 1);
         }
         else if (fishNet != null && !fishNetController.caughtByFishNet)
         {
             playerController.SetPlayerRotation(0, 1);
-            playerController.SwitchGravity(8.92f);
+            playerController.SwitchGravity(9.8f);
             Fire(0, 1);
         }
     }
