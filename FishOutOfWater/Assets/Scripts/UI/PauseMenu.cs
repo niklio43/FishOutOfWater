@@ -1,15 +1,29 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
     public bool GamePaused = false;
+    public GameObject firstButton;
 
+    private Inputs inputs;
     public GameObject pauseMenuUI;
+
+    private void Awake()
+    {
+        inputs = new Inputs();
+        inputs.Enable();
+    }
+
+    private void Start()
+    {
+        EventSystem.current.SetSelectedGameObject(firstButton);
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (inputs.Player.Pause.triggered)
         {
             if (GamePaused)
             {
