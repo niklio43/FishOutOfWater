@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 20;
+    private int maxHealth = 20;
     public int currentHealth;
 
-    private Health health;
 
     private PlayerController playerController;
 
@@ -15,14 +14,12 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         playerController = GetComponent<PlayerController>();
-        health = GetComponent<Health>();
         CollectBody();
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        health.SetHealth(currentHealth);
         foreach (SpriteRenderer part in bodyParts)
         {
             part.color = Color.red;
