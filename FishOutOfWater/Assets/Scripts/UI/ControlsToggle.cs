@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ControlsToggle : MonoBehaviour, ISelectHandler
+public class ControlsToggle : MonoBehaviour, ISelectHandler, ISubmitHandler
 {
     private AudioController sound;
     private Toggle toggle;
@@ -21,5 +21,10 @@ public class ControlsToggle : MonoBehaviour, ISelectHandler
     public void OnSelect(BaseEventData eventData)
     {
         sound.Play("Button Hover");
+    }
+
+    public void OnSubmit(BaseEventData eventData)
+    {
+        sound.Play("Button Click");
     }
 }

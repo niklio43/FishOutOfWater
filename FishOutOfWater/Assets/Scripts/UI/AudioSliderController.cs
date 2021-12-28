@@ -12,12 +12,12 @@ public class AudioSliderController : MonoBehaviour, ISelectHandler, IMoveHandler
     {
         sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
         slider = gameObject.GetComponent<Slider>();
-        slider.onValueChanged.AddListener(sound.MenuVolume);
-        
-        if(sound.menuVolume != -1)
+
+        if (sound.menuVolume != -1)
         {
             slider.value = sound.menuVolume;
         }
+        slider.onValueChanged.AddListener(sound.MenuVolume);
     }
 
     public void OnSelect(BaseEventData eventData)
