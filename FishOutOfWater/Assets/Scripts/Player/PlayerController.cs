@@ -78,6 +78,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Drift(int directionX)
+    {
+        velocityCopy = rb.velocity;
+        velocityCopy.x = -directionX * 6;
+        velocityCopy.y = -4;
+        rb.velocity = velocityCopy;
+    }
+
     public void SetPlayerRotation(int Horizontal, int Vertical)
     {
         if (Horizontal > 0 && Vertical == 0)
