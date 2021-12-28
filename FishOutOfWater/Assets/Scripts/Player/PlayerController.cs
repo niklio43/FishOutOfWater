@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem dust;
 
     private Vector2 velocityCopy;
-    private float thrust, jumpForce;
+    public float thrust, jumpForce;
 
     private GameObject sound;
     private WeaponUpgrades state;
@@ -15,8 +15,11 @@ public class PlayerController : MonoBehaviour
 
     private GroundChecker groundChecker;
 
+    private bool Slowed;
+
     private void Start()
     {
+        Slowed = false;
         groundChecker = GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>();
         state = WeaponUpgrades.Spray;
         sound = GameObject.FindGameObjectWithTag("AudioManager");
@@ -26,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (state == WeaponUpgrades.Regular || state == WeaponUpgrades.Spray)
+        if (state == WeaponUpgrades.Regular && !Slowed || state == WeaponUpgrades.Spray && !Slowed)
         {
             jumpForce = 30;
             if (groundChecker.isGrounded)
@@ -40,7 +43,7 @@ public class PlayerController : MonoBehaviour
                 jumpForce = 30;
             }
         }
-        else if (state == WeaponUpgrades.Powerful)
+        else if (state == WeaponUpgrades.Powerful && !Slowed)
         {
             jumpForce = 45;
             if (groundChecker.isGrounded)
@@ -53,6 +56,11 @@ public class PlayerController : MonoBehaviour
                 thrust = 35;
                 jumpForce = 45;
             }
+        }
+        else if(Slowed)
+        {
+            thrust = 8;
+            jumpForce = 30;
         }
     }
 
@@ -109,6 +117,11 @@ public class PlayerController : MonoBehaviour
             sound.GetComponent<AudioController>().Play("Player Damage");
         }
         if (collision.gameObject.CompareTag("Spike"))
+        {
+            playerHealth.TakeDamage(20);
+            sound.GetComponent<AudioController>().Play("Player Damage");
+        }
+        if (collision.gameObject.CompareTag("ToxicWater"))
         {
             playerHealth.TakeDamage(20);
             sound.GetComponent<AudioController>().Play("Player Damage");
