@@ -6,7 +6,10 @@ public class PlayerPosition : MonoBehaviour
 
     void Start()
     {
-        cpm = GameObject.FindGameObjectWithTag("CPM").GetComponent<CheckpointMaster>();
-        transform.position = cpm.lastCPPos;
+        if(GameObject.FindGameObjectWithTag("CPM") != null)
+        {
+            cpm = GameObject.FindGameObjectWithTag("CPM").GetComponent<CheckpointMaster>();
+            transform.position = cpm.lastCPPos;
+        }
     }
 }
