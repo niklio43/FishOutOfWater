@@ -30,6 +30,7 @@ public class MovingPlatform : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
     }
 
+    //
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collision.transform.SetParent(transform);
@@ -39,5 +40,11 @@ public class MovingPlatform : MonoBehaviour
     {
         collision.transform.SetParent(null);
     }
+
+   /* if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            Destroy(collision.gameObject);
+    playerHealth.TakeDamage(20);
+            sound.GetComponent<AudioController>().Play("Player Damage");*/
 }
 
