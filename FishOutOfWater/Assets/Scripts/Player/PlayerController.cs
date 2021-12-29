@@ -14,12 +14,14 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth playerHealth;
 
     private GroundChecker groundChecker;
+    private GunController gun;
 
     private bool Slowed;
 
     private void Start()
     {
         Slowed = false;
+        gun = GameObject.FindGameObjectWithTag("Gun").GetComponent<GunController>();
         groundChecker = GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>();
         state = WeaponUpgrades.Spray;
         sound = GameObject.FindGameObjectWithTag("AudioManager");
@@ -40,7 +42,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 thrust = 25;
-                jumpForce = 30;
+                jumpForce = 35;
             }
         }
         else if (state == WeaponUpgrades.Powerful && !Slowed)
@@ -81,8 +83,8 @@ public class PlayerController : MonoBehaviour
     public void Drift(int directionX)
     {
         velocityCopy = rb.velocity;
-        velocityCopy.x = -directionX * 6;
-        velocityCopy.y = -4;
+        velocityCopy.x = -directionX * 10;
+        velocityCopy.y = -14;
         rb.velocity = velocityCopy;
     }
 
