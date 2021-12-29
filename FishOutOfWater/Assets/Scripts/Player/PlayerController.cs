@@ -83,8 +83,8 @@ public class PlayerController : MonoBehaviour
     public void Drift(int directionX)
     {
         velocityCopy = rb.velocity;
-        velocityCopy.x = -directionX * 10;
-        velocityCopy.y = -14;
+        velocityCopy.x = -directionX * 8;
+        velocityCopy.y = -12;
         rb.velocity = velocityCopy;
     }
 
