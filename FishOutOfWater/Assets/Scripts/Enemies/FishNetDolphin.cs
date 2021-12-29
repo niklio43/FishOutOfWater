@@ -26,7 +26,7 @@ public class FishNetDolphin : MonoBehaviour
         netTrigger = transform.GetChild(1).gameObject.GetComponent<NetTrigger>();
         fishNetDolphinArm = transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject;
         fishNet = transform.GetChild(0).gameObject;
-        fishNetStartPos = GameObject.FindGameObjectWithTag("FishNet").transform.position;
+        fishNetStartPos = fishNet.transform.position;
         isAttacking = false;
         Health = 60;
         dead = false;
