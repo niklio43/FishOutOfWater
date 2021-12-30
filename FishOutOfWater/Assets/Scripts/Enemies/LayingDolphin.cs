@@ -33,11 +33,11 @@ public class LayingDolphin : MonoBehaviour
         anim.SetBool("isAttacking", isAttacking);
         anim.SetBool("isDead", isDead);
 
-        if (Player.transform.position.x - gameObject.transform.position.x > 0)
+        if (Player.transform.position.x - gameObject.transform.position.x > 0 && !isDead)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (Player.transform.position.x - gameObject.transform.position.x < 0)
+        else if (Player.transform.position.x - gameObject.transform.position.x < 0 && !isDead)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
