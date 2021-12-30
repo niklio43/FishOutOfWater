@@ -33,11 +33,11 @@ public class LayingDolphin : MonoBehaviour
         anim.SetBool("isAttacking", isAttacking);
         anim.SetBool("isDead", isDead);
 
-        if (Player.transform.position.x - gameObject.transform.position.x > 0)
+        if (Player.transform.position.x - gameObject.transform.position.x > 0 && !isDead)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (Player.transform.position.x - gameObject.transform.position.x < 0)
+        else if (Player.transform.position.x - gameObject.transform.position.x < 0 && !isDead)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
@@ -103,8 +103,9 @@ public class LayingDolphin : MonoBehaviour
         isMoving = false;
         isAttacking = false;
         isDead = true;
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 2.6f);
         GetComponent<Collider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
     private void CollectBody() // Gathers the different parts of the prefab with sprite renderers

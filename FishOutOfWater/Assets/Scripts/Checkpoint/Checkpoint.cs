@@ -6,23 +6,15 @@ public class Checkpoint : MonoBehaviour
     private CheckpointMaster cpm;
     public int scene, deathCounter;
     public float timePlayed;
-    private PlayerController playerController;
+    //private PlayerController playerController;
 
     private void Start()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        //playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         scene = 0;
         timePlayed = 0f;
         if (GameObject.FindGameObjectWithTag("CPM") != null)
             cpm = GameObject.FindGameObjectWithTag("CPM").GetComponent<CheckpointMaster>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Load();
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,8 +35,16 @@ public class Checkpoint : MonoBehaviour
     {
         GameData data = SaveData.Load();
         scene = data.scene;
-        deathCounter = playerController.deathCounter;
+        //deathCounter = playerController.deathCounter;
         timePlayed = data.timePlayed;
         SceneManager.LoadScene(scene);
     }
+
+    /*public void LoadStats()
+    {
+        GameData data = SaveData.Load();
+        scene = data.scene;
+        deathCounter = playerController.deathCounter;
+        timePlayed = data.timePlayed;
+    }*/
 }
