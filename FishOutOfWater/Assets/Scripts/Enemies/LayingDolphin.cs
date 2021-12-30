@@ -103,7 +103,7 @@ public class LayingDolphin : MonoBehaviour
         isMoving = false;
         isAttacking = false;
         isDead = true;
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 2.6f);
         GetComponent<Collider2D>().enabled = false;
         GetComponent<Rigidbody2D>().gravityScale = 0;
     }
