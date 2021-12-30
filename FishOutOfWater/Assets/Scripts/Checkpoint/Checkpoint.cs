@@ -42,5 +42,6 @@ public class Checkpoint : MonoBehaviour
         GameData data = SaveData.Load();
         scene = data.scene;
         timePlayed = data.timePlayed;
+        SceneManager.LoadScene(scene);
     }
 }
