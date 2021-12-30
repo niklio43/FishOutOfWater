@@ -15,7 +15,7 @@ GameObject:
   m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -97,9 +97,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.8027067}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 3.5002851
 --- !u!114 &5662226805330256645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46c2deca5d1ba844a436dcdf5deb711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scene: 0
+  deathCounter: 0
+  timePlayed: 0
