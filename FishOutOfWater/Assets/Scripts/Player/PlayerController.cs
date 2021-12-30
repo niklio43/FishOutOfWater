@@ -14,14 +14,15 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth playerHealth;
 
     private GroundChecker groundChecker;
-    private GunController gun;
+
+    public int deathCounter;
 
     private bool Slowed;
 
     private void Start()
     {
+        deathCounter = 0;
         Slowed = false;
-        gun = GameObject.FindGameObjectWithTag("Gun").GetComponent<GunController>();
         groundChecker = GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>();
         state = WeaponUpgrades.Spray;
         sound = GameObject.FindGameObjectWithTag("AudioManager");
@@ -115,6 +116,7 @@ public class PlayerController : MonoBehaviour
 
     public void Dead()
     {
+        deathCounter++;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

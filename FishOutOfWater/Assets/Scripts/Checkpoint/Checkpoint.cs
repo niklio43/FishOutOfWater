@@ -4,11 +4,13 @@ using UnityEngine.SceneManagement;
 public class Checkpoint : MonoBehaviour
 {
     private CheckpointMaster cpm;
-    public int scene;
+    public int scene, deathCounter;
     public float timePlayed;
+    private PlayerController playerController;
 
     private void Start()
     {
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         scene = 0;
         timePlayed = 0f;
         if (GameObject.FindGameObjectWithTag("CPM") != null)
@@ -41,6 +43,7 @@ public class Checkpoint : MonoBehaviour
     {
         GameData data = SaveData.Load();
         scene = data.scene;
+        deathCounter = playerController.deathCounter;
         timePlayed = data.timePlayed;
         SceneManager.LoadScene(scene);
     }
