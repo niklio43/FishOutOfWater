@@ -103,7 +103,8 @@ public class LayingDolphin : MonoBehaviour
         isMoving = false;
         isAttacking = false;
         isDead = true;
-        Destroy(gameObject, 3.333f);
+        Destroy(gameObject, 2);
+        GetComponent<Collider2D>().enabled = false;
     }
 
     private void CollectBody() // Gathers the different parts of the prefab with sprite renderers
