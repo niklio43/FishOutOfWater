@@ -105,6 +105,7 @@ public class LayingDolphin : MonoBehaviour
         isDead = true;
         Destroy(gameObject, 2);
         GetComponent<Collider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
     private void CollectBody() // Gathers the different parts of the prefab with sprite renderers
