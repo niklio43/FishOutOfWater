@@ -43,7 +43,8 @@ public class GunController : MonoBehaviour
             fishNetController = GameObject.FindGameObjectWithTag("FishNet").GetComponent<FishNetController>();
         Player = GameObject.FindGameObjectWithTag("Player");
         sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
-        displayAmmo = GameObject.FindGameObjectWithTag("AmmoCounterHolder").GetComponent<DisplayAmmo>();
+        if(GameObject.FindGameObjectWithTag("AmmoCounterHolder") != null)
+            displayAmmo = GameObject.FindGameObjectWithTag("AmmoCounterHolder").GetComponent<DisplayAmmo>();
         state = WeaponUpgrades.Spray;
         startTimeBtwShots = 0.15f;
         playOnce = false;
@@ -88,7 +89,8 @@ public class GunController : MonoBehaviour
     {
         if (!groundChecker.isGrounded && ammo > 0)
         {
-            displayAmmo.RemoveAmmo();
+            if (GameObject.FindGameObjectWithTag("AmmoCounterHolder") != null)
+                displayAmmo.RemoveAmmo();
             ammo--;
         }
         if(!groundChecker.isGrounded && ammo <= 0)
@@ -125,7 +127,8 @@ public class GunController : MonoBehaviour
 
     public void Reload()
     {
-        displayAmmo.AddAmmo();
+        if (GameObject.FindGameObjectWithTag("AmmoCounterHolder") != null)
+            displayAmmo.AddAmmo();
         ammo = 13;
     }
 
@@ -202,29 +205,31 @@ public class GunController : MonoBehaviour
 
     private void Movement(Vector2 inputVector)
     {
-
-        if (state == WeaponUpgrades.Spray && playerHealth.currentHealth > 0 && timeBtwShots <= 0 && !displayAmmo.isReloading)
+        if (GameObject.FindGameObjectWithTag("AmmoCounterHolder") != null)
         {
-            if (inputVector == new Vector2(0, 1))
+            if (state == WeaponUpgrades.Spray && playerHealth.currentHealth > 0 && timeBtwShots <= 0 && !displayAmmo.isReloading)
             {
-                Up();
+                if (inputVector == new Vector2(0, 1))
+                {
+                    Up();
+                }
+                else if (inputVector == new Vector2(0, -1))
+                {
+                    Down();
+                }
+                else if (inputVector == new Vector2(-1, 0))
+                {
+                    Left();
+                }
+                else if (inputVector == new Vector2(1, 0))
+                {
+                    Right();
+                }
             }
-            else if (inputVector == new Vector2(0, -1))
+            else
             {
-                Down();
+                timeBtwShots -= Time.deltaTime;
             }
-            else if (inputVector == new Vector2(-1, 0))
-            {
-                Left();
-            }
-            else if (inputVector == new Vector2(1, 0))
-            {
-                Right();
-            }
-        }
-        else
-        {
-            timeBtwShots -= Time.deltaTime;
         }
     }
 }

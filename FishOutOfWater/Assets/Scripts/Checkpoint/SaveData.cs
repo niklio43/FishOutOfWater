@@ -29,7 +29,7 @@ public static class SaveData
 
             stream.Close();
 
-            Debug.Log("data: " + data.scene);
+            Debug.Log("SceneNumber: " + data.scene);
 
             return data;
         }
