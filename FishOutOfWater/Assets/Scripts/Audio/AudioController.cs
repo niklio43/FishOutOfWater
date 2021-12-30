@@ -86,7 +86,7 @@ public class AudioController : MonoBehaviour
     
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "Menu")
+        if (scene.name != "Menu" || scene.name != "YouWin")
         {
             paused = FindObjectOfType<PauseMenu>();
         }
