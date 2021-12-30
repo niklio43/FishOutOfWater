@@ -79,8 +79,6 @@ public class AudioController : MonoBehaviour
     {
         foreach (Sound sound in sounds)
         {
-            Debug.Log("Hejhej");
-
             sound.audio.volume = sound.volume * volume;
         }
         menuVolume = volume;
