@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Stats : MonoBehaviour
 {
-    public float timePlayed;
-    public int deathCounter;
+    public float timePlayed, totalTimePlayed;
+    public int deathCounter, totalDeathCounter;
     public bool playing;
 
     private PauseMenu pauseMenu;
