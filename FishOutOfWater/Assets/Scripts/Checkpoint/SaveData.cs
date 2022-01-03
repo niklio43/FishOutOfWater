@@ -29,8 +29,6 @@ public static class SaveData
 
             stream.Close();
 
-            Debug.Log("SceneNumber: " + data.scene);
-
             return data;
         }
         else
