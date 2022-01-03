@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Slowed = false;
         stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
+        Slowed = false;
         groundChecker = GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>();
         state = WeaponUpgrades.Spray;
         sound = GameObject.FindGameObjectWithTag("AudioManager");
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
     public void Dead()
     {
-        stats.deathCounter++;
+        stats.DeathIncrement();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
