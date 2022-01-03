@@ -4,7 +4,6 @@ public class CutsceneMove : MonoBehaviour
 {
     public Vector3 targetPos;
 
-    //private int randomNumber;
     private float speed = 0.1f;
     private bool stopMoving;
     private float startTime;
