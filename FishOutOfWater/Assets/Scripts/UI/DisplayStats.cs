@@ -21,13 +21,13 @@ public class DisplayStats : MonoBehaviour
         {
             var ts = TimeSpan.FromSeconds(stats.timePlayed);
             deathCounter.text = "" + stats.deathCounter;
-            timePlayed.text = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
+            timePlayed.text = string.Format("{0:00}:{1:00}:{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
         }
         else
         {
             var ts = TimeSpan.FromSeconds(stats.totalTimePlayed);
             deathCounter.text = "" + stats.totalDeathCounter;
-            timePlayed.text = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
+            timePlayed.text = string.Format("{0:00}:{1:00}:{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
         }
     }
 }
