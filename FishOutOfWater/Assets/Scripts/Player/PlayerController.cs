@@ -138,6 +138,19 @@ public class PlayerController : MonoBehaviour
             playerHealth.TakeDamage(20);
             sound.GetComponent<AudioController>().Play("Player Damage");
         }
+        //if (!collision.gameObject.CompareTag("EnemyBullet"))
+        //{
+        //    rb.velocity += collision;
+        //}
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Spike"))
+        {
+            playerHealth.TakeDamage(20);
+            sound.GetComponent<AudioController>().Play("Player Damage");
+        }
     }
 
     public void CreateDust()

@@ -25,6 +25,13 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void LoadNextScene()
+    {
+        var nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+
+        SceneManager.LoadScene(nextScene);
+    }
+
     public void PlayAgain()
     {
         if (SceneManager.GetActiveScene().name != "Menu")
