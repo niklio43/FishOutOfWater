@@ -25,7 +25,7 @@ public class AudioController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         foreach (Sound sound in sounds) //Create array of all sounds
@@ -39,7 +39,7 @@ public class AudioController : MonoBehaviour
 
     void Update()
     {
-        if(SceneManager.GetActiveScene().name != "Menu")
+        if (SceneManager.GetActiveScene().name != "Menu")
         {
             Pause();
             if (sounds[8].audio.isPlaying)
@@ -51,13 +51,17 @@ public class AudioController : MonoBehaviour
 
     public void Pause()
     {
-        if (paused.GamePaused)
+        if (SceneManager.GetActiveScene().name != "YouWin" && SceneManager.GetActiveScene().name != "Menu" && SceneManager.GetActiveScene().name != "Epilogue-1" && SceneManager.GetActiveScene().name != "Epilogue-2" && SceneManager.GetActiveScene().name != "Prologue-1"
+     && SceneManager.GetActiveScene().name != "Prologue-2-1" && SceneManager.GetActiveScene().name != "Prologue-2-2")
         {
-            sounds[0].audio.Pause(); //Pause the background music
-        }
-        else if (!paused.GamePaused)
-        {
-            sounds[0].audio.UnPause();
+            if (paused.GamePaused)
+            {
+                sounds[0].audio.Pause(); //Pause the background music
+            }
+            else if (!paused.GamePaused)
+            {
+                sounds[0].audio.UnPause();
+            }
         }
     }
 
@@ -83,7 +87,7 @@ public class AudioController : MonoBehaviour
         }
         menuVolume = volume;
     }
-    
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name != "Menu" || scene.name != "YouWin")

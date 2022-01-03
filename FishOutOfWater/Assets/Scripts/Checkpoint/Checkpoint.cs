@@ -8,27 +8,21 @@ public class Checkpoint : MonoBehaviour
 
     private GameObject save;
 
-    private Stats stats;
 
-    private bool toggleSave;
-
-    private void Start()
+    private void Awake()
     {
-        stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
-        toggleSave = false;
-        scene = 0;
-        if (GameObject.FindGameObjectWithTag("CPM") != null)
-            cpm = GameObject.FindGameObjectWithTag("CPM").GetComponent<CheckpointMaster>();
-    }
-
-    private void Update()
-    {
-        if (stats.playing && !toggleSave)
+        if(SceneManager.GetActiveScene().name != "Menu")
         {
             save = GameObject.FindGameObjectWithTag("Saving");
             save.SetActive(false);
-            toggleSave = true;
         }
+    }
+
+    private void Start()
+    {
+        scene = 0;
+        if (GameObject.FindGameObjectWithTag("CPM") != null)
+            cpm = GameObject.FindGameObjectWithTag("CPM").GetComponent<CheckpointMaster>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -37,7 +31,6 @@ public class Checkpoint : MonoBehaviour
         {
             cpm.lastCPPos = transform.position;
             scene = SceneManager.GetActiveScene().buildIndex;
-
             save.SetActive(true);
             Invoke("DisableGameObject", 1f);
         }
