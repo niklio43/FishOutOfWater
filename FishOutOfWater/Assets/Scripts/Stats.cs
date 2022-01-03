@@ -18,7 +18,8 @@ public class Stats : MonoBehaviour
 
     void Update()
     {
-        if(SceneManager.GetActiveScene().name != "YouWin" && SceneManager.GetActiveScene().name != "Menu")
+        if(SceneManager.GetActiveScene().name != "YouWin" && SceneManager.GetActiveScene().name != "Menu" && SceneManager.GetActiveScene().name != "Epilogue-1" && SceneManager.GetActiveScene().name != "Epilogue-2" && SceneManager.GetActiveScene().name != "Prologue-1"
+             && SceneManager.GetActiveScene().name != "Prologue-2-1" && SceneManager.GetActiveScene().name != "Prologue-2-2")
         {
             if (pauseMenu.GamePaused == false)
             {
