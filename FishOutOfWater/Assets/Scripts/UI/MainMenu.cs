@@ -7,9 +7,12 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject firstButton, optionsButton, creditsButton;
 
+    private Stats stats;
+
     public void Start()
     {
         EventSystem.current.SetSelectedGameObject(firstButton);
+        stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
     }
 
     public void PlayGame()
@@ -19,6 +22,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayAgain()
     {
+        stats.timePlayed = 0;
         SceneManager.LoadScene("Menu");
     }
 
