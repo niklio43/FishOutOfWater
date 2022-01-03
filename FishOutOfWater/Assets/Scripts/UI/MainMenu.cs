@@ -9,10 +9,15 @@ public class MainMenu : MonoBehaviour
 
     private Stats stats;
 
+    private AudioController sound;
+
     public void Start()
     {
         EventSystem.current.SetSelectedGameObject(firstButton);
-        stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
+        if (SceneManager.GetActiveScene().name != "Menu")
+            stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
+
+        sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
     }
 
     public void PlayGame()
@@ -22,7 +27,11 @@ public class MainMenu : MonoBehaviour
 
     public void PlayAgain()
     {
-        stats.timePlayed = 0;
+        if (SceneManager.GetActiveScene().name != "Menu")
+            stats.timePlayed = 0;
+
+            sound.sounds[0].audio.Stop();
+
         SceneManager.LoadScene("Menu");
     }
 
