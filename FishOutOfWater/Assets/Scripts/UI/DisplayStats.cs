@@ -18,7 +18,7 @@ public class DisplayStats : MonoBehaviour
     {
         var ts = TimeSpan.FromSeconds(stats.timePlayed);
 
-        deathCounter.text = "Deaths: " + stats.deathCounter;
-        timePlayed.text = "Time Played: " + string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
+        deathCounter.text = ""+stats.deathCounter;
+        timePlayed.text = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
     }
 }
