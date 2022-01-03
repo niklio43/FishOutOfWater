@@ -7,6 +7,7 @@ public class Stats : MonoBehaviour
 {
     public float timePlayed;
     public int deathCounter;
+    public bool playing;
 
     private PauseMenu pauseMenu;
     void Awake()
@@ -23,8 +24,17 @@ public class Stats : MonoBehaviour
         {
             if (pauseMenu.GamePaused == false)
             {
+                playing = true;
                 timePlayed += Time.deltaTime;
             }
+            else
+            {
+                playing = false;
+            }
+        }
+        else
+        {
+            playing = false;
         }
     }
 
