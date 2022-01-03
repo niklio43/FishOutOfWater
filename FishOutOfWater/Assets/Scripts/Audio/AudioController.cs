@@ -51,8 +51,9 @@ public class AudioController : MonoBehaviour
 
     public void Pause()
     {
-        if (SceneManager.GetActiveScene().name != "YouWin" && SceneManager.GetActiveScene().name != "Menu" && SceneManager.GetActiveScene().name != "Epilogue-1" && SceneManager.GetActiveScene().name != "Epilogue-2" && SceneManager.GetActiveScene().name != "Prologue-1"
-     && SceneManager.GetActiveScene().name != "Prologue-2-1" && SceneManager.GetActiveScene().name != "Prologue-2-2")
+        if (SceneManager.GetActiveScene().name == "1-tutorial" || SceneManager.GetActiveScene().name == "2-tutorial" || SceneManager.GetActiveScene().name == "3-Spike" || SceneManager.GetActiveScene().name == "4-Spike"
+             || SceneManager.GetActiveScene().name == "5-Spike" || SceneManager.GetActiveScene().name == "6-spike" || SceneManager.GetActiveScene().name == "7-Spike" || SceneManager.GetActiveScene().name == "8-ToxicWater"
+              || SceneManager.GetActiveScene().name == "9-ToxicWater" || SceneManager.GetActiveScene().name == "10-ToxicWater")
         {
             if (paused.GamePaused)
             {
