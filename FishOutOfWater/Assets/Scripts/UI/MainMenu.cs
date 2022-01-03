@@ -25,6 +25,19 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void LoadNextScene()
+    {
+        var nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+
+        stats.totalTimePlayed += stats.timePlayed;
+        stats.totalDeathCounter += stats.deathCounter;
+
+        stats.timePlayed = 0f;
+        stats.deathCounter = 0;
+
+        SceneManager.LoadScene(nextScene);
+    }
+
     public void PlayAgain()
     {
         if (SceneManager.GetActiveScene().name != "Menu")
