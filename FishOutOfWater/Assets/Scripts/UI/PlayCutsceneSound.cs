@@ -8,8 +8,7 @@ public class PlayCutsceneSound : MonoBehaviour
     void Start()
     {
         sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
+        sound.sounds[0].audio.Pause();
         sound.Play(clipName);
     }
-
-    
 }
