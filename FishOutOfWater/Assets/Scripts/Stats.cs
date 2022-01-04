@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Stats : MonoBehaviour
 {
-    public float timePlayed, totalTimePlayed;
-    public int deathCounter, totalDeathCounter;
+    public float timePlayed, levelTime, combinedLevelTime;
+    public int deathCounter, levelDeathCounter;
     public bool playing;
 
     private PauseMenu pauseMenu;
@@ -49,15 +49,11 @@ public class Stats : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "1-tutorial" || scene.name == "2-tutorial" || scene.name == "3-Spike" || scene.name == "4-Spike"
-             || scene.name == "5-Spike" || scene.name == "6-spike" || scene.name == "7-spike" || scene.name == "8-ToxicWater"
-              || scene.name == "9-Toxicwater" || scene.name == "10-ToxicWater" || scene.name == "11-Moving-platform" || scene.name == "12-Moving-platform"
-               || scene.name == "13-Moving-platform" || scene.name == "14-Moving-platform")
+        if (scene.name == "LevelStats2.5" || scene.name == "LevelStats7.5" || scene.name == "LevelStats10.5")
         {
-            totalTimePlayed += timePlayed;
-            totalDeathCounter += deathCounter;
-
-            deathCounter = 0;
+            levelDeathCounter = deathCounter - levelDeathCounter;
+            levelTime = timePlayed - combinedLevelTime;
+            combinedLevelTime = timePlayed;
         }
     }
 }

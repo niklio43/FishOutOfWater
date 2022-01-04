@@ -19,14 +19,14 @@ public class DisplayStats : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().name != "YouWin")
         {
-            var ts = TimeSpan.FromSeconds(stats.timePlayed);
-            deathCounter.text = "" + stats.deathCounter;
+            var ts = TimeSpan.FromSeconds(stats.levelTime);
+            deathCounter.text = "" + stats.levelDeathCounter;
             timePlayed.text = string.Format("{0:00}:{1:00}:{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
         }
         else
         {
-            var ts = TimeSpan.FromSeconds(stats.totalTimePlayed);
-            deathCounter.text = "" + stats.totalDeathCounter;
+            var ts = TimeSpan.FromSeconds(stats.timePlayed);
+            deathCounter.text = "" + stats.deathCounter;
             timePlayed.text = string.Format("{0:00}:{1:00}:{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
         }
     }
