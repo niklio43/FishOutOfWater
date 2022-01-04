@@ -28,20 +28,13 @@ public class MainMenu : MonoBehaviour
     public void LoadNextScene()
     {
         var nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-
-        stats.totalTimePlayed += stats.timePlayed;
-        stats.totalDeathCounter += stats.deathCounter;
-
         stats.timePlayed = 0f;
-        stats.deathCounter = 0;
-
         SceneManager.LoadScene(nextScene);
     }
 
     public void PlayAgain()
     {
         if (SceneManager.GetActiveScene().name != "Menu")
-            stats.timePlayed = 0;
 
             sound.sounds[0].audio.Stop();
 
