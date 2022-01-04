@@ -29,7 +29,6 @@ public class Stats : MonoBehaviour
             {
                 playing = true;
                 timePlayed += Time.deltaTime;
-                Debug.Log("Time: " + timePlayed);
             }
             else
             {
