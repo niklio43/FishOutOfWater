@@ -9,9 +9,12 @@ public class MovementRandomizer : MonoBehaviour
     private Vector3 min, max;
 
     private float lerpSpeed = 0.05f;
+    private AudioController sound;
 
     private void Awake()
     {
+        sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
+        sound.Play("Cutscene Music");
         startPos = new Vector3(0, 0, -70);
         min = new Vector3(-5, -5, -70);
         max = new Vector3(5, 5, -70);
