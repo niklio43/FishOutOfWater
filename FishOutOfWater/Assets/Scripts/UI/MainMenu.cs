@@ -28,7 +28,6 @@ public class MainMenu : MonoBehaviour
     public void LoadNextScene()
     {
         var nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-        stats.timePlayed = 0f;
         SceneManager.LoadScene(nextScene);
     }
 
