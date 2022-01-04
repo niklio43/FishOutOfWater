@@ -21,7 +21,8 @@ public class Stats : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().name == "1-tutorial" || SceneManager.GetActiveScene().name == "2-tutorial" || SceneManager.GetActiveScene().name == "3-Spike" || SceneManager.GetActiveScene().name == "4-Spike"
              || SceneManager.GetActiveScene().name == "5-Spike" || SceneManager.GetActiveScene().name == "6-spike" || SceneManager.GetActiveScene().name == "7-Spike" || SceneManager.GetActiveScene().name == "8-ToxicWater"
-              || SceneManager.GetActiveScene().name == "9-ToxicWater" || SceneManager.GetActiveScene().name == "10-ToxicWater")
+              || SceneManager.GetActiveScene().name == "9-ToxicWater" || SceneManager.GetActiveScene().name == "10-ToxicWater" || SceneManager.GetActiveScene().name == "11-Moving-platform" || SceneManager.GetActiveScene().name == "12-Moving-platform"
+               || SceneManager.GetActiveScene().name == "13-Moving-platform" || SceneManager.GetActiveScene().name == "14-Moving-platform")
         {
             if (pauseMenu.GamePaused == false)
             {
