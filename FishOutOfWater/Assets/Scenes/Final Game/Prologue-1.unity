@@ -988,6 +988,7 @@ GameObject:
   - component: {fileID: 1415352682}
   - component: {fileID: 1415352685}
   - component: {fileID: 1415352686}
+  - component: {fileID: 1415352687}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1106,6 +1107,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 232360826}
+  clipIndex: 16
+--- !u!114 &1415352687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415352681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018801d7274882b42a16d4dcf1c7fc0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipName: Cutscene Music
 --- !u!1 &1570141406
 GameObject:
   m_ObjectHideFlags: 0
