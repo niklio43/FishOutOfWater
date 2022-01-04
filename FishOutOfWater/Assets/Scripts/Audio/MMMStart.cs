@@ -2,11 +2,20 @@ using UnityEngine;
 
 public class MMMStart : MonoBehaviour
 {
-    private GameObject sound;
+    private AudioController sound;
 
     void Start()
     {
-        sound = GameObject.FindGameObjectWithTag("AudioManager");
+        sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
+        PlayMusic();
+    }
+
+    private void PlayMusic()
+    {
+        foreach (Sound sound in sound.sounds)
+        {
+            sound.audio.Pause();
+        }
         sound.GetComponent<AudioController>().Play("Main Menu Music");
     }
 }
