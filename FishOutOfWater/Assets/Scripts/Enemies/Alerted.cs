@@ -56,11 +56,11 @@ public class Alerted : MonoBehaviour
             exclamation.transform.position = new Vector3(exclamation.transform.position.x, newY, exclamation.transform.position.z);
         }
 
-        if(isActive && !playSound && !standingDolphin.isDead)
-        {
-            sound.PlayOnce("Alert Sound");
-            playSound = true;
-        }
+        //if(isActive && !playSound && !standingDolphin.isDead)
+        //{
+        //    sound.PlayOnce("Alert Sound");
+        //    playSound = true;
+        //}
     }
 
     void DrawAlerted()
