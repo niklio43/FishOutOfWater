@@ -5,22 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class Stats : MonoBehaviour
 {
-    public float timePlayed, levelTime, combinedLevelTime;
-    public int deathCounter, levelDeathCounter;
+    public float timePlayed, level1timePlayed, level2timePlayed, level3timePlayed;
+    public int deathCounter, level1deathCounter, level2deathCounter, level3deathCounter;
     public bool playing;
 
     private PauseMenu pauseMenu;
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenu>();
-        deathCounter = 0;
+        deathCounter = level1deathCounter = level2deathCounter = level3deathCounter = 0;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Update()
     {
-        if(SceneManager.GetActiveScene().name == "1-tutorial" || SceneManager.GetActiveScene().name == "2-tutorial" || SceneManager.GetActiveScene().name == "3-Spike" || SceneManager.GetActiveScene().name == "4-Spike"
+        if (SceneManager.GetActiveScene().name == "1-tutorial" || SceneManager.GetActiveScene().name == "2-tutorial" || SceneManager.GetActiveScene().name == "3-Spike" || SceneManager.GetActiveScene().name == "4-Spike"
              || SceneManager.GetActiveScene().name == "5-Spike" || SceneManager.GetActiveScene().name == "6-spike" || SceneManager.GetActiveScene().name == "7-spike" || SceneManager.GetActiveScene().name == "8-ToxicWater"
               || SceneManager.GetActiveScene().name == "9-Toxicwater" || SceneManager.GetActiveScene().name == "10-ToxicWater" || SceneManager.GetActiveScene().name == "11-Moving-platform" || SceneManager.GetActiveScene().name == "12-Moving-platform"
                || SceneManager.GetActiveScene().name == "13-Moving-platform" || SceneManager.GetActiveScene().name == "14-Moving-platform")
@@ -30,6 +29,21 @@ public class Stats : MonoBehaviour
                 playing = true;
                 timePlayed += Time.deltaTime;
                 Cursor.visible = false;
+
+                if (SceneManager.GetActiveScene().name == "1-tutorial" || SceneManager.GetActiveScene().name == "2-tutorial")
+                {
+                    level1timePlayed += Time.deltaTime;
+                }
+                if (SceneManager.GetActiveScene().name == "3-Spike" || SceneManager.GetActiveScene().name == "4-Spike"
+             || SceneManager.GetActiveScene().name == "5-Spike" || SceneManager.GetActiveScene().name == "6-spike" || SceneManager.GetActiveScene().name == "7-spike")
+                {
+                    level2timePlayed += Time.deltaTime;
+                }
+                if (SceneManager.GetActiveScene().name == "8-ToxicWater"
+              || SceneManager.GetActiveScene().name == "9-Toxicwater" || SceneManager.GetActiveScene().name == "10-ToxicWater")
+                {
+                    level3timePlayed += Time.deltaTime;
+                }
             }
             else
             {
@@ -45,21 +59,38 @@ public class Stats : MonoBehaviour
 
     public void DeathIncrement()
     {
-        deathCounter++;
+        if (SceneManager.GetActiveScene().name == "1-tutorial" || SceneManager.GetActiveScene().name == "2-tutorial" || SceneManager.GetActiveScene().name == "3-Spike" || SceneManager.GetActiveScene().name == "4-Spike"
+     || SceneManager.GetActiveScene().name == "5-Spike" || SceneManager.GetActiveScene().name == "6-spike" || SceneManager.GetActiveScene().name == "7-spike" || SceneManager.GetActiveScene().name == "8-ToxicWater"
+      || SceneManager.GetActiveScene().name == "9-Toxicwater" || SceneManager.GetActiveScene().name == "10-ToxicWater" || SceneManager.GetActiveScene().name == "11-Moving-platform" || SceneManager.GetActiveScene().name == "12-Moving-platform"
+       || SceneManager.GetActiveScene().name == "13-Moving-platform" || SceneManager.GetActiveScene().name == "14-Moving-platform")
+        {
+            deathCounter++;
+            if (SceneManager.GetActiveScene().name == "1-tutorial" || SceneManager.GetActiveScene().name == "2-tutorial")
+            {
+                level1deathCounter++;
+            }
+            if (SceneManager.GetActiveScene().name == "3-Spike" || SceneManager.GetActiveScene().name == "4-Spike"
+         || SceneManager.GetActiveScene().name == "5-Spike" || SceneManager.GetActiveScene().name == "6-spike" || SceneManager.GetActiveScene().name == "7-spike")
+            {
+                level2deathCounter++;
+            }
+            if (SceneManager.GetActiveScene().name == "8-ToxicWater"
+          || SceneManager.GetActiveScene().name == "9-Toxicwater" || SceneManager.GetActiveScene().name == "10-ToxicWater")
+            {
+                level3deathCounter++;
+            }
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "LevelStats2.5" || scene.name == "LevelStats7.5" || scene.name == "LevelStats10.5")
+        if (scene.name == "LevelStats2.5" || scene.name == "LevelStats7.5" || scene.name == "LevelStats10.5" || scene.name == "Menu" || scene.name == "YouWin")
         {
-            levelDeathCounter = deathCounter - levelDeathCounter;
-            levelTime = timePlayed - combinedLevelTime;
-            combinedLevelTime = timePlayed;
             Cursor.visible = true;
         }
-        if(scene.name == "Menu" || scene.name == "YouWin")
+        if(scene.name == "1-tutorial")
         {
-            Cursor.visible = true;
+            pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenu>();
         }
     }
 }
