@@ -29,10 +29,12 @@ public class Stats : MonoBehaviour
             {
                 playing = true;
                 timePlayed += Time.deltaTime;
+                Cursor.visible = false;
             }
             else
             {
                 playing = false;
+                Cursor.visible = true;
             }
         }
         else
@@ -53,6 +55,11 @@ public class Stats : MonoBehaviour
             levelDeathCounter = deathCounter - levelDeathCounter;
             levelTime = timePlayed - combinedLevelTime;
             combinedLevelTime = timePlayed;
+            Cursor.visible = true;
+        }
+        if(scene.name == "Menu" || scene.name == "YouWin")
+        {
+            Cursor.visible = true;
         }
     }
 }
