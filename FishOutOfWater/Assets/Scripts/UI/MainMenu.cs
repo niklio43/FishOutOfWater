@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject firstButton, optionsButton, creditsButton;
 
+    private GameObject lastButton;
     private Stats stats;
 
     private AudioController sound;
@@ -19,6 +20,8 @@ public class MainMenu : MonoBehaviour
 
         sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
     }
+
+    
 
     public void PlayGame()
     {
