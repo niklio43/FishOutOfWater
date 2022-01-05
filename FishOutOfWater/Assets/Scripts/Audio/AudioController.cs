@@ -33,6 +33,7 @@ public class AudioController : MonoBehaviour
             sound.audio = gameObject.AddComponent<AudioSource>();
             sound.audio.clip = sound.clip;
             sound.audio.volume = sound.volume;
+            sound.audio.loop = sound.loop;
         }
         menuVolume = -1;
     }
