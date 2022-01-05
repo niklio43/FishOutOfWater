@@ -33,18 +33,14 @@ public class MovingPlatform : MonoBehaviour
     //
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.transform.SetParent(transform);
+        if(gameObject.tag == "MovingPlatform" || gameObject.tag == "Ground")
+            collision.transform.SetParent(transform);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        collision.transform.SetParent(null);
+        if (gameObject.tag == "MovingPlatform" || gameObject.tag == "Ground")
+            collision.transform.SetParent(null);
     }
-
-   /* if (collision.gameObject.CompareTag("EnemyBullet"))
-        {
-            Destroy(collision.gameObject);
-    playerHealth.TakeDamage(20);
-            sound.GetComponent<AudioController>().Play("Player Damage");*/
 }
 
