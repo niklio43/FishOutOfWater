@@ -61,11 +61,6 @@ public class PlayerController : MonoBehaviour
             thrust = 8;
             jumpForce = 30;
         }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
     }
 
     public void Movement(int directionX, int directionY)
