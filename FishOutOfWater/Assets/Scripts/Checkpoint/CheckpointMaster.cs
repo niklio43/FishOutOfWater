@@ -12,7 +12,6 @@ public class CheckpointMaster : MonoBehaviour
     private void Start()
     {
         sceneName = SceneManager.GetActiveScene().name;
-        player = GameObject.FindWithTag("Player");
         SceneManager.sceneLoaded += OnSceneLoaded;
         if(instance == null)
         {
