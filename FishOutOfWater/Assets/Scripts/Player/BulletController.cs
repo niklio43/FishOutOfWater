@@ -18,9 +18,9 @@ public class BulletController : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("AudioManager") != null)
             sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
 
-        cameraShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
         Physics2D.IgnoreLayerCollision(3, 8, true);
         Physics2D.IgnoreLayerCollision(7, 3, true);
+        cameraShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
     }
 
     public void CreateBulletExplode()
@@ -38,7 +38,7 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("ToxicWater"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("ToxicWater") || collision.gameObject.CompareTag("MovingPlatform"))
         {
             bulletExplode.Play();
             Destroy(child);
