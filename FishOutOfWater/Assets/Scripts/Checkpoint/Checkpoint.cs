@@ -31,6 +31,7 @@ public class Checkpoint : MonoBehaviour
         {
             cpm.lastCPPos = transform.position;
             scene = SceneManager.GetActiveScene().buildIndex;
+            Debug.Log(scene);
             save.SetActive(true);
             Invoke("DisableGameObject", 1f);
         }

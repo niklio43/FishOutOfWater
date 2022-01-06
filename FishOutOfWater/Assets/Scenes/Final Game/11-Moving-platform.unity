@@ -135302,6 +135302,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2056976360104636461, guid: 2bc56f0dddf4d804db7f6a3c5010a5cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 236543869}
+    - target: {fileID: 2056976360104636461, guid: 2bc56f0dddf4d804db7f6a3c5010a5cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Save
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bc56f0dddf4d804db7f6a3c5010a5cd, type: 3}
 --- !u!1001 &1995672074
