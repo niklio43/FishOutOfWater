@@ -34,6 +34,7 @@ public class Stats : MonoBehaviour
               || SceneManager.GetActiveScene().name == "9-Toxicwater" || SceneManager.GetActiveScene().name == "10-ToxicWater" || SceneManager.GetActiveScene().name == "11-Moving-platform" || SceneManager.GetActiveScene().name == "12-Moving-platform"
                || SceneManager.GetActiveScene().name == "13-Moving-platform" || SceneManager.GetActiveScene().name == "14-Moving-platform")
         {
+            pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenu>();
             if (pauseMenu.GamePaused == false)
             {
                 playing = true;
@@ -74,7 +75,6 @@ public class Stats : MonoBehaviour
       || SceneManager.GetActiveScene().name == "9-Toxicwater" || SceneManager.GetActiveScene().name == "10-ToxicWater" || SceneManager.GetActiveScene().name == "11-Moving-platform" || SceneManager.GetActiveScene().name == "12-Moving-platform"
        || SceneManager.GetActiveScene().name == "13-Moving-platform" || SceneManager.GetActiveScene().name == "14-Moving-platform")
         {
-            pauseMenu = GameObject.Find("PauseCanvas").GetComponent<PauseMenu>();
             deathCounter++;
             if (SceneManager.GetActiveScene().name == "1-tutorial" || SceneManager.GetActiveScene().name == "2-tutorial")
             {
