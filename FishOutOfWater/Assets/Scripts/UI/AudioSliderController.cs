@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 public class AudioSliderController : MonoBehaviour, ISelectHandler, IMoveHandler, IDropHandler
 {
     private Slider slider;
-
     private AudioController sound;
 
     void Start()

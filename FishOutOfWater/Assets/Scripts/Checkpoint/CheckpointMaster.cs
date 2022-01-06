@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 public class CheckpointMaster : MonoBehaviour
 {
     public Vector2 lastCPPos;
-    private string sceneName;
 
-    private static CheckpointMaster instance;
+    private string sceneName;
     private GameObject player;
+    private static CheckpointMaster instance;
 
     private void Start()
     {
@@ -31,6 +31,7 @@ public class CheckpointMaster : MonoBehaviour
             player = GameObject.FindWithTag("Player");
             if(player != null)
                 lastCPPos = player.transform.position;
+
             sceneName = scene.name;
         }
     }

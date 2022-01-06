@@ -16,7 +16,7 @@ public class EndOfScene : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             if(cpm != null)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

@@ -4,15 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class AudioController : MonoBehaviour
 {
+    public Sound[] sounds;
     [HideInInspector]
     public float menuVolume;
     [HideInInspector]
     public bool invertedControls;
-    public Sound[] sounds;
 
     private PauseMenu paused;
     private static AudioController instance;
-
 
     void Awake()
     {
@@ -45,7 +44,7 @@ public class AudioController : MonoBehaviour
             Pause();
             if (sounds[8].audio.isPlaying)
             {
-                sounds[8].audio.Stop();
+                sounds[8].audio.Stop();  //Stop the Main Menu Music
             }
         }
     }
@@ -98,7 +97,7 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public void InvertControl()
+    public void InvertControl()  //Handling if the controls are inverted or not
     {
         if (invertedControls == false)
             invertedControls = true;

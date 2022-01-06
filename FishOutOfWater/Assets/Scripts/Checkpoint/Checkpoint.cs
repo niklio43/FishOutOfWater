@@ -3,11 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class Checkpoint : MonoBehaviour
 {
-    private CheckpointMaster cpm;
     public int scene;
 
     private GameObject save;
-
+    private CheckpointMaster cpm;
 
     private void Awake()
     {
@@ -25,13 +24,13 @@ public class Checkpoint : MonoBehaviour
             cpm = GameObject.FindGameObjectWithTag("CPM").GetComponent<CheckpointMaster>();
     }
 
+    //Saves what scene is active when the player moves in a checkpoint
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             cpm.lastCPPos = transform.position;
             scene = SceneManager.GetActiveScene().buildIndex;
-            Debug.Log(scene);
             save.SetActive(true);
             Invoke("DisableGameObject", 1f);
         }

@@ -9,15 +9,14 @@ public class LayingDolphin : MonoBehaviour
     private float speed;
     private float timer;
     private Vector2 targetPos;
-    private bool isMoving, isAttacking;
     private GameObject Player;
+    private bool isMoving, isAttacking;
     private PlayerHealth playerHealth;
     private SpriteRenderer[] bodyParts;
 
     void Start()
     {
         speed = 8f;
-        isMoving = false;
         isMoving = false;
         isDead = false;
         Health = 60;

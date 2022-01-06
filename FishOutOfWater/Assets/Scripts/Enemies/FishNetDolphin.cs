@@ -4,17 +4,17 @@ using System.Collections;
 public class FishNetDolphin : MonoBehaviour
 {
     public bool dead;
-    private int Health;
     public bool setPos;
-    public bool netActive;
-    private bool isAttacking;
-    public Vector3 rightArmPos;
-    public Vector3 fishNetStartPos;
-    private Vector3 net, target;
     public Animator anim;
+    public bool netActive;
+    public Vector3 rightArmPos;
+    private Vector3 net, target;
+    public Vector3 fishNetStartPos;
 
-    private bool reachedTarget;
+    private int Health;
+    private bool isAttacking;
     private GameObject sound;
+    private bool reachedTarget;
     private GameObject fishNet;
     private NetTrigger netTrigger;
     private SpriteRenderer[] bodyParts;
@@ -39,11 +39,6 @@ public class FishNetDolphin : MonoBehaviour
     void Update()
     {
         anim.SetBool("isAttacking", isAttacking);
-
-        /*if(fishNet.GetComponent<FishNetController>().caughtByFishNet && GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>().isGrounded)
-        {
-            netTrigger.throwing = false;
-        }*/
 
         net = new Vector3(fishNet.transform.position.x, 0, 0);
         target = new Vector3(netTrigger.targetPos.x, 0, 0);
@@ -100,6 +95,7 @@ public class FishNetDolphin : MonoBehaviour
             }
             Invoke("ReturnColor", 0.1f);
         }
+
         if (Health <= 0)
         {
             Dead();

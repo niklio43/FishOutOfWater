@@ -3,7 +3,6 @@ using UnityEngine;
 public class ToxicBarrel : MonoBehaviour
 {
     public bool invincible;
-
     public ParticleSystem toxicExplosion;
 
     private PlayerHealth playerHealth;

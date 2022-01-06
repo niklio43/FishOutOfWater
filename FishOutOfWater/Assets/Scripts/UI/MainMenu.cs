@@ -7,9 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject firstButton, optionsButton, creditsButton;
 
-    private GameObject lastButton;
     private Stats stats;
-
+    private GameObject lastButton;
     private AudioController sound;
 
     public void Start()
@@ -20,8 +19,6 @@ public class MainMenu : MonoBehaviour
 
         sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
     }
-
-    
 
     public void PlayGame()
     {
@@ -61,8 +58,6 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
     #if UNITY_EDITOR
-            // Application.Quit() does not work in the editor so
-            // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
             UnityEditor.EditorApplication.isPlaying = false;
     #else
              Application.Quit();

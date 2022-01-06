@@ -6,14 +6,13 @@ public class Alerted : MonoBehaviour
     public GameObject AlertedPrefab;
 
     private Vector3 pos;
-    private AudioController sound;
     private GameObject exclamation;
     private StandingDolphin standingDolphin;
 
-    //hover speed
+    //Hover speed
     [SerializeField]
     float speed = 5f;
-    //max height
+    //Max height
     [SerializeField]
     float height = 0.2f;
 
@@ -25,7 +24,6 @@ public class Alerted : MonoBehaviour
         exclamation.SetActive(false);
         isActive = false;
         playSound = false;
-        sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
     }
 
     private void Update()
@@ -50,17 +48,12 @@ public class Alerted : MonoBehaviour
 
         if(isActive)
         {
-            //kalkylerar nya y positionen
+            //Calculates new y position
             float newY = Mathf.Sin(Time.time * speed) * height + pos.y;
-            //sätter nya positionen
+
+            //Sets the new y position
             exclamation.transform.position = new Vector3(exclamation.transform.position.x, newY, exclamation.transform.position.z);
         }
-
-        //if(isActive && !playSound && !standingDolphin.isDead)
-        //{
-        //    sound.PlayOnce("Alert Sound");
-        //    playSound = true;
-        //}
     }
 
     void DrawAlerted()

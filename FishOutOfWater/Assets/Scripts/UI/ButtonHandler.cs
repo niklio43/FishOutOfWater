@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ButtonHandler : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, ISelectHandler, ISubmitHandler
 {
-
     private AudioController sound;
 
     private void Start()

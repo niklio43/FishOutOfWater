@@ -10,10 +10,10 @@ public class StandingDolphin : MonoBehaviour
 
     private int Health;
     private bool isAttacking;
-    private float fireRate, nextFire;
     private Alerted alerted;
     private GameObject Player;
     private AudioController sound;
+    private float fireRate, nextFire;
     private SpriteRenderer[] bodyParts;
 
     void Start()
@@ -43,6 +43,7 @@ public class StandingDolphin : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, 0, 0);
             }
         }
+
         if (nextFire > 0)
         {
             nextFire -= Time.deltaTime;
@@ -85,6 +86,7 @@ public class StandingDolphin : MonoBehaviour
             }
             Invoke("ReturnColor", 0.1f);
         }
+
         if (Health <= 0)
         {
             Dead();
@@ -107,7 +109,9 @@ public class StandingDolphin : MonoBehaviour
         for (int i = 0; i < bodyParts.Length; i++)
         {
             if ((i + 1) == 1)
+            {
                 bodyParts[i] = transform.GetChild(i + 1).gameObject.GetComponent<SpriteRenderer>();
+            }
             else if ((i + 3) == 4)
             {
                 bodyParts[i] = transform.GetChild(i + 3).gameObject.GetComponent<SpriteRenderer>();

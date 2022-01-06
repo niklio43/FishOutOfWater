@@ -2,8 +2,8 @@
 public class GameData
 {
     public int scene;
-    public float timePlayed;
     public int deathCounter;
+    public float timePlayed;
 
     public GameData(Checkpoint checkpoint)
     {
