@@ -8,13 +8,23 @@ public class Stats : MonoBehaviour
     public float timePlayed, level1timePlayed, level2timePlayed, level3timePlayed;
     public int deathCounter, level1deathCounter, level2deathCounter, level3deathCounter;
     public bool playing;
+    private static Stats instance;
 
     private PauseMenu pauseMenu;
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         deathCounter = level1deathCounter = level2deathCounter = level3deathCounter = 0;
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(instance);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()
