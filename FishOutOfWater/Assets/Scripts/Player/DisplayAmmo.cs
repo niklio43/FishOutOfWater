@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class DisplayAmmo : MonoBehaviour
 {
+    public int shotsTaken;
+    public bool isReloading;
     public GameObject ammoCounter;
     public List<GameObject> ammoCounterList = new List<GameObject>();
-    public int shotsTaken;
-    private Vector2 spawnDir, spawnPos;
-    private float radius, radians, vertical, horizontal;
-    private SpriteRenderer spriteRenderer;
 
     private GameObject Player;
-
-    public bool isReloading;
+    private Vector2 spawnDir, spawnPos;
+    private SpriteRenderer spriteRenderer;
+    private float radius, radians, vertical, horizontal;
 
     private void Start()
     {
-        isReloading = false;
-        shotsTaken = 0;
-        Player = GameObject.FindGameObjectWithTag("Player");
         radius = 2;
+        shotsTaken = 0;
+        isReloading = false;
+        Player = GameObject.FindGameObjectWithTag("Player");
         CreateAmmoAroundPoint();
     }
 
@@ -77,7 +76,7 @@ public class DisplayAmmo : MonoBehaviour
 
     public void RemoveAmmo()
     {
-        if(shotsTaken < 12)
+        if (shotsTaken < 12)
         {
             spriteRenderer = ammoCounterList[shotsTaken].GetComponent<SpriteRenderer>();
             spriteRenderer.color = Color.gray;

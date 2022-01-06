@@ -5,29 +5,25 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public ParticleSystem dust;
-
-    private Vector2 velocityCopy;
     public float thrust, jumpForce;
 
+    private bool Slowed;
+    private Stats stats;
     private GameObject sound;
+    private Vector2 velocityCopy;
     private WeaponUpgrades state;
     private PlayerHealth playerHealth;
-
     private GroundChecker groundChecker;
-
-    private bool Slowed;
-
-    private Stats stats;
 
     private void Start()
     {
-        stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
         Slowed = false;
-        groundChecker = GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>();
         state = WeaponUpgrades.Spray;
-        sound = GameObject.FindGameObjectWithTag("AudioManager");
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
+        sound = GameObject.FindGameObjectWithTag("AudioManager");
+        stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
+        groundChecker = GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>();
     }
 
     private void Update()
@@ -60,7 +56,7 @@ public class PlayerController : MonoBehaviour
                 jumpForce = 45;
             }
         }
-        else if(Slowed)
+        else if (Slowed)
         {
             thrust = 8;
             jumpForce = 30;

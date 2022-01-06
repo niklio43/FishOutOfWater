@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class NextScene : MonoBehaviour
 {
-    Inputs input;
-    public GameObject text;
-    private AudioController sound;
     public int clipIndex;
+    public GameObject text;
+
+    private Inputs input;
+    private AudioController sound;
+
 
     void Start()
     {

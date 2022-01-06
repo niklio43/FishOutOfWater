@@ -6,16 +6,14 @@ public class GroundChecker : MonoBehaviour
 {
     public bool isGrounded;
 
+    private GameObject sound;
     private PlayerHealth playerHealth;
 
-    private GameObject sound;
-
-    // Start is called before the first frame update
     void Start()
     {
         isGrounded = false;
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         sound = GameObject.FindGameObjectWithTag("AudioManager");
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

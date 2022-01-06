@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
+    private int i;
+
     public float speed;
     public int startingPoint;
     public Transform[] points;
 
-    private int i;
     // Startposition between the two existing points
     void Start()
     {
@@ -33,7 +34,7 @@ public class MovingPlatform : MonoBehaviour
     //
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(gameObject.tag == "MovingPlatform" || gameObject.tag == "Ground")
+        if (gameObject.tag == "MovingPlatform" || gameObject.tag == "Ground")
             collision.transform.SetParent(transform);
     }
 

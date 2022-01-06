@@ -14,12 +14,11 @@ public class GunController : MonoBehaviour
     public ParticleSystem reloadPS;
 
     private bool playOnce;
-    private Vector2 inputVector;
-    private Vector2 playerGunArm;
-    private float timeBtwShots, startTimeBtwShots;
     private Inputs inputs;
     private GameObject Player;
     private GameObject fishNet;
+    private Vector2 inputVector;
+    private Vector2 playerGunArm;
     private WeaponUpgrades state;
     private AudioController sound;
     private DisplayAmmo displayAmmo;
@@ -27,6 +26,7 @@ public class GunController : MonoBehaviour
     private GroundChecker groundChecker;
     private PlayerController playerController;
     private FishNetController fishNetController;
+    private float timeBtwShots, startTimeBtwShots;
 
     private void Awake()
     {
@@ -38,16 +38,19 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         fishNet = GameObject.FindGameObjectWithTag("FishNet");
+        sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
+
         if (GameObject.FindGameObjectWithTag("FishNet") != null)
             fishNetController = GameObject.FindGameObjectWithTag("FishNet").GetComponent<FishNetController>();
-        Player = GameObject.FindGameObjectWithTag("Player");
-        sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
-        if(GameObject.FindGameObjectWithTag("AmmoCounterHolder") != null)
+
+        if (GameObject.FindGameObjectWithTag("AmmoCounterHolder") != null)
             displayAmmo = GameObject.FindGameObjectWithTag("AmmoCounterHolder").GetComponent<DisplayAmmo>();
-        state = WeaponUpgrades.Spray;
-        startTimeBtwShots = 0.15f;
+
         playOnce = false;
+        startTimeBtwShots = 0.15f;
+        state = WeaponUpgrades.Spray;
         playerHealth = Player.GetComponent<PlayerHealth>();
         playerController = Player.GetComponent<PlayerController>();
         groundChecker = GameObject.FindGameObjectWithTag("PlayerBottom").GetComponent<GroundChecker>();
@@ -93,7 +96,7 @@ public class GunController : MonoBehaviour
                 displayAmmo.RemoveAmmo();
             ammo--;
         }
-        if(!groundChecker.isGrounded && ammo <= 0)
+        if (!groundChecker.isGrounded && ammo <= 0)
         {
             playerController.Drift(directionX);
         }
@@ -118,7 +121,7 @@ public class GunController : MonoBehaviour
             sound.Play("Player Fire");
             Destroy(bullet, 3);
         }
-        else if(ammo <= 0 && !playOnce)
+        else if (ammo <= 0 && !playOnce)
         {
             StartCoroutine(OutOfAmmo());
             playOnce = true;

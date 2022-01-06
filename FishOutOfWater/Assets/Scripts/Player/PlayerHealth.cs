@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private int maxHealth = 20;
     public int currentHealth;
 
-
-    private PlayerController playerController;
-
+    private int maxHealth = 20;
     private SpriteRenderer[] bodyParts;
+    private PlayerController playerController;
 
     void Start()
     {

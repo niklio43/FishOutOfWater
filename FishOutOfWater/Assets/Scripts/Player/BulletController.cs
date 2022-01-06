@@ -9,14 +9,15 @@ public class BulletController : MonoBehaviour
     private AudioController sound;
     private CameraShake cameraShake;
     private LayingDolphin layingDolphin;
-    private StandingDolphin standingDolphin;
     private FishNetDolphin fishNetDolphin;
+    private StandingDolphin standingDolphin;
     private FishNetController fishNetController;
 
     private void Start()
     {
-        if(GameObject.FindGameObjectWithTag("AudioManager") != null)
+        if (GameObject.FindGameObjectWithTag("AudioManager") != null)
             sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
+
         cameraShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
         Physics2D.IgnoreLayerCollision(3, 8, true);
         Physics2D.IgnoreLayerCollision(7, 3, true);
@@ -29,7 +30,7 @@ public class BulletController : MonoBehaviour
 
     private void Update()
     {
-        if(transform.GetChild(0).name == "Bullet")
+        if (transform.GetChild(0).name == "Bullet")
         {
             child = transform.GetChild(0).gameObject;
         }
@@ -50,7 +51,7 @@ public class BulletController : MonoBehaviour
             Destroy(child);
             Destroy(gameObject, 0.1f);
             standingDolphin.TakeDamage(20);
-            if(!standingDolphin.isDead)
+            if (!standingDolphin.isDead)
                 sound.Play("Dolphin Damage");
         }
         if (gameObject.tag == "Bullet" && collision.gameObject.CompareTag("ToxicBarrel"))
@@ -77,7 +78,7 @@ public class BulletController : MonoBehaviour
             Destroy(child);
             Destroy(gameObject, 0.1f);
             layingDolphin.TakeDamage(20);
-            if(!layingDolphin.isDead)
+            if (!layingDolphin.isDead)
                 sound.Play("Dolphin Damage");
         }
         if (collision.gameObject.CompareTag("FishNet"))

@@ -1,10 +1,9 @@
 using UnityEngine;
-
+//This script is legacy and is not being used anymore, saved for potential future purposes.
 public class CameraFollow : MonoBehaviour
 {
-    public float smoothSpeed;
-
     public Transform target;
+    public float smoothSpeed;
 
     private Vector3 velocity = Vector3.zero;
 

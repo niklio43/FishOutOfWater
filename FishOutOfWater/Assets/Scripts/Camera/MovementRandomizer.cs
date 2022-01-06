@@ -5,9 +5,7 @@ using UnityEngine;
 public class MovementRandomizer : MonoBehaviour
 {
     private Vector3 startPos;
-
     private Vector3 min, max;
-
     private float lerpSpeed = 0.05f;
     private AudioController sound;
 
@@ -24,7 +22,7 @@ public class MovementRandomizer : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, startPos, Time.deltaTime * lerpSpeed);
 
-        if(Vector3.Distance(transform.position, startPos) < 1f)
+        if (Vector3.Distance(transform.position, startPos) < 1f)
         {
             GetNewPosition();
         }

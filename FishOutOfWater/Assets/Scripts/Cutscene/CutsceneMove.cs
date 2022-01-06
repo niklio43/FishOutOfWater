@@ -4,10 +4,10 @@ public class CutsceneMove : MonoBehaviour
 {
     public Vector3 targetPos;
 
-    private float speed = 0.1f;
+    private float length;
     private bool stopMoving;
     private float startTime;
-    private float length;
+    private float speed = 0.1f;
 
     void Start()
     {

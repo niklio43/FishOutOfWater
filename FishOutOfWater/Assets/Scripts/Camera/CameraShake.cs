@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
-
+//This script is legacy and is not being used anymore, saved for potential future purposes.
 public class CameraShake : MonoBehaviour
 {
-    Vector3 startPos;
-    float elapsedTime;
+    private float elapsedTime;
+    private Vector3 startPos;
 
     public static CameraShake instance;
 
@@ -21,7 +21,7 @@ public class CameraShake : MonoBehaviour
 
     IEnumerator Shake(float duration)
     {
-        while(elapsedTime < duration)
+        while (elapsedTime < duration)
         {
             transform.position = new Vector3(startPos.x + Random.Range(-0.3f, 0.3f),
             startPos.y + Random.Range(-0.3f, 0.3f), transform.position.z);

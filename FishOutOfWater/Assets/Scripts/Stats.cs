@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Detta är gjort på ett dumt sätt men inte värt att göra om, kryssa ner filen om du kommit hit robert.
+
 public class Stats : MonoBehaviour
 {
+    public bool playing;
     public float timePlayed, level1timePlayed, level2timePlayed, level3timePlayed;
     public int deathCounter, level1deathCounter, level2deathCounter, level3deathCounter;
-    public bool playing;
-    private static Stats instance;
 
     private PauseMenu pauseMenu;
+    private static Stats instance;
+
     void Awake()
     {
-        deathCounter = level1deathCounter = level2deathCounter = level3deathCounter = 0;
         SceneManager.sceneLoaded += OnSceneLoaded;
+        deathCounter = level1deathCounter = level2deathCounter = level3deathCounter = 0;
 
         if (instance == null)
         {

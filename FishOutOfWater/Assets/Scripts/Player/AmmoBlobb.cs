@@ -10,9 +10,9 @@ public class AmmoBlobb : MonoBehaviour
 
     private void Start()
     {
+        gunController = GameObject.FindGameObjectWithTag("Gun").GetComponent<GunController>();
         sound = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioController>();
         displayAmmo = GameObject.FindGameObjectWithTag("AmmoCounterHolder").GetComponent<DisplayAmmo>();
-        gunController = GameObject.FindGameObjectWithTag("Gun").GetComponent<GunController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
